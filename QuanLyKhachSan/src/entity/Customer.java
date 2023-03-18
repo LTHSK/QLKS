@@ -17,12 +17,12 @@ public class Customer {
     private String CCCD;
     private String phone;
     private String email;
-    private String points;
+    private int points;
 
     public Customer() {
     }
 
-    public Customer(String customerID, String customerName, CustomerType customerType, String CCCD, String phone, String email, String points) {
+    public Customer(String customerID, String customerName, CustomerType customerType, String CCCD, String phone, String email, int points) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerType = customerType;
@@ -80,11 +80,11 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
