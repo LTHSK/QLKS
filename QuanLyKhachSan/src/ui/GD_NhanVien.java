@@ -62,7 +62,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
         
         GD_GioiThieu frGioiThieu = new GD_GioiThieu(username);
         openComponent(frGioiThieu);
-
     }
 
     /**
