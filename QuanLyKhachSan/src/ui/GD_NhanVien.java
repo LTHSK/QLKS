@@ -203,8 +203,8 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlDonDat.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlDonDat.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlDonDat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlDonDatMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlDonDatMouseClicked(evt);
             }
         });
         pnlDonDat.setLayout(new java.awt.BorderLayout());
@@ -393,11 +393,35 @@ public class GD_NhanVien extends javax.swing.JFrame {
     private void pnlGioiThieuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlGioiThieuMousePressed
    
     }//GEN-LAST:event_pnlGioiThieuMousePressed
+private void doiMauPnl(){
+        pnlGioiThieu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlGioiThieu.setkStartColor(new java.awt.Color(252,210,165));
+        lblGioiThieu.setForeground(new java.awt.Color(79,51,22));
+        
+       pnlDonDat.setkEndColor(new java.awt.Color(252,210,165));
+        pnlDonDat.setkStartColor(new java.awt.Color(252,210,165));
+        lblDonDat.setForeground(new java.awt.Color(79,51,22));
 
-    private void pnlDonDatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDonDatMousePressed
-       
-    }//GEN-LAST:event_pnlDonDatMousePressed
-
+        pnlHoaDon.setkEndColor(new java.awt.Color(252,210,165));
+        pnlHoaDon.setkStartColor(new java.awt.Color(252,210,165));
+        lblHoaDon.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlDichVu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlDichVu.setkStartColor(new java.awt.Color(252,210,165));
+        lblDichVu.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlTraCuu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlTraCuu.setkStartColor(new java.awt.Color(252,210,165));
+        lblTraCuu.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlThongKe.setkEndColor(new java.awt.Color(252,210,165));
+        pnlThongKe.setkStartColor(new java.awt.Color(252,210,165));
+        lblThongKe.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlTroGiup.setkEndColor(new java.awt.Color(252,210,165));
+        pnlTroGiup.setkStartColor(new java.awt.Color(252,210,165));
+        lblTroGiup.setForeground(new java.awt.Color(79,51,22));
+}
     private void pnlTroGiupMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTroGiupMousePressed
        
     }//GEN-LAST:event_pnlTroGiupMousePressed
@@ -453,6 +477,17 @@ public class GD_NhanVien extends javax.swing.JFrame {
     private void pnlDichVuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDichVuMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlDichVuMousePressed
+
+    private void pnlDonDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDonDatMouseClicked
+GD_DonDat gd=new GD_DonDat();
+        gd.setVisible(true);
+        openComponent(gd);
+        doiMauPnl();
+        
+        pnlDonDat.setkEndColor(new java.awt.Color(235,144,46));
+        pnlDonDat.setkStartColor(new java.awt.Color(235,144,46));
+        lblDonDat.setForeground(new Color(255,255,255));        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlDonDatMouseClicked
     // open frame when click panel
     void openComponent(JInternalFrame frame) {
         Component[] components = pnlForm.getComponents();

@@ -56,6 +56,8 @@ public class GD_QuanLy extends javax.swing.JFrame {
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
+        
+        
         pnlGioiThieu.setkEndColor(new java.awt.Color(235,144,46));
         pnlGioiThieu.setkStartColor(new java.awt.Color(235,144,46));
         lblGioiThieu.setForeground(new Color(255,255,255));
@@ -84,8 +86,8 @@ public class GD_QuanLy extends javax.swing.JFrame {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         pnlGioiThieu = new keeptoo.KGradientPanel();
         lblGioiThieu = new javax.swing.JLabel();
-        pnlSanPham = new keeptoo.KGradientPanel();
-        lblSanPham = new javax.swing.JLabel();
+        pnlPhong = new keeptoo.KGradientPanel();
+        lblPhong = new javax.swing.JLabel();
         pnlNhanVien = new keeptoo.KGradientPanel();
         lblNhanVien = new javax.swing.JLabel();
         pnlDichVu = new keeptoo.KGradientPanel();
@@ -186,6 +188,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlGioiThieu.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlGioiThieu.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlGioiThieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlGioiThieuMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlGioiThieuMousePressed(evt);
             }
@@ -200,27 +205,30 @@ public class GD_QuanLy extends javax.swing.JFrame {
 
         kGradientPanel2.add(pnlGioiThieu);
 
-        pnlSanPham.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlSanPham.setkEndColor(new java.awt.Color(252, 210, 165));
-        pnlSanPham.setkGradientFocus(10);
-        pnlSanPham.setkStartColor(new java.awt.Color(252, 210, 165));
-        pnlSanPham.setMaximumSize(new java.awt.Dimension(2147483647, 40));
-        pnlSanPham.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlPhong.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        pnlPhong.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlPhong.setkGradientFocus(10);
+        pnlPhong.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlPhong.setMaximumSize(new java.awt.Dimension(2147483647, 40));
+        pnlPhong.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlPhong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlPhongMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlSanPhamMousePressed(evt);
+                pnlPhongMousePressed(evt);
             }
         });
-        pnlSanPham.setLayout(new java.awt.BorderLayout());
+        pnlPhong.setLayout(new java.awt.BorderLayout());
 
-        lblSanPham.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblSanPham.setForeground(new java.awt.Color(79, 51, 22));
-        lblSanPham.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSanPham.setText("PHÒNG");
-        lblSanPham.setToolTipText("PHÒNG");
-        pnlSanPham.add(lblSanPham, java.awt.BorderLayout.CENTER);
+        lblPhong.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPhong.setForeground(new java.awt.Color(79, 51, 22));
+        lblPhong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPhong.setText("PHÒNG");
+        lblPhong.setToolTipText("PHÒNG");
+        pnlPhong.add(lblPhong, java.awt.BorderLayout.CENTER);
 
-        kGradientPanel2.add(pnlSanPham);
+        kGradientPanel2.add(pnlPhong);
 
         pnlNhanVien.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         pnlNhanVien.setkEndColor(new java.awt.Color(252, 210, 165));
@@ -229,6 +237,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlNhanVien.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlNhanVien.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlNhanVienMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlNhanVienMousePressed(evt);
             }
@@ -250,6 +261,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlDichVu.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlDichVu.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlDichVuMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlDichVuMousePressed(evt);
             }
@@ -271,6 +285,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlThietBi.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlThietBi.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlThietBi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlThietBiMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlThietBiMousePressed(evt);
             }
@@ -292,6 +309,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlTaiKhoan.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlTaiKhoan.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlTaiKhoanMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlTaiKhoanMousePressed(evt);
             }
@@ -336,6 +356,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlThongKe.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlThongKe.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlThongKeMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlThongKeMousePressed(evt);
             }
@@ -357,6 +380,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlTroGiup.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlTroGiup.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlTroGiup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlTroGiupMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pnlTroGiupMousePressed(evt);
             }
@@ -440,9 +466,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
    
     }//GEN-LAST:event_pnlGioiThieuMousePressed
 
-    private void pnlSanPhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSanPhamMousePressed
+    private void pnlPhongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPhongMousePressed
        
-    }//GEN-LAST:event_pnlSanPhamMousePressed
+    }//GEN-LAST:event_pnlPhongMousePressed
 
     private void pnlTaiKhoanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTaiKhoanMousePressed
         
@@ -501,13 +527,127 @@ public class GD_QuanLy extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void pnlTraCuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMouseClicked
-       
+        doiMauPnl();
+        
+        pnlTraCuu.setkEndColor(new java.awt.Color(235,144,46));
+        pnlTraCuu.setkStartColor(new java.awt.Color(235,144,46));
+        lblTraCuu.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_pnlTraCuuMouseClicked
 
     private void pnlDichVuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDichVuMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlDichVuMousePressed
-    // open frame when click panel
+
+    private void pnlNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlNhanVienMouseClicked
+        
+        
+        doiMauPnl();
+        
+        pnlNhanVien.setkEndColor(new java.awt.Color(235,144,46));
+        pnlNhanVien.setkStartColor(new java.awt.Color(235,144,46));
+        lblNhanVien.setForeground(new Color(255,255,255));
+        
+        GD_QLNhanVien gd=new GD_QLNhanVien();
+        openComponent(gd);
+    }//GEN-LAST:event_pnlNhanVienMouseClicked
+
+    private void pnlGioiThieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlGioiThieuMouseClicked
+       doiMauPnl();
+        
+        pnlGioiThieu.setkEndColor(new java.awt.Color(235,144,46));
+        pnlGioiThieu.setkStartColor(new java.awt.Color(235,144,46));
+        lblGioiThieu.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlGioiThieuMouseClicked
+
+    private void pnlPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPhongMouseClicked
+        doiMauPnl();
+        
+        pnlPhong.setkEndColor(new java.awt.Color(235,144,46));
+        pnlPhong.setkStartColor(new java.awt.Color(235,144,46));
+        lblPhong.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlPhongMouseClicked
+
+    private void pnlDichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDichVuMouseClicked
+        doiMauPnl();
+        
+        pnlDichVu.setkEndColor(new java.awt.Color(235,144,46));
+        pnlDichVu.setkStartColor(new java.awt.Color(235,144,46));
+        lblDichVu.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlDichVuMouseClicked
+
+    private void pnlThietBiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlThietBiMouseClicked
+        doiMauPnl();
+        
+        pnlThietBi.setkEndColor(new java.awt.Color(235,144,46));
+        pnlThietBi.setkStartColor(new java.awt.Color(235,144,46));
+        lblThietBi.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlThietBiMouseClicked
+
+    private void pnlTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTaiKhoanMouseClicked
+        doiMauPnl();
+        
+        pnlTaiKhoan.setkEndColor(new java.awt.Color(235,144,46));
+        pnlTaiKhoan.setkStartColor(new java.awt.Color(235,144,46));
+        lblTaiKhoan.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlTaiKhoanMouseClicked
+
+    private void pnlThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlThongKeMouseClicked
+       doiMauPnl();
+        
+        pnlThongKe.setkEndColor(new java.awt.Color(235,144,46));
+        pnlThongKe.setkStartColor(new java.awt.Color(235,144,46));
+        lblThongKe.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlThongKeMouseClicked
+
+    private void pnlTroGiupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTroGiupMouseClicked
+        doiMauPnl();
+        
+        pnlTroGiup.setkEndColor(new java.awt.Color(235,144,46));
+        pnlTroGiup.setkStartColor(new java.awt.Color(235,144,46));
+        lblTroGiup.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_pnlTroGiupMouseClicked
+    
+private void doiMauPnl(){
+        pnlGioiThieu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlGioiThieu.setkStartColor(new java.awt.Color(252,210,165));
+        lblGioiThieu.setForeground(new java.awt.Color(79,51,22));
+        
+       pnlPhong.setkEndColor(new java.awt.Color(252,210,165));
+        pnlPhong.setkStartColor(new java.awt.Color(252,210,165));
+        lblPhong.setForeground(new java.awt.Color(79,51,22));
+
+        pnlNhanVien.setkEndColor(new java.awt.Color(252,210,165));
+        pnlNhanVien.setkStartColor(new java.awt.Color(252,210,165));
+        lblNhanVien.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlDichVu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlDichVu.setkStartColor(new java.awt.Color(252,210,165));
+        lblDichVu.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlThietBi.setkEndColor(new java.awt.Color(252,210,165));
+        pnlThietBi.setkStartColor(new java.awt.Color(252,210,165));
+        lblThietBi.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlTaiKhoan.setkEndColor(new java.awt.Color(252,210,165));
+        pnlTaiKhoan.setkStartColor(new java.awt.Color(252,210,165));
+        lblTaiKhoan.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlTraCuu.setkEndColor(new java.awt.Color(252,210,165));
+        pnlTraCuu.setkStartColor(new java.awt.Color(252,210,165));
+        lblTraCuu.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlThongKe.setkEndColor(new java.awt.Color(252,210,165));
+        pnlThongKe.setkStartColor(new java.awt.Color(252,210,165));
+        lblThongKe.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlTroGiup.setkEndColor(new java.awt.Color(252,210,165));
+        pnlTroGiup.setkStartColor(new java.awt.Color(252,210,165));
+        lblTroGiup.setForeground(new java.awt.Color(79,51,22));
+}
+
+// open frame when click panel
+    
+    
     void openComponent(JInternalFrame frame) {
         Component[] components = pnlForm.getComponents();
         Component component = null;
@@ -560,7 +700,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel lblGioiThieu;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblNhanVien;
-    private javax.swing.JLabel lblSanPham;
+    private javax.swing.JLabel lblPhong;
     private javax.swing.JLabel lblTaiKhoan;
     private javax.swing.JLabel lblTen;
     private javax.swing.JLabel lblThietBi;
@@ -574,7 +714,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlNguoiDung;
     private keeptoo.KGradientPanel pnlNhanVien;
-    private keeptoo.KGradientPanel pnlSanPham;
+    private keeptoo.KGradientPanel pnlPhong;
     private keeptoo.KGradientPanel pnlTaiKhoan;
     private keeptoo.KGradientPanel pnlThietBi;
     private keeptoo.KGradientPanel pnlThongKe;

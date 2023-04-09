@@ -28,6 +28,47 @@ public class Room {
         this.describe = describe;
     }
 
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(String roomID) {
+        this.roomID = roomID;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public RoomStatusType getRoomStatusType() {
+        return roomStatusType;
+    }
+
+    public void setRoomStatusType(RoomStatusType roomStatusType) {
+        this.roomStatusType = roomStatusType;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    
     @Override
     public String toString() {
         return "Room{" + "roomID=" + roomID + ", roomName=" + roomName + ", roomType=" + roomType + ", roomStatusType=" + roomStatusType + ", describe=" + describe + '}';
