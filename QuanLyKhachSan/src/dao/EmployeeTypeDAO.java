@@ -59,4 +59,30 @@ public class EmployeeTypeDAO {
          }
        return null;
     }
+    
+    public EmployeeType findEmpByName(String name) throws SQLException, ClassNotFoundException
+    {
+        try(
+                Connection con = connection.DatabaseConnection.opConnection();
+                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM TypeEmployee WHERE employeeTypeName = ?");
+                )
+        {
+            pstmt.setString(1, name);
+            try(java.sql.ResultSet rs = pstmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    String idT = rs.getString("employeeTypeID");
+                    String nameT = rs.getString("employeeTypeName");
+                    EmployeeType eT = new EmployeeType(nameT, name);
+                    return eT;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
