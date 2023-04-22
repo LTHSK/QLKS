@@ -365,8 +365,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 // Create list rooms
     private void createRoom() {
-        listRoomVip = roomDAO.findRoomByIDLoaiPhong("VIP2");
-        listRoomNormals = roomDAO.findRoomByIDLoaiPhong("VIP1");
+        listRoomVip = roomDAO.findRoomByIDLoaiPhong("LP002");
+        listRoomNormals = roomDAO.findRoomByIDLoaiPhong("LP001");
 
         JLabel lblListNormal;
         // Titile Normal
@@ -408,10 +408,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 pnlRoom.setLayout(new BorderLayout());
                 pnlRoom.setBounds(x, y, width, height);
 
-                if (trangThaiPhong.equals("EMPTY")) {
+                if (trangThaiPhong.equals("LTTP001")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
-                } else if (trangThaiPhong.equals("FULL")) {
+                } else if (trangThaiPhong.equals("LTTP002")) {
                     createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
                 } else {
@@ -439,14 +439,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         for (Room room : listRoomVip) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
-            if (!trangThaiPhong.equals("FULL")) {
+            if (!trangThaiPhong.equals("LTTP004")) {
                 //Room
                 pnlRoom = new JPanel();
                 pnlRoom.setBackground(Color.white);
                 pnlRoom.setLayout(new BorderLayout());
                 pnlRoom.setBounds(x, countHeight, width, height);
 
-                if (trangThaiPhong.equals("FULL")) {
+                if (trangThaiPhong.equals("LTTP001")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
                 } else if (trangThaiPhong.equals("LTTP002")) {

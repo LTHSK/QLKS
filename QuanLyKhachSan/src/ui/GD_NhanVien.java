@@ -39,7 +39,8 @@ public class GD_NhanVien extends javax.swing.JFrame {
 
     private static String username;
     private final GD_GioiThieu frGioiThieu;
-    private final GD_DonDat1 gdDonDat;
+    private final GD_DonDat gdDonDat;
+    
 
     /**
      * Creates new form MainEmployee
@@ -63,7 +64,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblGioiThieu.setForeground(new Color(255,255,255));
         
         frGioiThieu = new GD_GioiThieu(username);
-        gdDonDat=new GD_DonDat1(username);
+        gdDonDat=new GD_DonDat();
         openComponent(frGioiThieu);
     }
 
