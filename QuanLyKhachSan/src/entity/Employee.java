@@ -22,7 +22,7 @@ public class Employee {
 
     public Employee() {
     }
-
+    
     public Employee(String employeeID, String employeeName, EmployeeType employeeType, String CCCD, String phone, String email, double salary, String gender) {
         this.employeeID = employeeID;
         this.employeeName = employeeName;
@@ -31,10 +31,11 @@ public class Employee {
         this.phone = phone;
         this.email = email;
         this.salary = salary;
+       
         this.gender = gender;
     }
     
-
+   
     public String getEmployeeID() {
         return employeeID;
     }
