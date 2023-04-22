@@ -6,6 +6,7 @@ package ui;
 
 import dao.RoomDAO;
 import dao.RoomStatusTypeDAO;
+import entity.BookRoom;
 import entity.Room;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,20 +30,31 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private String username;
     RoomDAO roomDAO;
     RoomStatusTypeDAO roomStatusTypeDAO;
-
+    JButton lblRoom;
+    String nameRoom;
     //List
     List<Room> listRoomVip;
     List<Room> listRoomNormals;
+    List<BookRoom> listBookRooms;
     /**
      * Creates new form QuanLyHoaDon
      */
     public GD_DonDat() {
+        roomDAO=new RoomDAO();
+        roomStatusTypeDAO =new RoomStatusTypeDAO();
+        
         this.setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI ui
                 = this.getUI();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
         initComponents();
+        
+        
         this.setFocusable(true);
+        
+        createRoom();
+        
+        
     }
 
     /**
@@ -133,6 +145,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         pnlRoom.setLayout(new javax.swing.OverlayLayout(pnlRoom));
 
         scrollPanel.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPanel.setMaximumSize(new java.awt.Dimension(1500, 1200));
+        scrollPanel.setMinimumSize(new java.awt.Dimension(600, 600));
+        scrollPanel.setPreferredSize(new java.awt.Dimension(800, 800));
         pnlRoom.add(scrollPanel);
 
         jPanel2.add(pnlRoom);
@@ -151,11 +166,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel12);
@@ -169,11 +184,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel3);
@@ -187,11 +202,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel4);
@@ -213,11 +228,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel5);
@@ -252,11 +267,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel9);
@@ -278,11 +293,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel10);
@@ -296,11 +311,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel11);
@@ -325,7 +340,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -334,7 +349,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel13);
@@ -351,8 +366,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 // Create list rooms
     private void createRoom() {
-        listRoomVip = roomDAO.findRoomByIDLoaiPhong("LP001");
-        listRoomNormals = roomDAO.findRoomByIDLoaiPhong("LP002");
+        listRoomVip = roomDAO.findRoomByIDLoaiPhong("VIP2");
+        listRoomNormals = roomDAO.findRoomByIDLoaiPhong("VIP1");
 
         JLabel lblListNormal;
         // Titile Normal
@@ -381,9 +396,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         String trangThaiPhong;
         for (Room room : listRoomNormals) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
-//            if (trangThaiPhong.equals("LTTP004")) {
-//                countNumberRoomNormalRemove++;
-//            }
+            if (trangThaiPhong.equals("LTTP004")) {
+                countNumberRoomNormalRemove++;
+            }
         }
         for (Room room : listRoomNormals) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
@@ -394,10 +409,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 pnlRoom.setLayout(new BorderLayout());
                 pnlRoom.setBounds(x, y, width, height);
 
-                if (trangThaiPhong.equals("LTTP001")) {
+                if (trangThaiPhong.equals("EMPTY")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
-                } else if (trangThaiPhong.equals("LTTP002")) {
+                } else if (trangThaiPhong.equals("FULL")) {
                     createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
                 } else {
@@ -425,14 +440,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         for (Room room : listRoomVip) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
-            if (!trangThaiPhong.equals("LTTP004")) {
+            if (!trangThaiPhong.equals("FULL")) {
                 //Room
                 pnlRoom = new JPanel();
                 pnlRoom.setBackground(Color.white);
                 pnlRoom.setLayout(new BorderLayout());
                 pnlRoom.setBounds(x, countHeight, width, height);
 
-                if (trangThaiPhong.equals("LTTP001")) {
+                if (trangThaiPhong.equals("FULL")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
                     createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
                 } else if (trangThaiPhong.equals("LTTP002")) {
@@ -468,19 +483,19 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 // tên phòng
 
     private void createNameRoom(String idPhong, JPanel pnlRom, Color colorBackground, Room room) {
-//        lblRoom = new JButton();
-//        lblRoom.setText(roomDAO.findRoomById(idPhong).getTenPhong());
-//        lblRoom.setOpaque(true);
-//        lblRoom.setBackground(colorBackground);
-//        lblRoom.setFont(new Font("Segoe UI", Font.BOLD, 14));
-//        lblRoom.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-//        lblRoom.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                nameRoom = room.getTenPhong();
-//            }
-//        });
-//        pnlRom.add(lblRoom, BorderLayout.CENTER);
+        lblRoom = new JButton();
+        lblRoom.setText(roomDAO.findRoomById(idPhong).getRoomName());
+        lblRoom.setOpaque(true);
+        lblRoom.setBackground(colorBackground);
+        lblRoom.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lblRoom.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+        lblRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nameRoom = room.getRoomName();
+            }
+        });
+        pnlRom.add(lblRoom, BorderLayout.CENTER);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

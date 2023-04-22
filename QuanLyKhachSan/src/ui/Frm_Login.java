@@ -5,6 +5,10 @@
 package ui;
 
 
+import dao.AccountDAO;
+import dao.EmployeeDAO;
+import entity.Account;
+import entity.Employee;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
 
@@ -17,6 +21,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author ACER
  */
 public class Frm_Login extends javax.swing.JFrame {
+
+    private AccountDAO dao_Acc;
+    private EmployeeDAO dao_Emp;
     
 
     /**
@@ -250,7 +257,13 @@ public class Frm_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        dao_Acc=new AccountDAO();
+        dao_Emp=new EmployeeDAO();
+        
+        Account acc=dao_Acc.getAccountById(txtTenDN.getText());
+        if(acc.getPassword().equals(txtMatKhau.toString())){
 
+        }
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

@@ -18,11 +18,12 @@ public class Employee {
     private String phone;
     private String email;
     private double salary ;
+    private String gender;
 
     public Employee() {
     }
 
-    public Employee(String employeeID, String employeeName, EmployeeType employeeType, String CCCD, String phone, String email, double salary) {
+    public Employee(String employeeID, String employeeName, EmployeeType employeeType, String CCCD, String phone, String email, double salary, String gender) {
         this.employeeID = employeeID;
         this.employeeName = employeeName;
         this.employeeType = employeeType;
@@ -30,7 +31,9 @@ public class Employee {
         this.phone = phone;
         this.email = email;
         this.salary = salary;
+        this.gender = gender;
     }
+    
 
     public String getEmployeeID() {
         return employeeID;
@@ -88,16 +91,23 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
-        return "Employee{" + "employeeID=" + employeeID + ", employeeName=" + employeeName + ", employeeType=" + employeeType + ", CCCD=" + CCCD + ", phone=" + phone + ", email=" + email + ", salary=" + salary + '}';
+        return "Employee{" + "employeeID=" + employeeID + ", employeeName=" + employeeName + ", employeeType=" + employeeType + ", CCCD=" + CCCD + ", phone=" + phone + ", email=" + email + ", salary=" + salary + ", gender=" + gender + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.employeeID);
-        hash = 89 * hash + Objects.hashCode(this.CCCD);
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.employeeID);
         return hash;
     }
 
@@ -113,10 +123,8 @@ public class Employee {
             return false;
         }
         final Employee other = (Employee) obj;
-        if (!Objects.equals(this.employeeID, other.employeeID)) {
-            return false;
-        }
-        return Objects.equals(this.CCCD, other.CCCD);
+        return Objects.equals(this.employeeID, other.employeeID);
     }
+
     
 }
