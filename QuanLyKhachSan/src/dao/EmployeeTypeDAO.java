@@ -74,7 +74,7 @@ public class EmployeeTypeDAO {
                 {
                     String idT = rs.getString("employeeTypeID");
                     String nameT = rs.getString("employeeTypeName");
-                    EmployeeType eT = new EmployeeType(nameT, name);
+                    EmployeeType eT = new EmployeeType(idT, nameT);
                     return eT;
                 }
             }
