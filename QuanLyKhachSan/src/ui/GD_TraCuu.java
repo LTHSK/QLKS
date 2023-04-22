@@ -8,7 +8,7 @@ package ui;
  *
  * @author thule
  */
-public class GD_TraCuu extends javax.swing.JPanel {
+public class GD_TraCuu extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form GD_TraCuu
@@ -34,7 +34,7 @@ public class GD_TraCuu extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setLayout(new javax.swing.OverlayLayout(this));
+        setLayout(new java.awt.BorderLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,7 +100,7 @@ public class GD_TraCuu extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("TRA CỨU HÓA ĐƠN", jPanel2);
 
-        add(jTabbedPane1);
+        add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("TRA CỨU ĐƠN ĐẶT PHÒNG");
     }// </editor-fold>//GEN-END:initComponents
 

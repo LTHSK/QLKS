@@ -118,7 +118,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlMain.setLayout(new java.awt.BorderLayout());
 
         pnlForm.setBackground(new java.awt.Color(255, 255, 255));
-        pnlForm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), null, new java.awt.Color(227, 227, 227)));
         pnlForm.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         pnlForm.setLayout(new java.awt.BorderLayout());
         pnlMain.add(pnlForm, java.awt.BorderLayout.CENTER);
@@ -503,6 +502,8 @@ private void doiMauPnl(){
         pnlTraCuu.setkEndColor(new java.awt.Color(235,144,46));
         pnlTraCuu.setkStartColor(new java.awt.Color(235,144,46));
         lblTraCuu.setForeground(new Color(255,255,255)); 
+        GD_TraCuu gdTraCuu=new GD_TraCuu();
+        openComponent(gdTraCuu);
     }//GEN-LAST:event_pnlTraCuuMousePressed
 
     private void pnlDonDatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDonDatMousePressed

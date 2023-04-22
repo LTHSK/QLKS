@@ -101,7 +101,6 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setFrameIcon(null);
-        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         pnlMain.setBackground(new java.awt.Color(252, 210, 165));
         pnlMain.setLayout(new javax.swing.BoxLayout(pnlMain, javax.swing.BoxLayout.Y_AXIS));
@@ -441,7 +440,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
 
         pnlMain.add(pnlDuoi);
 
-        getContentPane().add(pnlMain);
+        getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

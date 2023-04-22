@@ -97,7 +97,6 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setFrameIcon(null);
-        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
         pnlMain.setPreferredSize(new java.awt.Dimension(1015, 756));
@@ -356,7 +355,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         pnlMain.add(jPanel2);
 
-        getContentPane().add(pnlMain);
+        getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
