@@ -523,6 +523,8 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlTraCuu.setkEndColor(new java.awt.Color(235,144,46));
         pnlTraCuu.setkStartColor(new java.awt.Color(235,144,46));
         lblTraCuu.setForeground(new Color(255,255,255));
+        GD_TraCuu gdTraCuu=new GD_TraCuu();
+        openComponent(gdTraCuu);
     }//GEN-LAST:event_pnlTraCuuMouseClicked
 
     private void pnlDichVuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDichVuMousePressed
