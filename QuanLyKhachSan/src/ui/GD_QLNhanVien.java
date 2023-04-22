@@ -25,7 +25,7 @@ import regex.RegexHelper;
  * @author ACER
  */
 public class GD_QLNhanVien extends javax.swing.JInternalFrame {
-//    private final DefaultTableModel modelNhanVien;
+      private final DefaultTableModel modelNhanVien;
 //    private String username;
 //    private DAO_NhanVien nvDAO;
 //    private DAO_LoaiNhanVien lnvDAO;
@@ -34,7 +34,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
     private TableRowSorter<DefaultTableModel> tr;
     dao.EmployeeDAO eD;
     dao.AccountDAO accD;
-    private DefaultTableModel dtm;
+    
 
     
 
@@ -59,7 +59,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         
 //        lnvDAO = new DAO_LoaiNhanVien();
 //        nvDAO = new DAO_NhanVien();
-//        modelNhanVien=(DefaultTableModel) tblNhanVien.getModel();
+        modelNhanVien=(DefaultTableModel) tblNhanVien.getModel();
 //        tkDAO=new DAO_TaiKhoan();
 //        docDuLieuLenTable(nvDAO.layTatCaNhanVienDangLamVaoBang(),modelNhanVien);
 //        tr=new TableRowSorter<DefaultTableModel>(modelNhanVien);
@@ -532,7 +532,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                       if(eD.findEmpCCCD(txtCMND.getText()) == null)
                       {
                           eD.add(e);
-                          loadDataToTable(eD.getAllList(), dtm);
+                          loadDataToTable(eD.getAllList(), modelNhanVien);
                           clearInput();
                           JOptionPane.showMessageDialog(this, "Thêm thành công!");
                       }
