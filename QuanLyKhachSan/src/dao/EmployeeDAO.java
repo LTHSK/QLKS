@@ -17,35 +17,37 @@ import java.sql.SQLException;
  * @author 
  */
 public class EmployeeDAO {
-    private final EmployeeTypeDAO empTypeDAO = new EmployeeTypeDAO();
+    EmployeeTypeDAO empTypeDAO = new EmployeeTypeDAO();
     
     public List<entity.Employee> getAllList()
     {
         List<Employee> listEm = new ArrayList<>();
-        try {
-            connection.DatabaseConnection.getInstance();
+        try (
             Connection con = connection.DatabaseConnection.opConnection();
-            String sql = "SELECT * FROM Emloyee";
-            java.sql.Statement statement = con.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery(sql);
-            while(rs.next())
-            {
-                String empID = rs.getString("emloyeeID");
-                String empName = rs.getString("employeeName");
-                String empCCCD = rs.getString("CCCD");
-                String empPhone = rs.getString("Phone");
-                String empEmail = rs.getString("Email");
-                double empSalary = rs.getDouble("Salary");
-                String empGender = rs.getString("Gender");
-                EmployeeType empType = new EmployeeType(rs.getString("employeeTypeID"),rs.getString("employeeTypeName"));
-                Employee emp = new Employee(empID, empName, empType, empCCCD, empPhone, empEmail, empSalary,empGender);
-                
-                listEm.add(emp);
-             
+            java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee")){
+            try(java.sql.ResultSet rs = pstmt.executeQuery()){
+                while(rs.next())
+                {
+                    String empID = rs.getString("employeeID");
+                    String empName = rs.getString("employeeName");
+                    String empCCCD = rs.getString("CCCD");
+                    String empPhone = rs.getString("Phone");
+                    String empEmail = rs.getString("Email");
+                    double empSalary = rs.getDouble("Salary");
+                    String empGender = rs.getString("Gender");
+                    empTypeDAO = new EmployeeTypeDAO();
+                    EmployeeType et = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
+
+                    Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
+
+                    listEm.add(emp);
+
+                }
+                return listEm;
             }
         } catch (Exception e) {
         }
-        return listEm;
+        return null;
     }
     
     public List<Employee> getListEmpQuit() throws ClassNotFoundException
@@ -68,7 +70,7 @@ public class EmployeeDAO {
                 String empGender = rs.getString("Gender");
                 EmployeeType empType = new EmployeeType(rs.getString("employeeTypeID"),rs.getString("employeeTypeName"));
 
-                Employee emp = new Employee(empID, empName, empType, empCCCD, empPhone, empEmail, empSalary,empGender);
+                Employee emp = new Employee(empID, empName, empCCCD, empPhone, empEmail, empSalary,empType, empGender);
                 
                 list.add(emp);
              
@@ -98,7 +100,7 @@ public class EmployeeDAO {
                 double empSalary = rs.getDouble("Salary");
                 String empGender = rs.getString("Gender");
                 EmployeeType empType = new EmployeeType(rs.getString("employeeTypeID"),rs.getString("employeeTypeName"));
-                Employee emp = new Employee(empID, empName, empType, empCCCD, empPhone, empEmail, empSalary,empGender);
+                Employee emp = new Employee(empID, empName, empCCCD, empPhone, empEmail, empSalary, empType,empGender);
                 
                 list.add(emp);
              
@@ -128,7 +130,7 @@ public class EmployeeDAO {
                 double empSalary = rs.getDouble("Salary");
                 String empGender = rs.getString("Gender");
                 EmployeeType empType = new EmployeeType(rs.getString("employeeTypeID"),rs.getString("employeeTypeName"));
-                Employee emp = new Employee(empID, empName, empType, empCCCD, empPhone, empEmail, empSalary,empGender);
+                Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,empType,empGender);
                 
                 list.add(emp);
              
@@ -153,11 +155,11 @@ public class EmployeeDAO {
                         Employee emp = new Employee(
                                                        rs.getString("employeeID"),
                                                        rs.getString("employeeName"),
-                                                       empType,
                                                        rs.getString("CCCD"),
                                                        rs.getString("Phone"),
                                                        rs.getString("Email"),
                                                        rs.getDouble("Salary"),
+                                                       empType,
                                                        rs.getString("Gender")
                                                     );
                         return emp;
@@ -179,15 +181,16 @@ public class EmployeeDAO {
                 {
                     if(rs.next())
                     {
+                        empTypeDAO = new EmployeeTypeDAO();
                         EmployeeType empType = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
                         Employee emp = new Employee(
                                                        rs.getString("employeeID"),
                                                        rs.getString("employeeName"),
-                                                       empType,
                                                        rs.getString("CCCD"),
                                                        rs.getString("Phone"),
                                                        rs.getString("Email"),
                                                        rs.getDouble("Salary"),
+                                                       empType,
                                                        rs.getString("Gender")
                                                     );
                         return emp;
@@ -200,7 +203,6 @@ public class EmployeeDAO {
     
     public boolean add(Employee emp)
     {
-        int n = 0;
         try(
                 Connection con = connection.DatabaseConnection.opConnection();
                 java.sql.PreparedStatement pts = con.prepareStatement("INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)");
@@ -208,20 +210,20 @@ public class EmployeeDAO {
         {
             pts.setString(1, emp.getEmployeeID());
             pts.setString(2, emp.getEmployeeName());
-            pts.setString(3, emp.getEmployeeType().getEmployeeTypeID());
-            pts.setString(4, emp.getCCCD());
-            pts.setString(5, emp.getPhone());
-            pts.setString(6, emp.getEmail());
-            pts.setDouble(7, emp.getSalary());
+            pts.setString(3, emp.getCCCD());
+            pts.setString(4, emp.getPhone());
+            pts.setString(5, emp.getEmail());
+            pts.setDouble(6, emp.getSalary());
+            pts.setString(7, emp.getEmployeeType().getEmployeeTypeID());
             pts.setString(8, emp.getGender());
-            n = pts.executeUpdate();
+            return pts.executeUpdate() > 0;
         }
         catch(Exception e)
         {
             System.err.println("add(): connectDB fail!");
             e.printStackTrace();
         }
-        return n > 0;
+        return false;
     }
     
     public boolean update(Employee emp)

@@ -32,8 +32,8 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
 //    private DAO_TaiKhoan tkDAO;
     List<RowFilter<DefaultTableModel,Object>> filters = new ArrayList<>();
     private TableRowSorter<DefaultTableModel> tr;
-    dao.EmployeeDAO eD;
-    dao.AccountDAO accD;
+    private dao.EmployeeDAO eD;
+    private dao.AccountDAO accD;
     
 
     
@@ -64,6 +64,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
 //        docDuLieuLenTable(nvDAO.layTatCaNhanVienDangLamVaoBang(),modelNhanVien);
 //        tr=new TableRowSorter<DefaultTableModel>(modelNhanVien);
 //        tblNhanVien.setRowSorter(tr);
+        loadDataToTable(eD.getAllList(), modelNhanVien);
 //        
     }
 
@@ -175,7 +176,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         cmbChucVu.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        cmbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Quản lý" }));
+        cmbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thu ngân", "Quản lý" }));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel10.setText("Giới tính :");
@@ -489,8 +490,9 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         String salary = txtLuongCoBan.getText();
         boolean gender = cmbLocGioiTinh.getSelectedItem().toString().equals("Nam");
         EmployeeTypeDAO etD = new EmployeeTypeDAO();
-        entity.EmployeeType et = etD.findEmpByName(cmbLocChucVu.getSelectedItem().toString());
-        entity.Employee e = new Employee(setMaNV(), name, et, iden, phone, "", Double.parseDouble(salary),  gender?"Nam":"Nữ");
+        entity.EmployeeType et = etD.findEmpByName(cmbChucVu.getSelectedItem().toString());
+        
+        entity.Employee e = new Employee(setMaNV(), name, iden, phone, "", Double.parseDouble(salary),  et, gender?"Nam":"Nữ");
         return e;
     }
      private String setMaNV(){
@@ -526,27 +528,22 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
 //        }
           if(checkData())
           {
+             
               try {
                   Employee e = createEmp();
-                  try {
-                      if(eD.findEmpCCCD(txtCMND.getText()) == null)
-                      {
-                          eD.add(e);
-                          loadDataToTable(eD.getAllList(), modelNhanVien);
-                          clearInput();
-                          JOptionPane.showMessageDialog(this, "Thêm thành công!");
-                      }
-                      else
-                      {
-                          JOptionPane.showMessageDialog(this, "Mã CMND này đã có, hãy kiểm tra lại!");
-                      }
-                  } catch (Exception e1) {
-                      JOptionPane.showMessageDialog(this, e1.getMessage());
+                  if(eD.findEmpCCCD(txtCMND.getText()) == null)
+                  {
+                      eD.add(e);
+                      loadDataToTable(eD.getAllList(), modelNhanVien);
+                      clearInput();
+                      JOptionPane.showMessageDialog(this, "Thêm thành công!");
                   }
-              } catch (SQLException ex) {
-                  Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null,ex);
-              } catch (ClassNotFoundException ex) {
-                  Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                  else
+                  {
+                      JOptionPane.showMessageDialog(this, "Mã CCCD này bị trùng!");
+                  }
+              } catch (Exception e1) {
+                  JOptionPane.showMessageDialog(this, e1.getMessage());
               }
           }
         
