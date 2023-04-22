@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 public class AccountDAO {
        public Account getAccountById(String id) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("select * from Account where roomid = ?")) {
+                PreparedStatement pstmt = conn.prepareStatement("select * from Account where username = ?")) {
             pstmt.setString(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {  
 
-                    Account acc = new Account(rs.getString("roomid"), rs.getString("roomName"));
+                    Account acc = new Account(rs.getString("username"), rs.getString("password"));
 
 
                     return acc;
@@ -37,4 +37,20 @@ public class AccountDAO {
 
         return null;
     }
+       public String findPass(String userName){
+       String password = null;
+       try (Connection con = DatabaseConnection.opConnection();
+               PreparedStatement pts = con.prepareStatement("Select password from Account where userName = ?")){
+           pts.setString(1, userName);
+           ResultSet rs = pts.executeQuery();
+           
+           while(rs.next()){
+               password = rs.getString("password");
+           }
+           return password;
+       } catch (Exception e) {
+           
+       }
+       return null;
+   }
 }

@@ -36,13 +36,13 @@ import keeptoo.KGradientPanel;
  * @author ACER
  */
 public class GD_QuanLy extends javax.swing.JFrame {
-
     private static String username;
 
     /**
      * Creates new form MainEmployee
      */
-    public GD_QuanLy() {
+    public GD_QuanLy(String _username) {
+        username=_username;
         this.setUndecorated(true);
         this.setResizable(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -681,7 +681,7 @@ private void doiMauPnl(){
 //        UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GD_QuanLy();
+                new GD_QuanLy(username);
             }
         });
     }

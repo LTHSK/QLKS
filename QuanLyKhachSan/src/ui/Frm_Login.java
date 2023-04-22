@@ -30,7 +30,8 @@ public class Frm_Login extends javax.swing.JFrame {
      * Creates new form GiaoDienDangNhap
      */
     public Frm_Login() {
-        
+        dao_Acc=new AccountDAO();
+        dao_Emp=new EmployeeDAO();
         initComponents();
 
     }
@@ -162,9 +163,9 @@ public class Frm_Login extends javax.swing.JFrame {
         btnDangNhap.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 102), 3, true));
         btnDangNhap.setBorderPainted(false);
         btnDangNhap.setFocusPainted(false);
-        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangNhapActionPerformed(evt);
+        btnDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDangNhapMouseClicked(evt);
             }
         });
 
@@ -256,20 +257,39 @@ public class Frm_Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        dao_Acc=new AccountDAO();
-        dao_Emp=new EmployeeDAO();
-        
-        Account acc=dao_Acc.getAccountById(txtTenDN.getText());
-        if(acc.getPassword().equals(txtMatKhau.toString())){
-
-        }
-
-    }//GEN-LAST:event_btnDangNhapActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         JOptionPane.showMessageDialog(this, "Bạn hãy liên hệ với ... để được cấp lại mật khẩu.");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseClicked
+        String username=txtTenDN.getText();
+        String matKhau=String.valueOf(txtMatKhau.getPassword());
+        if(username.equals("") ||matKhau.equals("")){
+            JOptionPane.showMessageDialog(null, "Hãy nhập đầy đủ thông tin đăng nhập!");
+        }else{
+        if(dao_Acc.findPass(username).equals(matKhau)){
+            Employee emp;
+           
+            emp=dao_Emp.findEmpID(username);
+            if(emp.getEmployeeType().getEmployeeTypeID().equals("LNV001")){
+                GD_QuanLy gdql=new GD_QuanLy(txtTenDN.getText());
+                this.setVisible(false);
+                this.setLocationRelativeTo(this);
+                gdql.setVisible(true);
+                dispose();
+            }else{
+                GD_NhanVien gdnv=new GD_NhanVien(txtTenDN.getText());
+                this.setVisible(false);
+                gdnv.setVisible(true);
+            }
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Mật khẩu không hợp lệ!");
+        }
+    
+        }
+    }//GEN-LAST:event_btnDangNhapMouseClicked
 
     /**
      * @param args the command line arguments
