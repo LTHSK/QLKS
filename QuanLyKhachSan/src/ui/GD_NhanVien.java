@@ -435,6 +435,9 @@ private void doiMauPnl(){
         pnlTroGiup.setkEndColor(new java.awt.Color(235,144,46));
         pnlTroGiup.setkStartColor(new java.awt.Color(235,144,46));
         lblTroGiup.setForeground(new Color(255,255,255)); 
+        
+        GD_QLTroGiup gdtg1=new GD_QLTroGiup(username);
+        openComponent(gdtg1);
     }//GEN-LAST:event_pnlTroGiupMousePressed
 
     private void pnlHoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHoaDonMousePressed
@@ -443,6 +446,9 @@ private void doiMauPnl(){
         pnlHoaDon.setkEndColor(new java.awt.Color(235,144,46));
         pnlHoaDon.setkStartColor(new java.awt.Color(235,144,46));
         lblHoaDon.setForeground(new Color(255,255,255)); 
+        
+        GD_HoaDon gdhd=new GD_HoaDon();
+        openComponent(gdhd);
     }//GEN-LAST:event_pnlHoaDonMousePressed
 
     private void pnlThongKeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlThongKeMousePressed
@@ -451,6 +457,8 @@ private void doiMauPnl(){
         pnlThongKe.setkEndColor(new java.awt.Color(235,144,46));
         pnlThongKe.setkStartColor(new java.awt.Color(235,144,46));
         lblThongKe.setForeground(new Color(255,255,255)); 
+        GD_ThongKe gdtk=new GD_ThongKe();
+        openComponent(gdtk);
     }//GEN-LAST:event_pnlThongKeMousePressed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -495,6 +503,8 @@ private void doiMauPnl(){
         pnlDichVu.setkEndColor(new java.awt.Color(235,144,46));
         pnlDichVu.setkStartColor(new java.awt.Color(235,144,46));
         lblDichVu.setForeground(new Color(255,255,255)); 
+        GD_DichVuNhanVien gddvnv=new GD_DichVuNhanVien();
+        openComponent(gddvnv);
     }//GEN-LAST:event_pnlDichVuMousePressed
 
     private void pnlTraCuuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMousePressed

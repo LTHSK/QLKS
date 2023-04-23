@@ -44,7 +44,7 @@ public class RoomTypeDAO {
     }
     public RoomType findRoomTypeById(String id) {
         try(Connection conn = DatabaseConnection.opConnection();
-               PreparedStatement pstmt = conn.prepareStatement("") ) {
+               PreparedStatement pstmt = conn.prepareStatement("select * from RoomType where roomtypeid=?") ) {
             pstmt.setString(1, id);
             
             try(ResultSet rs = pstmt.executeQuery()) {
