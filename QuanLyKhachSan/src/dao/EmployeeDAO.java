@@ -114,30 +114,74 @@ public class EmployeeDAO {
     public List<Employee> getListEmpGender(String gender)
     {
         List<Employee> list = new ArrayList<>();
-        try {
-            connection.DatabaseConnection.getInstance();
-            Connection con = connection.DatabaseConnection.opConnection();
-            String sql = "SELECT * FROM Employee WHERE Gender = '"+gender+"'";
-            java.sql.Statement statement = con.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery(sql);
-            while(rs.next())
+        try (Connection con = connection.DatabaseConnection.opConnection();
+              java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE gender = ?")
+                )
+        {
+            pstmt.setString(1, gender);
+            try(java.sql.ResultSet rs = pstmt.executeQuery())
             {
-                String empID = rs.getString("emloyeeID");
-                String empName = rs.getString("employeeName");
-                String empCCCD = rs.getString("CCCD");
-                String empPhone = rs.getString("Phone");
-                String empEmail = rs.getString("Email");
-                double empSalary = rs.getDouble("Salary");
-                String empGender = rs.getString("Gender");
-                EmployeeType empType = new EmployeeType(rs.getString("employeeTypeID"),rs.getString("employeeTypeName"));
-                Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,empType,empGender);
-                
-                list.add(emp);
-             
+                while(rs.next())
+                {
+                    String empID = rs.getString("emloyeeID");
+                    String empName = rs.getString("employeeName");
+                    String empCCCD = rs.getString("CCCD");
+                    String empPhone = rs.getString("Phone");
+                    String empEmail = rs.getString("Email");
+                    double empSalary = rs.getDouble("Salary");
+                    String empGender = rs.getString("Gender");
+                    empTypeDAO = new EmployeeTypeDAO();
+                    EmployeeType et = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
+                    Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
+
+                    list.add(emp);
+
+                }
+            return list;
             }
         } catch (Exception e) {
         }
-        return list;
+        return null;
+    }
+    
+    public List<Employee> getListEmpType(String id) throws ClassNotFoundException, SQLException
+    {
+        List<Employee> list = new ArrayList<>();
+        try(
+                Connection con = connection.DatabaseConnection.opConnection();
+                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE employeeTypeID = ?")
+            )
+        {
+            pstmt.setString(1, id);
+            try(java.sql.ResultSet rs = pstmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    String empID = rs.getString("employeeID");
+                    String empName = rs.getString("employeeName");
+                    String empCCCD = rs.getString("CCCD");
+                    String empPhone = rs.getString("Phone");
+                    String empEmail = rs.getString("Email");
+                    double empSalary = rs.getDouble("Salary");
+                    String empGender = rs.getString("Gender");
+                    empTypeDAO = new EmployeeTypeDAO();
+                    EmployeeType et = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
+
+                    Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
+
+                    list.add(emp);
+                }
+                return list;
+            }
+            catch (Exception e){
+                System.err.println("getAllStaffByType():get data fail");
+                e.printStackTrace();}
+        }
+        catch (Exception e){
+            System.err.println("getAllStaffByType(): connect db fail");
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public Employee findEmpID(String id)
@@ -169,6 +213,7 @@ public class EmployeeDAO {
         }
         return null;
     }
+    
     
     public Employee findEmpCCCD(String cccd)
     {
