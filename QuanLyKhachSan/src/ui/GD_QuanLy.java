@@ -568,13 +568,14 @@ public class GD_QuanLy extends javax.swing.JFrame {
 
     private void pnlPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPhongMouseClicked
         doiMauPnl();
-        
-        pnlPhong.setkEndColor(new java.awt.Color(235,144,46));
-        pnlPhong.setkStartColor(new java.awt.Color(235,144,46));
+            
+        pnlPhong.setkEndColor(new Color(235,144,46));
+        pnlPhong.setkStartColor(new Color(235,144,46));
         lblPhong.setForeground(new Color(255,255,255));
         
-        GD_QLPhong gdqlPhong=new GD_QLPhong();
-        openComponent(gdqlPhong);
+//        GD_QLPhong gdqlPhong=new GD_QLPhong();
+        openComponent(new GD_QLPhong());
+        
     }//GEN-LAST:event_pnlPhongMouseClicked
     
 private void doiMauPnl(){
@@ -615,6 +616,7 @@ private void doiMauPnl(){
     
     
     void openComponent(JInternalFrame frame) {
+        System.out.println("hello world");
         Component[] components = pnlForm.getComponents();
         Component component = null;
         for (int i = 0; i < components.length; i++) {
