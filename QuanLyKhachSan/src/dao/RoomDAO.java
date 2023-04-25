@@ -12,8 +12,11 @@ import entity.RoomType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -103,5 +106,87 @@ public class RoomDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    // sinh mã phòng tự động 
+    public String to_string(int x) {
+        if(x < 10) return ("00"+x); 
+        else if(x < 100) return ("0"+x); 
+        else return ""+x; 
+    }
+    
+    public String getMaPhong() {
+        List<Room> ds = getAllRooms(); 
+        int cnt = 1; 
+        for( Room r : ds ) {
+            if(!r.getRoomID().equals("P" + to_string(cnt)))
+                return "P" + to_string(cnt); 
+            cnt++; 
+        }
+        return "P" + to_string(cnt); 
+    }
+    
+    public void SaveRoom( Room Phong ) {
+        try {
+            Connection conn = DatabaseConnection.opConnection();
+            String sql = "INSERT INTO Room (roomID, roomName, describe,roomTypeID, roomStatusTypeID) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, Phong.getRoomID());
+            statement.setNString(2, Phong.getRoomName());
+            statement.setNString(3, Phong.getDescribe());
+            statement.setString(4, Phong.getRoomType().getRoomTypeID());
+            statement.setString(5, Phong.getRoomStatusType().getRoomStatusTypeID());
+               
+            
+            
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new room was inserted successfully!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
+    
+    public void updateRoom(Room Phong) {
+        try { 
+            Connection conn = DatabaseConnection.opConnection();
+            String sql = "UPDATE Room set roomName = ?, describe=?, roomTypeID = ?, roomStatusTypeID = ? where roomID = ?"; 
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setNString(1, Phong.getRoomName());
+            statement.setNString(2, Phong.getDescribe());
+            statement.setString(3, Phong.getRoomType().getRoomTypeID());
+            statement.setString(4, Phong.getRoomStatusType().getRoomStatusTypeID());
+            statement.setString(5, Phong.getRoomID());
+            int rowsUpdated = statement.executeUpdate(); 
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật thông tin phòng thành công.");
+            } else {
+                System.out.println("Không tìm thấy phòng để cập nhật.");
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteRoom(String maPhong) {
+        try {
+            Connection conn = DatabaseConnection.opConnection(); 
+            String sql = "DELETE FROM Room WHERE roomID = ?";
+            PreparedStatement statement = conn.prepareStatement(sql); 
+            statement.setString(1, maPhong);
+            statement.executeUpdate(); 
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
