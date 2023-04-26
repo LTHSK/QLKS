@@ -616,7 +616,6 @@ private void doiMauPnl(){
     
     
     void openComponent(JInternalFrame frame) {
-        System.out.println("hello world");
         Component[] components = pnlForm.getComponents();
         Component component = null;
         for (int i = 0; i < components.length; i++) {

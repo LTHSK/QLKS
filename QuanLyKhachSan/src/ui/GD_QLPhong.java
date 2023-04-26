@@ -31,25 +31,50 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
      */
     private int Rows; 
     ArrayList<UI_Phong> ds_UIPhong = null;
-    public GD_QLPhong() {
-        initComponents();
-        List<Room> ds = new RoomDAO().getAllRooms(); 
+    List<Room> ds = null; 
+    
+    public void loadData() {
+        ds = new RoomDAO().getAllRooms(); 
         Collections.sort(ds, new Comparator<Room>() {
             @Override
             public int compare(Room room1, Room room2) {
                 return room1.getRoomID().compareTo(room2.getRoomID());
             }
         });
-        Rows = (ds.size()+3)/5; 
+        Rows = (ds.size()+4)/5; 
         
         ds_UIPhong = new ArrayList<UI_Phong>(); 
-        for( Room r : ds ) {
-            ds_UIPhong.add(new UI_Phong(r));
-        }      
+        for( Room r : ds ) 
+            ds_UIPhong.add(new UI_Phong(r)); 
         
-        for( UI_Phong ui_p : ds_UIPhong ) {
+        jPanel4.removeAll();
+        for( UI_Phong ui_p : ds_UIPhong ) 
             jPanel4.add(ui_p); 
-            
+        
+        jPanel4.revalidate(); // Cập nhật layout cho JPanel
+        jPanel4.repaint(); // Vẽ lại JPanel
+        
+        // thêm số lượng của mỗi loại phòng 
+        int cntTrong = 0, cntDangO = 0, cntDaDAt = 0, cntDonDep = 0, cntBaoTri = 0;  
+        for( Room r : ds ) {
+            String s = r.getRoomStatusType().getRoomStatusTypeID(); 
+            if(s.equals("LTTP001")) cntTrong++; 
+            else if(s.equals("LTTP002")) cntDangO++; 
+            else if(s.equals("LTTP003")) cntDaDAt++; 
+            else if(s.equals("LTTP004")) cntBaoTri++; 
+            else cntDonDep++; 
+        }
+        btnTrong.setText( "Trống" + "("+cntTrong+")" );
+        btnDangSuDung.setText( "Đang ở" + "("+cntDangO+")" );
+        btnDaDat.setText( "Đã đặt" + "("+cntDaDAt+")" );
+        btnDonDep.setText( "Dọn dẹp" + "("+cntDonDep+")" );
+        btnBaoTri.setText( "Bảo trì" + "("+cntBaoTri+")" );
+    }
+    
+    public GD_QLPhong() {
+        initComponents();
+        loadData();
+        for( UI_Phong ui_p : ds_UIPhong ) {
             ui_p.addMouseListener(new java.awt.event.MouseAdapter() {
                 Color bgr = ui_p.getBGR().getBackground(); 
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -85,14 +110,13 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
                     } else if( status.equals("LTTP005") ) {
                         cbbTrangThai.setSelectedIndex(4);
                     }
-                    
                     btnLuu.setText("Cập nhật");
                 }
             }); 
         }
-       
         
-        
+        // tăng tốc độ scroll
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**
@@ -130,11 +154,11 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnTrong = new javax.swing.JButton();
+        btnDangSuDung = new javax.swing.JButton();
+        btnDaDat = new javax.swing.JButton();
+        btnDonDep = new javax.swing.JButton();
+        btnBaoTri = new javax.swing.JButton();
         btnXoaPhong = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -306,96 +330,96 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 890, 410));
 
-        jButton12.setBackground(new java.awt.Color(70, 141, 188));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("Trống");
-        jButton12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton12.setName("btnTrong"); // NOI18N
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTrong.setBackground(new java.awt.Color(70, 141, 188));
+        btnTrong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTrong.setForeground(new java.awt.Color(255, 255, 255));
+        btnTrong.setText("Trống");
+        btnTrong.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnTrong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTrong.setName("btnTrong"); // NOI18N
+        btnTrong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnTrongMouseReleased(evt);
             }
         });
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btnTrong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btnTrongActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 120, 40));
+        jPanel3.add(btnTrong, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 120, 40));
 
-        jButton13.setBackground(new java.awt.Color(255, 40, 0));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Đang ở");
-        jButton13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton13.setName("btnDangO"); // NOI18N
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDangSuDung.setBackground(new java.awt.Color(255, 40, 0));
+        btnDangSuDung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDangSuDung.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangSuDung.setText("Đang ở");
+        btnDangSuDung.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnDangSuDung.setName("btnDangO"); // NOI18N
+        btnDangSuDung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnDangOMouseReleased(evt);
             }
         });
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btnDangSuDung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btnDangSuDungActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 40));
+        jPanel3.add(btnDangSuDung, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 40));
 
-        jButton14.setBackground(new java.awt.Color(181, 230, 29));
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Đã đặt");
-        jButton14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton14.setName("btnDaDat"); // NOI18N
-        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDaDat.setBackground(new java.awt.Color(181, 230, 29));
+        btnDaDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDaDat.setForeground(new java.awt.Color(255, 255, 255));
+        btnDaDat.setText("Đã đặt");
+        btnDaDat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnDaDat.setName("btnDaDat"); // NOI18N
+        btnDaDat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton14MouseReleased(evt);
+                btnDaDatMouseReleased(evt);
             }
         });
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        btnDaDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                btnDaDatActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, 40));
+        jPanel3.add(btnDaDat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, 40));
 
-        jButton15.setBackground(new java.awt.Color(181, 171, 107));
-        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Dọp dẹp");
-        jButton15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton15.setName("btnDonDep"); // NOI18N
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDonDep.setBackground(new java.awt.Color(181, 171, 107));
+        btnDonDep.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDonDep.setForeground(new java.awt.Color(255, 255, 255));
+        btnDonDep.setText("Dọp dẹp");
+        btnDonDep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnDonDep.setName("btnDonDep"); // NOI18N
+        btnDonDep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton15MouseReleased(evt);
+                btnDonDepMouseReleased(evt);
             }
         });
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        btnDonDep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                btnDonDepActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 40));
+        jPanel3.add(btnDonDep, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 120, 40));
 
-        jButton11.setBackground(new java.awt.Color(255, 201, 14));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Bảo trì");
-        jButton11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton11.setName("btnBaoTri"); // NOI18N
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBaoTri.setBackground(new java.awt.Color(255, 201, 14));
+        btnBaoTri.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBaoTri.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaoTri.setText("Bảo trì");
+        btnBaoTri.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnBaoTri.setName("btnBaoTri"); // NOI18N
+        btnBaoTri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton11MouseReleased(evt);
+                btnBaoTriMouseReleased(evt);
             }
         });
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnBaoTri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnBaoTriActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 120, 40));
+        jPanel3.add(btnBaoTri, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 40));
 
         btnXoaPhong.setBackground(new java.awt.Color(0, 102, 102));
         btnXoaPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -406,6 +430,11 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         btnXoaPhong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnXoaPhongMouseReleased(evt);
+            }
+        });
+        btnXoaPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaPhongActionPerformed(evt);
             }
         });
         jPanel3.add(btnXoaPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 110, 40));
@@ -449,7 +478,6 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("THÊM VÀ CẬP NHẬT");
         jPanel3.getAccessibleContext().setAccessibleParent(jPanel3);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -465,25 +493,25 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaPhongTKActionPerformed
 
-    private void jButton11ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void btnBaoTriActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBaoTriActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btnBaoTriActionPerformed
 
-    private void jButton12ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void btnTrongActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnTrongActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_btnTrongActionPerformed
 
-    private void jButton13ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void btnDangSuDungActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDangSuDungActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_btnDangSuDungActionPerformed
 
-    private void jButton14ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void btnDaDatActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDaDatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_btnDaDatActionPerformed
 
-    private void jButton15ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void btnDonDepActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDonDepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_btnDonDepActionPerformed
 
     private void txtMoTaActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtMoTaActionPerformed
         // TODO add your handling code here:
@@ -524,7 +552,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         jPanel4.repaint(); // Vẽ lại JPanel
     }//GEN-LAST:event_btnDangOMouseReleased
 
-    private void jButton14MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseReleased
+    private void btnDaDatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDaDatMouseReleased
         // TODO add your handling code here:
         jPanel4.removeAll();
         for( UI_Phong u : ds_UIPhong ) {
@@ -533,9 +561,9 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         }
         jPanel4.revalidate(); // Cập nhật layout cho JPanel
         jPanel4.repaint(); // Vẽ lại JPanel
-    }//GEN-LAST:event_jButton14MouseReleased
+    }//GEN-LAST:event_btnDaDatMouseReleased
 
-    private void jButton15MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseReleased
+    private void btnDonDepMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDonDepMouseReleased
         // TODO add your handling code here:
         jPanel4.removeAll();
         for( UI_Phong u : ds_UIPhong ) {
@@ -544,9 +572,9 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         }
         jPanel4.revalidate(); // Cập nhật layout cho JPanel
         jPanel4.repaint(); // Vẽ lại JPanel
-    }//GEN-LAST:event_jButton15MouseReleased
+    }//GEN-LAST:event_btnDonDepMouseReleased
 
-    private void jButton11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseReleased
+    private void btnBaoTriMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBaoTriMouseReleased
         // TODO add your handling code here:
         jPanel4.removeAll();
         for( UI_Phong u : ds_UIPhong ) {
@@ -556,7 +584,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         }
         jPanel4.revalidate(); // Cập nhật layout cho JPanel
         jPanel4.repaint(); // Vẽ lại JPanel
-    }//GEN-LAST:event_jButton11MouseReleased
+    }//GEN-LAST:event_btnBaoTriMouseReleased
     
     // Xem tất cả
     private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
@@ -588,6 +616,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
                     new RoomDAO().deleteRoom(u.getRoom().getRoomID());
             }
         }
+        loadData();
     }//GEN-LAST:event_btnXoaPhongMouseReleased
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
@@ -674,26 +703,28 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         else 
             new RoomDAO().updateRoom(phong); 
         
-        jPanel4.revalidate(); // Cập nhật layout cho JPanel
-        jPanel4.repaint(); // Vẽ lại JPanel
-        
+        loadData(); 
     }//GEN-LAST:event_btnLuuMouseReleased
+
+    private void btnXoaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaPhongActionPerformed
+   
+    }//GEN-LAST:event_btnXoaPhongActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBaoTri;
+    private javax.swing.JButton btnDaDat;
+    private javax.swing.JButton btnDangSuDung;
+    private javax.swing.JButton btnDonDep;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnTrong;
     private javax.swing.JButton btnXoaPhong;
     private javax.swing.JComboBox<String> cbbLoaiPhong;
     private javax.swing.JComboBox<String> cbbLoaiPhongTK;
     private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JComboBox<String> cbbTrangThaiTK;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
