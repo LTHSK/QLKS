@@ -114,45 +114,12 @@ public class EmployeeDAO {
     public List<Employee> getListEmpGender(String gender)
     {
         List<Employee> list = new ArrayList<>();
-        try (Connection con = connection.DatabaseConnection.opConnection();
-              java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE gender = ?")
-                )
-        {
-            pstmt.setString(1, gender);
-            try(java.sql.ResultSet rs = pstmt.executeQuery())
-            {
-                while(rs.next())
-                {
-                    String empID = rs.getString("emloyeeID");
-                    String empName = rs.getString("employeeName");
-                    String empCCCD = rs.getString("CCCD");
-                    String empPhone = rs.getString("Phone");
-                    String empEmail = rs.getString("Email");
-                    double empSalary = rs.getDouble("Salary");
-                    String empGender = rs.getString("Gender");
-                    empTypeDAO = new EmployeeTypeDAO();
-                    EmployeeType et = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
-                    Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
-
-                    list.add(emp);
-
-                }
-            return list;
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
-    
-    public List<Employee> getListEmpType(String id) throws ClassNotFoundException, SQLException
-    {
-        List<Employee> list = new ArrayList<>();
         try(
                 Connection con = connection.DatabaseConnection.opConnection();
-                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE employeeTypeID = ?")
-            )
+                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE gender = ?")
+                ) 
         {
-            pstmt.setString(1, id);
+            pstmt.setString(1, gender);
             try(java.sql.ResultSet rs = pstmt.executeQuery())
             {
                 while(rs.next())
@@ -170,18 +137,51 @@ public class EmployeeDAO {
                     Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
 
                     list.add(emp);
+
                 }
-                return list;
+                return list;   
             }
-            catch (Exception e){
-                System.err.println("getAllStaffByType():get data fail");
-                e.printStackTrace();}
-        }
-        catch (Exception e){
-            System.err.println("getAllStaffByType(): connect db fail");
-            e.printStackTrace();
+            
+        } catch (Exception e) {
         }
         return null;
+    }
+    
+    public List<Employee> getAllEmpType(String idType) throws ClassNotFoundException, SQLException
+    {
+        List<Employee> list = new ArrayList<>();
+        try(
+                Connection con = connection.DatabaseConnection.opConnection();
+                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Employee WHERE employeeTypeID = ?"))
+        {
+            pstmt.setString(1, idType);
+            try(java.sql.ResultSet rs = pstmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    String empID = rs.getString("employeeID");
+                    String empName = rs.getString("employeeName");
+                    String empCCCD = rs.getString("CCCD");
+                    String empPhone = rs.getString("Phone");
+                    String empEmail = rs.getString("Email");
+                    double empSalary = rs.getDouble("Salary");
+                    String empGender = rs.getString("Gender");
+                    empTypeDAO = new EmployeeTypeDAO();
+                    EmployeeType et = empTypeDAO.findEmpTypeID(rs.getString("employeeTypeID"));
+
+                    Employee emp = new Employee(empID, empName,  empCCCD, empPhone, empEmail, empSalary,et,empGender);
+
+                    list.add(emp);
+
+                }
+                return list;                
+            }
+        }catch (Exception e){
+                System.err.println("getAllEmpType():get data fail");
+                e.printStackTrace();
+        }
+        return null;
+        
     }
     
     public Employee findEmpID(String id)
@@ -213,7 +213,6 @@ public class EmployeeDAO {
         }
         return null;
     }
-    
     
     public Employee findEmpCCCD(String cccd)
     {
@@ -310,7 +309,6 @@ public class EmployeeDAO {
         return false;
     }
     
-
 }  
     
  
