@@ -43,6 +43,9 @@ public class UI_Phong extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
         });
 
         jPanel1.setBackground(new java.awt.Color(61, 139, 233));
@@ -108,9 +111,12 @@ public class UI_Phong extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        jLabel1.setVisible(!jLabel1.isVisible()); 
- 
     }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        // TODO add your handling code here:
+        jLabel1.setVisible(!jLabel1.isVisible()); 
+    }//GEN-LAST:event_formMouseReleased
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -126,9 +132,9 @@ public class UI_Phong extends javax.swing.JPanel {
         phong = phong1; 
         Color colorTrong = new Color(70, 141, 188); 
         Color colorDonDep = new Color(181, 171, 107); 
-        Color colorBaoTri = new Color(255, 201, 14); 
-        Color colorCoKhach = new Color(255, 40, 0); 
-        Color colorDaDat = new Color(181, 230, 29);
+        Color colorBaoTri = new Color(240,119,37); 
+        Color colorCoKhach = new Color(219,51,60); 
+        Color colorDaDat = new Color(46,139,87);
         String typeDon = "Giường đơn"; 
         String typeDoi = "Giường đôi"; 
         String typeDoiLon = "Giường đôi lớn"; 

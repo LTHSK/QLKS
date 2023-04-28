@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import regex.RegexHelper;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -48,33 +49,8 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
             ds_UIPhong.add(new UI_Phong(r)); 
         
         jPanel4.removeAll();
-        for( UI_Phong ui_p : ds_UIPhong ) 
-            jPanel4.add(ui_p); 
-        
-        jPanel4.revalidate(); // Cập nhật layout cho JPanel
-        jPanel4.repaint(); // Vẽ lại JPanel
-        
-        // thêm số lượng của mỗi loại phòng 
-        int cntTrong = 0, cntDangO = 0, cntDaDAt = 0, cntDonDep = 0, cntBaoTri = 0;  
-        for( Room r : ds ) {
-            String s = r.getRoomStatusType().getRoomStatusTypeID(); 
-            if(s.equals("LTTP001")) cntTrong++; 
-            else if(s.equals("LTTP002")) cntDangO++; 
-            else if(s.equals("LTTP003")) cntDaDAt++; 
-            else if(s.equals("LTTP004")) cntBaoTri++; 
-            else cntDonDep++; 
-        }
-        btnTrong.setText( "Trống" + "("+cntTrong+")" );
-        btnDangSuDung.setText( "Đang ở" + "("+cntDangO+")" );
-        btnDaDat.setText( "Đã đặt" + "("+cntDaDAt+")" );
-        btnDonDep.setText( "Dọn dẹp" + "("+cntDonDep+")" );
-        btnBaoTri.setText( "Bảo trì" + "("+cntBaoTri+")" );
-    }
-    
-    public GD_QLPhong() {
-        initComponents();
-        loadData();
         for( UI_Phong ui_p : ds_UIPhong ) {
+            jPanel4.add(ui_p); 
             ui_p.addMouseListener(new java.awt.event.MouseAdapter() {
                 Color bgr = ui_p.getBGR().getBackground(); 
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -111,10 +87,50 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
                         cbbTrangThai.setSelectedIndex(4);
                     }
                     btnLuu.setText("Cập nhật");
+                    btnLuu.setIcon( new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-update-done-25.png")) );
                 }
             }); 
         }
+            
+        jPanel4.revalidate(); // Cập nhật layout cho JPanel
+        jPanel4.repaint(); // Vẽ lại JPanel
         
+        // thêm số lượng của mỗi loại phòng 
+        int cntTrong = 0, cntDangO = 0, cntDaDAt = 0, cntDonDep = 0, cntBaoTri = 0;  
+        for( Room r : ds ) {
+            String s = r.getRoomStatusType().getRoomStatusTypeID(); 
+            if(s.equals("LTTP001")) cntTrong++; 
+            else if(s.equals("LTTP002")) cntDangO++; 
+            else if(s.equals("LTTP003")) cntDaDAt++; 
+            else if(s.equals("LTTP004")) cntBaoTri++; 
+            else cntDonDep++; 
+        }
+        btnTrong.setText( "Trống" + "("+cntTrong+")" );
+        btnDangSuDung.setText( "Đang ở" + "("+cntDangO+")" );
+        btnDaDat.setText( "Đã đặt" + "("+cntDaDAt+")" );
+        btnDonDep.setText( "Dọn dẹp" + "("+cntDonDep+")" );
+        btnBaoTri.setText( "Bảo trì" + "("+cntBaoTri+")" );
+        btnTatCa.setText("Tất cả"+ "("+ ds.size() +")"); 
+    }
+ 
+    private boolean checkData() {
+        if(txtTenPhong.getText().isBlank() || txtGia.getText().isBlank() ) {
+            JOptionPane.showMessageDialog(this, "Hãy nhập đầy đủ thông tin!");
+            return false;
+        } else {
+            String thongBao = ""; 
+            if( !RegexHelper.regexGia(txtGia.getText()) )
+                thongBao += "*Giá tiền không hợp lệ\n"; 
+            if(thongBao.isEmpty()) 
+                return true; 
+            JOptionPane.showMessageDialog(this, thongBao);
+            return false; 
+        }
+    }
+    
+    public GD_QLPhong() {
+        initComponents();
+        loadData();        
         // tăng tốc độ scroll
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -160,7 +176,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         btnDonDep = new javax.swing.JButton();
         btnBaoTri = new javax.swing.JButton();
         btnXoaPhong = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnTatCa = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setBorder(null);
@@ -186,8 +202,9 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Thêm mới");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-add-file-25.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jButton1.setLabel("Thêm ");
         jButton1.setName("btnLuu"); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -237,6 +254,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         btnLuu.setBackground(new java.awt.Color(0, 102, 102));
         btnLuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLuu.setForeground(new java.awt.Color(255, 255, 255));
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-save-25.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
         btnLuu.setName("btnLuu"); // NOI18N
@@ -304,9 +322,9 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         btnTimKiem.setBackground(new java.awt.Color(0, 102, 102));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-search-25.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
         btnTimKiem.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        btnTimKiem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTimKiem.setName("btnTimKiem"); // NOI18N
         btnTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -349,7 +367,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         });
         jPanel3.add(btnTrong, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 120, 40));
 
-        btnDangSuDung.setBackground(new java.awt.Color(255, 40, 0));
+        btnDangSuDung.setBackground(new java.awt.Color(219, 51, 60));
         btnDangSuDung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDangSuDung.setForeground(new java.awt.Color(255, 255, 255));
         btnDangSuDung.setText("Đang ở");
@@ -367,7 +385,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         });
         jPanel3.add(btnDangSuDung, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 40));
 
-        btnDaDat.setBackground(new java.awt.Color(181, 230, 29));
+        btnDaDat.setBackground(new java.awt.Color(46, 139, 87));
         btnDaDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDaDat.setForeground(new java.awt.Color(255, 255, 255));
         btnDaDat.setText("Đã đặt");
@@ -403,7 +421,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         });
         jPanel3.add(btnDonDep, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 120, 40));
 
-        btnBaoTri.setBackground(new java.awt.Color(255, 201, 14));
+        btnBaoTri.setBackground(new java.awt.Color(240, 119, 37));
         btnBaoTri.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBaoTri.setForeground(new java.awt.Color(255, 255, 255));
         btnBaoTri.setText("Bảo trì");
@@ -424,7 +442,8 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         btnXoaPhong.setBackground(new java.awt.Color(0, 102, 102));
         btnXoaPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaPhong.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoaPhong.setText("xoá phòng");
+        btnXoaPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-delete-25.png"))); // NOI18N
+        btnXoaPhong.setText("Xoá");
         btnXoaPhong.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
         btnXoaPhong.setName("bntXoa"); // NOI18N
         btnXoaPhong.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,18 +458,20 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         });
         jPanel3.add(btnXoaPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 110, 40));
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 102));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("xem tất cả");
-        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        jButton5.setName("btnXemTatCa"); // NOI18N
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTatCa.setBackground(new java.awt.Color(0, 102, 102));
+        btnTatCa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTatCa.setForeground(new java.awt.Color(255, 255, 255));
+        btnTatCa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-select-all-25.png"))); // NOI18N
+        btnTatCa.setText("Tất cả");
+        btnTatCa.setToolTipText("");
+        btnTatCa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnTatCa.setName("btnXemTatCa"); // NOI18N
+        btnTatCa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton5MouseReleased(evt);
+                btnTatCaMouseReleased(evt);
             }
         });
-        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 110, 40));
+        jPanel3.add(btnTatCa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -587,7 +608,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBaoTriMouseReleased
     
     // Xem tất cả
-    private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
+    private void btnTatCaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTatCaMouseReleased
         // TODO add your handling code here:
         jPanel4.removeAll();
         for( UI_Phong u : ds_UIPhong ) {
@@ -595,7 +616,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         }
         jPanel4.revalidate(); // Cập nhật layout cho JPanel
         jPanel4.repaint(); // Vẽ lại JPanel
-    }//GEN-LAST:event_jButton5MouseReleased
+    }//GEN-LAST:event_btnTatCaMouseReleased
 
     private void btnXoaPhongMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaPhongMouseReleased
         // TODO add your handling code here:
@@ -626,6 +647,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
     private void btnThemMoiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMoiMouseReleased
         // mã phòng tự sinh
         txtMaPhong.setText(new RoomDAO().getMaPhong()); 
+        cbbTrangThai.setSelectedItem("Bảo trì");
         txtTenPhong.setText( "Phòng "+ txtMaPhong.getText()); 
         btnLuu.setText("Lưu");
     }//GEN-LAST:event_btnThemMoiMouseReleased
@@ -673,37 +695,49 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
 
     
     private void btnLuuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseReleased
-        Room phong = new Room(); 
-        phong.setRoomID(txtMaPhong.getText());
-        phong.setRoomName(txtTenPhong.getText());
-        phong.setDescribe(txtMoTa.getText());
         
-        String type = cbbLoaiPhong.getSelectedItem()+""; 
-        String status = cbbTrangThai.getSelectedItem()+""; 
-        
-        String IDtype="", IDstatus = ""; 
-        if(type.equals("Giường đơn")) IDtype = "LP001";
-        else if(type.equals("Giường đôi")) IDtype = "LP002";
-        else if(type.equals("Giường đôi lớn")) IDtype = "LP003";
-        
-        if(status.equals("Trống")) IDstatus = "LTTP001"; 
-        else if(status.equals("Đang sử dụng")) IDstatus = "LTTP002"; 
-        else if(status.equals("Đã đặt")) IDstatus = "LTTP003"; 
-        else if(status.equals("Bảo trì")) IDstatus = "LTTP004"; 
-        else if(status.equals("Dọn dẹp")) IDstatus = "LTTP005"; 
-        
-        
-        double price = Double.parseDouble(txtGia.getText()); 
-        
-        phong.setRoomStatusType(new RoomStatusType(IDstatus, status));
-        phong.setRoomType(new RoomType(IDtype, type, price));
-        
-        if(btnLuu.getText().equals("Lưu"))
-            new RoomDAO().SaveRoom(phong); 
-        else 
-            new RoomDAO().updateRoom(phong); 
-        
-        loadData(); 
+        if(checkData()) {
+            try {
+                Room phong = new Room(); 
+                phong.setRoomID(txtMaPhong.getText());
+                phong.setRoomName(txtTenPhong.getText());
+                phong.setDescribe(txtMoTa.getText());
+
+                String type = cbbLoaiPhong.getSelectedItem()+""; 
+                String status = cbbTrangThai.getSelectedItem()+""; 
+
+                String IDtype="", IDstatus = ""; 
+                if(type.equals("Giường đơn")) IDtype = "LP001";
+                else if(type.equals("Giường đôi")) IDtype = "LP002";
+                else if(type.equals("Giường đôi lớn")) IDtype = "LP003";
+
+                if(status.equals("Trống")) IDstatus = "LTTP001"; 
+                else if(status.equals("Đang sử dụng")) IDstatus = "LTTP002"; 
+                else if(status.equals("Đã đặt")) IDstatus = "LTTP003"; 
+                else if(status.equals("Bảo trì")) IDstatus = "LTTP004"; 
+                else if(status.equals("Dọn dẹp")) IDstatus = "LTTP005"; 
+
+
+                double price = Double.parseDouble(txtGia.getText()); 
+
+                phong.setRoomStatusType(new RoomStatusType(IDstatus, status));
+                phong.setRoomType(new RoomType(IDtype, type, price));
+
+                if(btnLuu.getText().equals("Lưu"))
+                    new RoomDAO().SaveRoom(phong); 
+                else 
+                    new RoomDAO().updateRoom(phong); 
+
+                txtMaPhong.setText("");
+                txtTenPhong.setText("");
+                txtGia.setText("");
+                cbbLoaiPhong.setSelectedIndex(0);
+                cbbTrangThai.setSelectedIndex(0);
+                loadData(); 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnLuuMouseReleased
 
     private void btnXoaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaPhongActionPerformed
@@ -717,6 +751,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDangSuDung;
     private javax.swing.JButton btnDonDep;
     private javax.swing.JButton btnLuu;
+    private javax.swing.JButton btnTatCa;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnTrong;
     private javax.swing.JButton btnXoaPhong;
@@ -725,7 +760,6 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JComboBox<String> cbbTrangThaiTK;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
