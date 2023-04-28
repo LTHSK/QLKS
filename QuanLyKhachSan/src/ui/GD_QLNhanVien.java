@@ -34,8 +34,8 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
     List<RowFilter<DefaultTableModel,Object>> filters = new ArrayList<>();
     private TableRowSorter<DefaultTableModel> tr;
     private dao.EmployeeDAO eD;
-    private dao.EmployeeTypeDAO eTD;
     private dao.AccountDAO accD;
+    private EmployeeTypeDAO eTD;
     
 
     
@@ -51,6 +51,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         initComponents();
         eD = new EmployeeDAO();
         this.setFocusable(true);
+        eTD = new EmployeeTypeDAO();
 //        username=_username;
 //        
 //        try {
@@ -101,7 +102,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         btnThemNhanVien = new javax.swing.JButton();
         btnXoaTrang = new javax.swing.JButton();
         btnSuaThongTinNV = new javax.swing.JButton();
-        btnXoaNhanVien = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         pnlGiua = new javax.swing.JPanel();
         cmbLocChucVu = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -314,14 +315,14 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             }
         });
 
-        btnXoaNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnXoaNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoa.png"))); // NOI18N
-        btnXoaNhanVien.setText("Xóa nhân viên");
-        btnXoaNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnXoaNhanVien.setIconTextGap(20);
-        btnXoaNhanVien.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoa.png"))); // NOI18N
+        btnXoa.setText("Xóa nhân viên");
+        btnXoa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnXoa.setIconTextGap(20);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaNhanVienActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
 
@@ -333,7 +334,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             .addComponent(btnSuaThongTinNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2682, Short.MAX_VALUE)
             .addComponent(btnXoaTrang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnTaoTaiKhoanNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2682, Short.MAX_VALUE)
-            .addComponent(btnXoaNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlNutLayout.setVerticalGroup(
             pnlNutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +342,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btnThemNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnXoaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSuaThongTinNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -397,9 +398,9 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             .addGroup(pnlGiuaLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(findTF, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addComponent(findTF, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbLocChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,7 +413,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         pnlGiuaLayout.setVerticalGroup(
             pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGiuaLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(12, 12, 12)
                 .addGroup(pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
@@ -421,8 +422,8 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addComponent(cmbLocChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13)
-                        .addComponent(findTF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(findTF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pnlMain.add(pnlGiua);
@@ -506,7 +507,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtSoDienThoaiActionPerformed
 
     private void txtLuongCoBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLuongCoBanActionPerformed
-        // TODO add your handling code here:x`
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtLuongCoBanActionPerformed
 
     private Employee createEmp() throws SQLException, ClassNotFoundException
@@ -515,11 +516,11 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         String iden = txtCMND.getText();
         String phone = txtSoDienThoai.getText();
         String salary = txtLuongCoBan.getText();
-        String gender = radNam.isSelected() ? "Nam": "Nữ";
+        boolean gender = cmbLocGioiTinh.getSelectedItem().toString().equals("Nam");
         EmployeeTypeDAO etD = new EmployeeTypeDAO();
         entity.EmployeeType et = etD.findEmpByName(cmbChucVu.getSelectedItem().toString());
-        
-        entity.Employee e = new Employee(setMaNV(), name, iden, phone, name.toLowerCase() + "@gmail.com", Double.parseDouble(salary),  et, gender);
+        String email = name.toLowerCase().trim() + "@gmail.com";
+        entity.Employee e = new Employee(setMaNV(), name, iden, phone, email, Double.parseDouble(salary),  et, gender?"Nam":"Nữ");
         return e;
     }
      private String setMaNV(){
@@ -560,10 +561,10 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                   Employee e = createEmp();
                   if(eD.findEmpCCCD(txtCMND.getText()) == null)
                   {
-                      eD.add(e);
-                      loadDataToTable(eD.getAllList(), modelNhanVien);
-                      clearInput();
-                      JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                        eD.add(e);
+                        loadDataToTable(eD.getAllList(), modelNhanVien);
+                        clearInput();
+                        JOptionPane.showMessageDialog(this, "Thêm thành công!");
                   }
                   else
                   {
@@ -584,28 +585,57 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         int index = tblNhanVien.getSelectedRow();
         if (index==-1){
             JOptionPane.showMessageDialog(this, "Hãy chọn dòng cần sửa!");
-        }else{
-        if (checkData()){
-            eTD =new EmployeeTypeDAO();
-            Employee e = eD.findEmpID(modelNhanVien.getValueAt(index, 0)+"");            
-
-            e.setCCCD(txtCMND.getText());
-            e.setPhone(txtSoDienThoai.getText());
-            e.setGender(radNam.isSelected()? "Nam": "Nữ");
-            e.setSalary(Double.parseDouble(txtLuongCoBan.getText()));
-            String empTypeID="LNV002";
-            String empTypeName="Thu Ngân";
-            if(cmbChucVu.getSelectedItem().toString().equals("Quản lý")){
-                empTypeID="LNV001";
-                empTypeName="Quản lý";
-            }
-            e.setEmployeeType(new EmployeeType(empTypeID,empTypeName));           
-            eD.update(e);             
-            loadDataToTable(eD.getAllList(), modelNhanVien);
-            JOptionPane.showMessageDialog(this, "Sửa thành công!");
-            clearInput();
+        }
+        else
+        {
+            if(checkData())
+            {
+                Employee e = eD.findEmpID(tblNhanVien.getValueAt(index, 0).toString());
+                e.setEmployeeName(txtTenNhanVien.getText());
+                e.setCCCD(txtCMND.getText());
+                e.setPhone(txtSoDienThoai.getText());
+                e.setGender(radNam.isSelected() ? "Nam": "Nữ");
+                e.setSalary(Double.parseDouble(txtLuongCoBan.getText()));
+                try {
+                    e.setEmployeeType(eTD.findEmpByName(cmbChucVu.getSelectedItem().toString()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                eD.update(e);
+                loadDataToTable(eD.getAllList(), modelNhanVien);
+                clearInput();
+                JOptionPane.showMessageDialog(this, "Đã chỉnh sửa thành công!");
             }
         }
+
+
+//        int index = tblNhanVien.getSelectedRow();
+//        if (index==-1){
+//            JOptionPane.showMessageDialog(this, "Hãy chọn dòng cần sửa!");
+//        }else{
+//        if (checkData()){
+//            lnvDAO=new DAO_LoaiNhanVien();
+//            NhanVien s=nvDAO.layNhanVienBangMa(modelNhanVien.getValueAt(index, 0)+"");            
+//
+//            s.setCMND(txtCMND.getText());
+//            s.setSoDienThoai(txtSoDienThoai.getText());
+//            s.setGioiTinh(radNam.isSelected());
+//            s.setLuongCoBan(Double.parseDouble(txtLuongCoBan.getText()));
+//            String lnv="LNV002";
+//            String tLNV="Nhân viên";
+//            if(cmbChucVu.getSelectedItem().toString().equals("Quản lý")){
+//                lnv="LNV001";
+//                tLNV="Quản lý";
+//            }
+//            s.setLoaiNhanVien(new LoaiNhanVien(lnv,tLNV));           
+//            nvDAO.capNhatNV(s);             
+//            docDuLieuLenTable(nvDAO.layTatCaNhanVienDangLamVaoBang(), modelNhanVien);
+//            JOptionPane.showMessageDialog(this, "Sửa thành công!");
+//            clearInput();
+//            }
+//        }
     }//GEN-LAST:event_btnSuaThongTinNVActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
@@ -626,45 +656,47 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
 
     private void cmbLocChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLocChucVuActionPerformed
         
-        String s= cmbLocChucVu.getSelectedItem().toString();
-        if (!s.equals("Tất cả"))
-        {
-            String idCV = null;
-            try {
-                idCV = eTD.findEmpByName(s).getEmployeeTypeID();
-            } catch (SQLException ex) {
-                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                loadDataToTable(eD.getListEmpType(idCV), modelNhanVien);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else
+        String s = cmbLocChucVu.getSelectedItem().toString();
+        if(s.equals("Tất cả"))
         {
             loadDataToTable(eD.getAllList(), modelNhanVien);
         }
-        
+        else
+        {
+            try {
+                EmployeeType e = eTD.findEmpByName(s);
+                if(s.equals("Thu ngân"))
+                {
+                    loadDataToTable(eD.getAllEmpType(e.getEmployeeTypeID()), modelNhanVien);
+                }
+                else
+                {
+                    loadDataToTable(eD.getAllEmpType(e.getEmployeeTypeID()), modelNhanVien);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GD_QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
 
     }//GEN-LAST:event_cmbLocChucVuActionPerformed
 
     private void cmbLocGioiTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLocGioiTinhActionPerformed
         
-        String s = cmbLocGioiTinh.getSelectedItem().toString();
-        if (!s.equals("Tất cả"))
+        String s= cmbLocGioiTinh.getSelectedItem().toString();
+        if(s.equals("Tất cả"))
         {
-            if(!s.equals("Nam"))
-                loadDataToTable(eD.getListEmpGender("N'Nữ'"), modelNhanVien);
-            else
-                loadDataToTable(eD.getListEmpGender("'Nam'"), modelNhanVien);
+            loadDataToTable(eD.getAllList(), modelNhanVien);
         }
         else
-            loadDataToTable(eD.getAllList(), modelNhanVien);
+        {
+            if(s.equals("Nam"))
+                loadDataToTable(eD.getListEmpGender(s), modelNhanVien);
+            else
+                loadDataToTable(eD.getListEmpGender(s), modelNhanVien);
+        }
 
             
     }//GEN-LAST:event_cmbLocGioiTinhActionPerformed
@@ -693,42 +725,46 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTaoTaiKhoanNVActionPerformed
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
-//        String f=txtTimKiem.getText();
-//        filter(f);
+        String f=findTF.getText();
+        filter(f);
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
-    private void btnXoaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaNhanVienActionPerformed
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int index = tblNhanVien.getSelectedRow();
         if(index == -1)
         {
-            JOptionPane.showMessageDialog(this, "Hãy chọn dòng cần xóa!");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn nhân viên để xóa!");
         }
         else
         {
-            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng này?","Cảnh báo",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa nhân viên này?", "Cảnh báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
             {
-                Employee e = eD.findEmpID(modelNhanVien.getValueAt(index, 0).toString());
-                eD.delete(e);
-                clearInput();
-                loadDataToTable(eD.getAllList(), modelNhanVien);
-                JOptionPane.showMessageDialog(this, "Xoá thành công!");
-                
+                Employee e = eD.findEmpID(tblNhanVien.getValueAt(index, 0).toString());
+                if(eD.delete(e))
+                {
+                    JOptionPane.showMessageDialog(this, "Đã xóa thành công");
+                    clearInput();
+                    loadDataToTable(eD.getAllList(), modelNhanVien);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Không thể xóa nhân viên!");
+                }
             }
         }
-    }//GEN-LAST:event_btnXoaNhanVienActionPerformed
+        
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void findTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_findTFKeyReleased
         // TODO add your handling code here:
-        String s = findTF.getText();
-        filter(s);
+        String f = findTF.getText();
+        filter(f);
     }//GEN-LAST:event_findTFKeyReleased
     private void filter(String s){
         TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel>(modelNhanVien);
         tblNhanVien.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter("(?i)"+s));
-
-        
     }
 //    private void docDuLieuLenTable(List<NhanVien> list,DefaultTableModel dtm){
 //        dtm.setRowCount(0);
@@ -849,7 +885,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSuaThongTinNV;
     private javax.swing.JButton btnTaoTaiKhoanNV;
     private javax.swing.JButton btnThemNhanVien;
-    private javax.swing.JButton btnXoaNhanVien;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXoaTrang;
     private javax.swing.JComboBox<String> cmbChucVu;
     private javax.swing.JComboBox<String> cmbLocChucVu;
