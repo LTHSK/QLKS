@@ -422,20 +422,20 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         }
         else
         {
-            Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
-            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng này?", "Cảnh báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-            {
-                if(serviceD.delete(s))
-                {
-                    JOptionPane.showMessageDialog(this, "Đã xóa thành công!");
-                    clearText();
-                    loadDataToTBService();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Xóa không thành công!");
-                }
-            }
+//            Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
+//            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng này?", "Cảnh báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+//            {
+//                if(serviceD.delete(s))
+//                {
+//                    JOptionPane.showMessageDialog(this, "Đã xóa thành công!");
+//                    clearText();
+//                    loadDataToTBService();
+//                }
+//                else
+//                {
+//                    JOptionPane.showMessageDialog(this, "Xóa không thành công!");
+//                }
+//            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -450,20 +450,20 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         {
             if(checkData())
             {
-                Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
-                s.setServiceName(nameTF.getText());
-                s.setPrice(Double.parseDouble(priceTF.getText()));
-                s.setInventory(Integer.parseInt(quantityTF.getText()));
-                if(serviceD.update(s))
-                {
-                    JOptionPane.showMessageDialog(this, "Đã chỉnh sửa thành công!");
-                    clearText();
-                    loadDataToTBService();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Chỉnh sửa thất bại!");
-                }
+//                Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
+//                s.setServiceName(nameTF.getText());
+//                s.setPrice(Double.parseDouble(priceTF.getText()));
+//                s.setInventory(Integer.parseInt(quantityTF.getText()));
+//                if(serviceD.update(s))
+//                {
+//                    JOptionPane.showMessageDialog(this, "Đã chỉnh sửa thành công!");
+//                    clearText();
+//                    loadDataToTBService();
+//                }
+//                else
+//                {
+//                    JOptionPane.showMessageDialog(this, "Chỉnh sửa thất bại!");
+//                }
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

@@ -34,8 +34,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     JButton lblRoom;
     String nameRoom;
     //List
-    List<Room> listRoomVip;
-    List<Room> listRoomNormals;
+    List<Room> listRoomDoi;
+    List<Room> listRoomDoiLon;
+    List<Room> listRoomDon;
     List<BookRoom> listBookRooms;
     /**
      * Creates new form QuanLyHoaDon
@@ -97,8 +98,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jPanel19 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
+        jPanel18 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -367,6 +375,28 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel10.setMaximumSize(new java.awt.Dimension(1200, 400));
         jPanel10.setMinimumSize(new java.awt.Dimension(100, 50));
         jPanel10.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel10.setLayout(new javax.swing.BoxLayout(jPanel10, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 79, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel10.add(jPanel21);
+
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel20.setLayout(new javax.swing.BoxLayout(jPanel20, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
 
         jButton4.setBackground(new java.awt.Color(92, 179, 70));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -377,32 +407,57 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jPanel17.add(jButton4);
+
+        jPanel20.add(jPanel17);
+
+        jPanel10.add(jPanel20);
+
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 79, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel10.add(jPanel19);
+
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setLayout(new javax.swing.BoxLayout(jPanel16, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setLayout(new javax.swing.BoxLayout(jPanel22, javax.swing.BoxLayout.LINE_AXIS));
 
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Xóa trắng");
+        jPanel22.add(jButton5);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jButton4)
-                .addGap(50, 50, 50)
-                .addComponent(jButton5)
-                .addContainerGap(57, Short.MAX_VALUE))
+        jPanel16.add(jPanel22);
+
+        jPanel10.add(jPanel16);
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 72, Short.MAX_VALUE)
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(17, Short.MAX_VALUE))
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
+
+        jPanel10.add(jPanel18);
 
         jPanel5.add(jPanel10);
 
@@ -514,12 +569,13 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 // Create list rooms
     private void createRoom() {
-        listRoomVip = roomDAO.findRoomByIDLoaiPhong("LP002");
-        listRoomNormals = roomDAO.findRoomByIDLoaiPhong("LP001");
+        listRoomDoi = roomDAO.findRoomByIDLoaiPhong("LP002");
+        listRoomDon = roomDAO.findRoomByIDLoaiPhong("LP001");
+        listRoomDoiLon = roomDAO.findRoomByIDLoaiPhong("LP003");
 
         JLabel lblListNormal;
         // Titile Normal
-        lblListNormal = new JLabel("Danh sách phòng thường");
+        lblListNormal = new JLabel("Danh sách phòng đơn");
         lblListNormal.setBounds(20, 20, 300, 30);
         lblListNormal.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
@@ -531,8 +587,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         pnlListRoom.setPreferredSize(new Dimension(600, 830));
         pnlListRoom.add(lblListNormal);
 
-        JLabel lblListVip;
-
+        JLabel lblListDoi;
+        JLabel lblListDoiLon;
+        
         int x = 20;
         int y = 60;
         int width = 130;
@@ -542,13 +599,13 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         int countNumberRoomNormalRemove = 0;
         int numberRoomVip = 1;
         String trangThaiPhong;
-        for (Room room : listRoomNormals) {
+        for (Room room : listRoomDon) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
             if (trangThaiPhong.equals("LTTP004")) {
                 countNumberRoomNormalRemove++;
             }
         }
-        for (Room room : listRoomNormals) {
+        for (Room room : listRoomDon) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
             if (!trangThaiPhong.equals("LTTP004")) {
                 //Room
@@ -571,22 +628,53 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 pnlListRoom.add(pnlRoom, BorderLayout.CENTER);
                 x += width + 20;
 
-                if (numberRoomNormal % 4 == 0 || numberRoomNormal == listRoomNormals.size() - countNumberRoomNormalRemove) {
+                if (numberRoomNormal % 4 == 0 || numberRoomNormal == listRoomDon.size() - countNumberRoomNormalRemove) {
                     y += width + 20;
                     x = 20;
                     countHeight = y + 40;
                 }
-                if (numberRoomNormal == listRoomNormals.size() - countNumberRoomNormalRemove) {
-                    lblListVip = new JLabel("Danh sách phòng Vip");
-                    lblListVip.setBounds(20, y, 300, 30);
-                    lblListVip.setFont(new Font("Segoe UI", Font.BOLD, 14));
-                    pnlListRoom.add(lblListVip);
+                if (numberRoomNormal == listRoomDon.size() - countNumberRoomNormalRemove) {
+                    lblListDoi = new JLabel("Danh sách phòng đôi");
+                    lblListDoi.setBounds(20, y, 300, 30);
+                    lblListDoi.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                    pnlListRoom.add(lblListDoi);
                 }
                 numberRoomNormal++;
             }
         }
 
-        for (Room room : listRoomVip) {
+        for (Room room : listRoomDoi) {
+            trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
+            if (!trangThaiPhong.equals("LTTP004")) {
+                //Room
+                pnlRoom = new JPanel();
+                pnlRoom.setBackground(Color.white);
+                pnlRoom.setLayout(new BorderLayout());
+                pnlRoom.setBounds(x, countHeight, width, height);
+
+                if (trangThaiPhong.equals("LTTP001")) {
+                    createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
+                } else if (trangThaiPhong.equals("LTTP002")) {
+                    createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
+                } else {
+                    createStatusRoom(trangThaiPhong, new Color(5, 154, 3), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, Color.WHITE, room);
+
+                }
+                pnlListRoom.add(pnlRoom);
+                x += width + 20;
+
+                if (numberRoomVip % 4 == 0) {
+                    countHeight += width + 20;
+                    x = 20;
+                }
+                numberRoomVip++;
+            }
+        }
+        
+        for (Room room : listRoomDoiLon) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
             if (!trangThaiPhong.equals("LTTP004")) {
                 //Room
@@ -667,7 +755,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

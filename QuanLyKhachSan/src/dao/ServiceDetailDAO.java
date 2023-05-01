@@ -59,7 +59,7 @@ public class ServiceDetailDAO {
                     
                     double thanhTien = rs.getDouble("TongTien");
                     
-                    ServiceDetail sdl = new ServiceDetail(s, br, quantity, thanhTien);
+                    ServiceDetail sdl = new ServiceDetail(s, br, quantity);
                     list.add(sdl);
                 }
                 return list;
@@ -113,7 +113,7 @@ public class ServiceDetailDAO {
                     
                     double thanhTien = rs.getDouble("TongTien");
                     
-                    ServiceDetail sdl = new ServiceDetail(s, br, quantity, thanhTien);
+                    ServiceDetail sdl = new ServiceDetail(s, br, quantity);
                     list.add(sdl);
                 }
                 return list;

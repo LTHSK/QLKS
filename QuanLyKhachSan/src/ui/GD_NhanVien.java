@@ -503,8 +503,8 @@ private void doiMauPnl(){
         pnlDichVu.setkEndColor(new java.awt.Color(235,144,46));
         pnlDichVu.setkStartColor(new java.awt.Color(235,144,46));
         lblDichVu.setForeground(new Color(255,255,255)); 
-        GD_DichVuNhanVien gddvnv=new GD_DichVuNhanVien();
-        openComponent(gddvnv);
+//        GD_DichVuNhanVien gddvnv=new GD_DichVuNhanVien();
+//        openComponent(gddvnv);
     }//GEN-LAST:event_pnlDichVuMousePressed
 
     private void pnlTraCuuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMousePressed
