@@ -38,6 +38,7 @@ import keeptoo.KGradientPanel;
 public class GD_NhanVien extends javax.swing.JFrame {
 
     private static String username;
+    private static Component component;
     private final GD_GioiThieu frGioiThieu;
     private final GD_DonDat gdDonDat;
     
@@ -45,7 +46,8 @@ public class GD_NhanVien extends javax.swing.JFrame {
     /**
      * Creates new form MainEmployee
      */
-    public GD_NhanVien(String user) {
+    public GD_NhanVien(String user,Component c) {
+        component=c;
         this.setUndecorated(true);
         this.setResizable(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -108,11 +110,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(200, 200));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         pnlMain.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -464,33 +461,11 @@ private void doiMauPnl(){
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát ?", "Thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             this.setVisible(false);
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Frm_Login dn =new Frm_Login();
-            dn.setVisible(true);
+            
+            
+            component.setVisible(true);
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        int confirmed = JOptionPane.showConfirmDialog(null,
-                "Bạn có chắc muốn tắt chương trình ?", "Tắt chương trình",
-                JOptionPane.YES_NO_OPTION);
-
-        if (confirmed == JOptionPane.YES_OPTION) {
-            dispose();
-        }else{
-            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        }
-    }//GEN-LAST:event_formWindowClosing
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         GD_DoiMatKhau gd=new GD_DoiMatKhau(username);
@@ -542,17 +517,7 @@ private void doiMauPnl(){
         frame.setVisible(true);
     }
 
-    // set color
-    void setColor(JPanel panel, JLabel label) {
-        panel.setBackground(new Color(204, 232, 255));
-        label.setForeground(new Color(33, 162, 72));
-    }
 
-    // rest color
-    void resetColor(JPanel panel, JLabel label) {
-        panel.setBackground(new Color(255, 255, 255));
-        label.setForeground(new Color(0, 0, 0));
-    }
 
     /**
      * @param args the command line arguments
@@ -562,7 +527,7 @@ private void doiMauPnl(){
 //        UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GD_NhanVien(username);
+                new GD_NhanVien(username,component);
             }
         });
     }
@@ -599,53 +564,5 @@ private void doiMauPnl(){
     private keeptoo.KGradientPanel pnlTroGiup;
     // End of variables declaration//GEN-END:variables
 
-    class RoundedPanel extends JPanel {
-
-        private Color backgroundColor;
-        private int cornerRadius = 15;
-
-        public RoundedPanel(LayoutManager layout, int radius) {
-            super(layout);
-            cornerRadius = radius;
-        }
-
-        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
-            super(layout);
-            cornerRadius = radius;
-            backgroundColor = bgColor;
-        }
-
-        public RoundedPanel(int radius) {
-            super();
-            cornerRadius = radius;
-
-        }
-
-        public RoundedPanel(int radius, Color bgColor) {
-            super();
-            cornerRadius = radius;
-            backgroundColor = bgColor;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
-            int width = getWidth();
-            int height = getHeight();
-            Graphics2D graphics = (Graphics2D) g;
-            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            //Draws the rounded panel with borders.
-            if (backgroundColor != null) {
-                graphics.setColor(backgroundColor);
-            } else {
-                graphics.setColor(getBackground());
-            }
-            graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height); //paint background
-            graphics.setColor(getForeground());
-//            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
-//             
-        }
-    }
 
 }

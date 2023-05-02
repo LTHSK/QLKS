@@ -599,7 +599,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="jButton4">
+                            <Component class="javax.swing.JButton" name="btnTaoDonDat">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="46" green="b3" red="5c" type="rgb"/>
@@ -611,9 +611,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="T&#x1ea1;o &#x111;&#x1a1;n &#x111;&#x1eb7;t"/>
+                                <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoDonDatActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -730,7 +731,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="jLabel7">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="T&#xec;m &#x111;&#x1a1;n &#x111;&#x1eb7;t theo CCCD:"/>
+                            <Property name="text" type="java.lang.String" value="T&#xec;m &#x111;&#x1a1;n &#x111;&#x1eb7;t theo CCCD:   "/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField4">

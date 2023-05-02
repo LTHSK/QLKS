@@ -6,30 +6,11 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LayoutManager;
-import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.geom.RoundRectangle2D;
-import java.lang.reflect.Constructor;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.tools.DocumentationTool;
-import keeptoo.KGradientPanel;
 
 /**
  *
@@ -37,25 +18,20 @@ import keeptoo.KGradientPanel;
  */
 public class GD_QuanLy extends javax.swing.JFrame {
     private static String username;
+    private static Component component;
 
     /**
      * Creates new form MainEmployee
      */
-    public GD_QuanLy(String _username) {
+    public GD_QuanLy(String _username, Component c) {
+        component=c;
         username=_username;
         this.setUndecorated(true);
         this.setResizable(true);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(true);
 
         initComponents();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/tuisach.png")));
+//        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/tuisach.png")));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xsize = (int) tk.getScreenSize().getWidth();
-        int ysize = (int) tk.getScreenSize().getHeight();
-        this.setSize(xsize, ysize);
         
         
         pnlGioiThieu.setkEndColor(new java.awt.Color(235,144,46));
@@ -101,7 +77,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlTroGiup = new keeptoo.KGradientPanel();
         lblTroGiup = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnDoiMatKhau = new javax.swing.JButton();
+        btnDoiMatKhau1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnDangXuat = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
@@ -109,11 +85,6 @@ public class GD_QuanLy extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(200, 200));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         pnlMain.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         pnlMain.setLayout(new java.awt.BorderLayout());
@@ -370,19 +341,20 @@ public class GD_QuanLy extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        btnDoiMatKhau.setBackground(new java.awt.Color(235, 144, 46));
-        btnDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDoiMatKhau.setForeground(new java.awt.Color(255, 255, 255));
-        btnDoiMatKhau.setText("ĐỔI MẬT KHẨU");
-        btnDoiMatKhau.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(252, 210, 165), 3, true));
-        btnDoiMatKhau.setMaximumSize(new java.awt.Dimension(254, 42));
-        btnDoiMatKhau.setPreferredSize(new java.awt.Dimension(254, 40));
-        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+        btnDoiMatKhau1.setBackground(new java.awt.Color(235, 144, 46));
+        btnDoiMatKhau1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDoiMatKhau1.setForeground(new java.awt.Color(255, 255, 255));
+        btnDoiMatKhau1.setText("ĐỔI MẬT KHẨU");
+        btnDoiMatKhau1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(252, 210, 165), 3, true));
+        btnDoiMatKhau1.setFocusPainted(false);
+        btnDoiMatKhau1.setMaximumSize(new java.awt.Dimension(254, 42));
+        btnDoiMatKhau1.setPreferredSize(new java.awt.Dimension(254, 40));
+        btnDoiMatKhau1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoiMatKhauActionPerformed(evt);
+                btnDoiMatKhau1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDoiMatKhau, java.awt.BorderLayout.SOUTH);
+        jPanel1.add(btnDoiMatKhau1, java.awt.BorderLayout.SOUTH);
 
         pnlMenu.add(jPanel1);
 
@@ -454,38 +426,11 @@ public class GD_QuanLy extends javax.swing.JFrame {
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát ?", "Thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             this.setVisible(false);
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GD_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(GD_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(GD_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(GD_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Frm_Login dn =new Frm_Login();
-            dn.setVisible(true);
+//            component.setVisible(true);
+            Frm_Login gd=new Frm_Login();
+            gd.setVisible(true);
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        int confirmed = JOptionPane.showConfirmDialog(null,
-                "Bạn có chắc muốn tắt chương trình ?", "Tắt chương trình",
-                JOptionPane.YES_NO_OPTION);
-
-        if (confirmed == JOptionPane.YES_OPTION) {
-            dispose();
-        }else{
-            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        }
-    }//GEN-LAST:event_formWindowClosing
-
-    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
-        GD_DoiMatKhau gd=new GD_DoiMatKhau(username);
-        gd.setVisible(true);
-    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void pnlTraCuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMouseClicked
         doiMauPnl();
@@ -577,6 +522,11 @@ public class GD_QuanLy extends javax.swing.JFrame {
         openComponent(new GD_QLPhong());
         
     }//GEN-LAST:event_pnlPhongMouseClicked
+
+    private void btnDoiMatKhau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhau1ActionPerformed
+        GD_DoiMatKhau gd=new GD_DoiMatKhau(username);
+        gd.setVisible(true);
+    }//GEN-LAST:event_btnDoiMatKhau1ActionPerformed
     
 private void doiMauPnl(){
         pnlGioiThieu.setkEndColor(new java.awt.Color(252,210,165));
@@ -628,35 +578,21 @@ private void doiMauPnl(){
         frame.setVisible(true);
     }
 
-    // set color
-    void setColor(JPanel panel, JLabel label) {
-        panel.setBackground(new Color(204, 232, 255));
-        label.setForeground(new Color(33, 162, 72));
-    }
 
-    // rest color
-    void resetColor(JPanel panel, JLabel label) {
-        panel.setBackground(new Color(255, 255, 255));
-        label.setForeground(new Color(0, 0, 0));
-    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-//        com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");
-//        UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GD_QuanLy(username);
-            }
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new GD_QuanLy(username, component).setVisible(true);
         });
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnDoiMatKhau;
+    private javax.swing.JButton btnDoiMatKhau1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -687,53 +623,5 @@ private void doiMauPnl(){
     private keeptoo.KGradientPanel pnlTroGiup;
     // End of variables declaration//GEN-END:variables
 
-    class RoundedPanel extends JPanel {
-
-        private Color backgroundColor;
-        private int cornerRadius = 15;
-
-        public RoundedPanel(LayoutManager layout, int radius) {
-            super(layout);
-            cornerRadius = radius;
-        }
-
-        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
-            super(layout);
-            cornerRadius = radius;
-            backgroundColor = bgColor;
-        }
-
-        public RoundedPanel(int radius) {
-            super();
-            cornerRadius = radius;
-
-        }
-
-        public RoundedPanel(int radius, Color bgColor) {
-            super();
-            cornerRadius = radius;
-            backgroundColor = bgColor;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
-            int width = getWidth();
-            int height = getHeight();
-            Graphics2D graphics = (Graphics2D) g;
-            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            //Draws the rounded panel with borders.
-            if (backgroundColor != null) {
-                graphics.setColor(backgroundColor);
-            } else {
-                graphics.setColor(getBackground());
-            }
-            graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height); //paint background
-            graphics.setColor(getForeground());
-//            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
-//             
-        }
-    }
 
 }

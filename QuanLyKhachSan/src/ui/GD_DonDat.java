@@ -101,7 +101,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel21 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnTaoDonDat = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
@@ -398,16 +398,17 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton4.setBackground(new java.awt.Color(92, 179, 70));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Tạo đơn đặt");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnTaoDonDat.setBackground(new java.awt.Color(92, 179, 70));
+        btnTaoDonDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTaoDonDat.setForeground(new java.awt.Color(255, 255, 255));
+        btnTaoDonDat.setText("Tạo đơn đặt");
+        btnTaoDonDat.setVerifyInputWhenFocusTarget(false);
+        btnTaoDonDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnTaoDonDatActionPerformed(evt);
             }
         });
-        jPanel17.add(jButton4);
+        jPanel17.add(btnTaoDonDat);
 
         jPanel20.add(jPanel17);
 
@@ -469,7 +470,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel7.setText("Tìm đơn đặt theo CCCD:");
+        jLabel7.setText("Tìm đơn đặt theo CCCD:   ");
         jPanel7.add(jLabel7);
 
         jTextField4.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -563,10 +564,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
     }//GEN-LAST:event_btnMoPhongActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnTaoDonDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonDatActionPerformed
+        taoDonDat();
+        
+        
+        
         Form_DonDat form=new Form_DonDat("001");
         form.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnTaoDonDatActionPerformed
 // Create list rooms
     private void createRoom() {
         listRoomDoi = roomDAO.findRoomByIDLoaiPhong("LP002");
@@ -736,10 +741,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoPhong;
+    private javax.swing.JButton btnTaoDonDat;
     private javax.swing.JButton btnTimKhachHang;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -786,4 +791,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlRoom;
     private javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void taoDonDat() {
+        
+        
+    }
 }

@@ -24,7 +24,7 @@ public class Frm_Login extends javax.swing.JFrame {
 
     private AccountDAO dao_Acc;
     private EmployeeDAO dao_Emp;
-    
+    private final Frm_Login comp;
 
     /**
      * Creates new form GiaoDienDangNhap
@@ -33,7 +33,7 @@ public class Frm_Login extends javax.swing.JFrame {
         dao_Acc=new AccountDAO();
         dao_Emp=new EmployeeDAO();
         initComponents();
-
+        comp=this;
     }
 
     /**
@@ -268,19 +268,22 @@ public class Frm_Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Hãy nhập đầy đủ thông tin đăng nhập!");
         }else{
         if(dao_Acc.findPass(username).equals(matKhau)){
+            
+            
             Employee emp;
            
             emp=dao_Emp.findEmpID(username);
             if(emp.getEmployeeType().getEmployeeTypeID().equals("LNV001")){
-                GD_QuanLy gdql=new GD_QuanLy(txtTenDN.getText());
                 this.setVisible(false);
-                this.setLocationRelativeTo(this);
+                GD_QuanLy gdql=new GD_QuanLy(username, comp);
                 gdql.setVisible(true);
-                dispose();
+                
             }else{
-                GD_NhanVien gdnv=new GD_NhanVien(txtTenDN.getText());
-                this.setVisible(false);
-                gdnv.setVisible(true);
+                
+                    this.setVisible(false);
+                        GD_NhanVien gdnv = new GD_NhanVien(username, comp);
+                        gdnv.setVisible(true);
+            
             }
             
         }
