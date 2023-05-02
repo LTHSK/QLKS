@@ -426,9 +426,9 @@ public class GD_QuanLy extends javax.swing.JFrame {
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát ?", "Thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             this.setVisible(false);
-//            component.setVisible(true);
-            Frm_Login gd=new Frm_Login();
-            gd.setVisible(true);
+            component.setVisible(true);
+//            Frm_Login gd=new Frm_Login();
+//            gd.setVisible(true);
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
