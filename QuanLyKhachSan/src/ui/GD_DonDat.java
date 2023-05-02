@@ -155,6 +155,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 90));
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel15.setBackground(java.awt.Color.white);
         jPanel15.setMaximumSize(new java.awt.Dimension(800, 70));
         jPanel15.setMinimumSize(new java.awt.Dimension(400, 10));
         jPanel15.setPreferredSize(new java.awt.Dimension(475, 12));
@@ -174,6 +175,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
 
+        jPanel11.setBackground(java.awt.Color.white);
         jPanel11.setMaximumSize(new java.awt.Dimension(400, 400));
         jPanel11.setMinimumSize(new java.awt.Dimension(20, 20));
         jPanel11.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -201,7 +203,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jTextField8.setPreferredSize(new java.awt.Dimension(170, 170));
         jPanel12.add(jTextField8);
 
-        jPanel4.setBackground(null);
+        jPanel4.setBackground(java.awt.Color.white);
         jPanel4.setMaximumSize(new java.awt.Dimension(400, 400));
         jPanel4.setMinimumSize(new java.awt.Dimension(20, 20));
         jPanel4.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -229,6 +231,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jTextField7.setPreferredSize(new java.awt.Dimension(120, 120));
         jPanel12.add(jTextField7);
 
+        jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setMaximumSize(new java.awt.Dimension(400, 400));
         jPanel1.setMinimumSize(new java.awt.Dimension(20, 20));
         jPanel1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -248,6 +251,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel6.add(jPanel12);
 
+        jPanel13.setBackground(java.awt.Color.white);
         jPanel13.setMaximumSize(new java.awt.Dimension(800, 70));
         jPanel13.setMinimumSize(new java.awt.Dimension(400, 10));
         jPanel13.setPreferredSize(new java.awt.Dimension(475, 12));
