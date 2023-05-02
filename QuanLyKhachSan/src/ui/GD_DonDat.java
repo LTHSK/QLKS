@@ -149,7 +149,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(380, 458));
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBackground(null);
         jPanel6.setMaximumSize(new java.awt.Dimension(700, 400));
         jPanel6.setMinimumSize(new java.awt.Dimension(100, 50));
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 90));
@@ -201,6 +201,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jTextField8.setPreferredSize(new java.awt.Dimension(170, 170));
         jPanel12.add(jTextField8);
 
+        jPanel4.setBackground(null);
         jPanel4.setMaximumSize(new java.awt.Dimension(400, 400));
         jPanel4.setMinimumSize(new java.awt.Dimension(20, 20));
         jPanel4.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -300,10 +301,12 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Nam");
 
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jRadioButton2.setText("Nữ");
 
@@ -462,6 +465,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel5.add(jPanel10);
 
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Quản lý đơn đặt"));
         jPanel14.setMaximumSize(new java.awt.Dimension(1000, 1200));
         jPanel14.setPreferredSize(new java.awt.Dimension(400, 458));
