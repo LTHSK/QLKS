@@ -27,6 +27,7 @@ public class Frm_Login extends javax.swing.JFrame {
         dao_Emp=new EmployeeDAO();
         initComponents();
         comp=this;
+        
     }
 
     /**

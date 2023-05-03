@@ -15,6 +15,7 @@ public class Customer {
     private String customerName;
     private CustomerType customerType;
     private String CCCD;
+    private String gender;
     private String phone;
     private String email;
     private int points;
@@ -22,11 +23,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String customerID, String customerName, CustomerType customerType, String CCCD, String phone, String email, int points) {
+    public Customer(String customerID, String customerName, CustomerType customerType, String CCCD, String gender, String phone, String email, int points) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerType = customerType;
         this.CCCD = CCCD;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.points = points;
@@ -64,6 +66,14 @@ public class Customer {
         this.CCCD = CCCD;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -90,14 +100,14 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerID=" + customerID + ", customerName=" + customerName + ", customerType=" + customerType + ", CCCD=" + CCCD + ", phone=" + phone + ", email=" + email + ", points=" + points + '}';
+        return "Customer{" + "customerID=" + customerID + ", customerName=" + customerName + ", customerType=" + customerType + ", CCCD=" + CCCD + ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", points=" + points + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.customerID);
-        hash = 31 * hash + Objects.hashCode(this.CCCD);
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.customerID);
+        hash = 23 * hash + Objects.hashCode(this.CCCD);
         return hash;
     }
 

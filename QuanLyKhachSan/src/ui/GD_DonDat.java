@@ -4,9 +4,14 @@
  */
 package ui;
 
+import dao.BookRoomDAO;
+import dao.CustomerDAO;
+import dao.CustomerTypeDAO;
+import dao.EmployeeDAO;
 import dao.RoomDAO;
 import dao.RoomStatusTypeDAO;
 import entity.BookRoom;
+import entity.Customer;
 import entity.Room;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,35 +20,46 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author ACER
  */
-public class GD_DonDat extends javax.swing.JInternalFrame {
+public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
+    private Thread thread = new Thread((Runnable) this);
     private String username;
     RoomDAO roomDAO;
     RoomStatusTypeDAO roomStatusTypeDAO;
     JButton lblRoom;
     String nameRoom;
+    private String idroom;
+    ButtonGroup group;
     //List
     List<Room> listRoomDoi;
     List<Room> listRoomDoiLon;
     List<Room> listRoomDon;
     List<BookRoom> listBookRooms;
+    private final CustomerDAO cDAO=new CustomerDAO();
+    private final CustomerTypeDAO ctDAO=new CustomerTypeDAO();
+    private final BookRoomDAO brDAO=new BookRoomDAO();
+    private final RoomDAO rDAO=new RoomDAO();
+    private final EmployeeDAO eDAO=new EmployeeDAO();
     /**
      * Creates new form QuanLyHoaDon
      */
     public GD_DonDat() {
+        thread.start();
         roomDAO=new RoomDAO();
         roomStatusTypeDAO =new RoomStatusTypeDAO();
         
@@ -57,6 +73,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         this.setFocusable(true);
         
         createRoom();
+        
         
         
     }
@@ -79,14 +96,16 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel15 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        txtNgay = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
+        txtGio = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtPhong = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
         txtCCCD = new javax.swing.JTextField();
@@ -98,16 +117,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         txtSDT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radNam = new javax.swing.JRadioButton();
+        radNu = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel29 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        txtGioCheckIn = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNgayCheckIn = new javax.swing.JTextField();
         jPanel24 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
@@ -157,11 +174,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel2.add(pnlRoom);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setMaximumSize(new java.awt.Dimension(1200, 1400));
         jPanel5.setPreferredSize(new java.awt.Dimension(380, 458));
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel6.setBackground(null);
         jPanel6.setMaximumSize(new java.awt.Dimension(700, 400));
         jPanel6.setMinimumSize(new java.awt.Dimension(100, 50));
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 90));
@@ -196,7 +213,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,15 +222,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel12.add(jPanel11);
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("15/04/2023");
-        jTextField8.setMaximumSize(new java.awt.Dimension(700, 250));
-        jTextField8.setMinimumSize(new java.awt.Dimension(150, 50));
-        jTextField8.setPreferredSize(new java.awt.Dimension(170, 170));
-        jPanel12.add(jTextField8);
+        txtNgay.setEditable(false);
+        txtNgay.setBackground(new java.awt.Color(255, 255, 255));
+        txtNgay.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        txtNgay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNgay.setText("15/04/2023");
+        txtNgay.setMaximumSize(new java.awt.Dimension(700, 250));
+        txtNgay.setMinimumSize(new java.awt.Dimension(150, 50));
+        txtNgay.setPreferredSize(new java.awt.Dimension(300, 170));
+        jPanel12.add(txtNgay);
 
         jPanel4.setBackground(java.awt.Color.white);
         jPanel4.setMaximumSize(new java.awt.Dimension(400, 400));
@@ -224,7 +241,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,15 +250,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel12.add(jPanel4);
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("11:08");
-        jTextField7.setMaximumSize(new java.awt.Dimension(900, 200));
-        jTextField7.setMinimumSize(new java.awt.Dimension(100, 30));
-        jTextField7.setPreferredSize(new java.awt.Dimension(120, 120));
-        jPanel12.add(jTextField7);
+        txtGio.setEditable(false);
+        txtGio.setBackground(new java.awt.Color(255, 255, 255));
+        txtGio.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        txtGio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtGio.setText("11:08");
+        txtGio.setMaximumSize(new java.awt.Dimension(900, 200));
+        txtGio.setMinimumSize(new java.awt.Dimension(100, 30));
+        txtGio.setPreferredSize(new java.awt.Dimension(120, 120));
+        jPanel12.add(txtGio);
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setMaximumSize(new java.awt.Dimension(400, 400));
@@ -252,7 +269,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,6 +304,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin đặt phòng"));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.X_AXIS));
 
+        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
@@ -300,7 +319,17 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel25);
 
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setLayout(new java.awt.GridLayout(10, 2));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Phòng :");
+        jPanel23.add(jLabel8);
+
+        txtPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPhong.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtPhong.setEnabled(false);
+        jPanel23.add(txtPhong);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("CCCD :  ");
@@ -315,6 +344,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         btnTimKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKhachHang.setText("Tìm");
+        btnTimKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKhachHangActionPerformed(evt);
+            }
+        });
         jPanel28.add(btnTimKhachHang);
 
         jPanel27.add(jPanel28);
@@ -341,16 +375,19 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel26.setLayout(new java.awt.GridLayout());
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Nam");
-        jPanel26.add(jRadioButton1);
+        radNam.setBackground(new java.awt.Color(255, 255, 255));
+        radNam.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        radNam.setSelected(true);
+        radNam.setText("Nam");
+        jPanel26.add(radNam);
+        group=new ButtonGroup();
+        group.add(radNam);
+        group.add(radNu);
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton2.setText("Nữ");
-        jPanel26.add(jRadioButton2);
+        radNu.setBackground(new java.awt.Color(255, 255, 255));
+        radNu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        radNu.setText("Nữ");
+        jPanel26.add(radNu);
 
         jPanel23.add(jPanel26);
 
@@ -360,8 +397,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel29.add(jTextField3);
+        txtGioCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel29.add(txtGioCheckIn);
 
         jPanel23.add(jPanel29);
 
@@ -371,17 +408,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel30.add(jTextField2);
+        txtNgayCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel30.add(txtNgayCheckIn);
 
         jPanel23.add(jPanel30);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Phòng :");
-        jPanel23.add(jLabel8);
-        jPanel23.add(jTextField1);
-
         jPanel3.add(jPanel23);
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -466,6 +500,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Xóa trắng");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel22.add(jButton5);
 
         jPanel16.add(jPanel22);
@@ -597,9 +636,34 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         
         
         
-        Form_DonDat form=new Form_DonDat("001");
-        form.setVisible(true);
+        
     }//GEN-LAST:event_btnTaoDonDatActionPerformed
+
+    private void btnTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKhachHangActionPerformed
+        Customer c= cDAO.getCustomerByCCCD(txtCCCD.getText());
+        if(c!=null){
+            txtHoTen.setText(c.getCustomerName());
+            txtSDT.setText(c.getPhone());
+            if(c.getGender().equals("Nam")){
+                radNam.setSelected(true);
+                
+            }else{
+                radNu.setSelected(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Đây là khách hàng mới, vui lòng nhập đầy đủ thông tin!");
+        }
+    }//GEN-LAST:event_btnTimKhachHangActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        txtPhong.setText("");
+        txtCCCD.setText("");
+        txtHoTen.setText("");
+        txtSDT.setText("");
+        txtNgayCheckIn.setText("");
+        txtGioCheckIn.setText("");
+       
+    }//GEN-LAST:event_jButton5ActionPerformed
 // Create list rooms
     private void createRoom() {
         listRoomDoi = roomDAO.findRoomByIDLoaiPhong("LP002");
@@ -753,10 +817,13 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 //        lblRoom.setForeground(Color.WHITE);
         lblRoom.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         lblRoom.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 nameRoom = room.getRoomName();
+                idroom=room.getRoomID();
                 lblRoom.setRequestFocusEnabled(true);
+                txtPhong.setText(nameRoom);
             }
         });
         pnlRom.add(lblRoom, BorderLayout.CENTER);
@@ -807,26 +874,147 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlRoom;
+    private javax.swing.JRadioButton radNam;
+    private javax.swing.JRadioButton radNu;
     private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JTextField txtCCCD;
+    private javax.swing.JTextField txtGio;
+    private javax.swing.JTextField txtGioCheckIn;
     private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtNgay;
+    private javax.swing.JTextField txtNgayCheckIn;
+    private javax.swing.JTextField txtPhong;
     private javax.swing.JTextField txtSDT;
     // End of variables declaration//GEN-END:variables
 
     private void taoDonDat() {
+        if(txtPhong.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "Hãy chọn phòng để tạo!");
+        else{
+            if(txtCCCD.getText().isEmpty() || txtHoTen.getText().isEmpty() || txtSDT.getText().isEmpty() || txtSDT.getText().isEmpty() ||txtGioCheckIn.getText().isEmpty())
+                JOptionPane.showMessageDialog(null, "Hãy điền đầy đủ thống tin!");
+            else{
+                if(check()){
+                    if(cDAO.getCustomerByCCCD(txtCCCD.getText())!=null){
+                        String gt;
+                        gt = "";
+                        if(radNam.isSelected())
+                            gt="Nam";
+                        else
+                            gt="Nữ";
+                        Customer c=new Customer(maTuSinhKhachHang(),txtHoTen.getText(),ctDAO.timLoaiKHBangMa("LKH001"),txtCCCD.getText(),gt, txtSDT.getText(), "", 0);
+                        cDAO.add(c);
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), username, title, username, username, c, eDAO.findEmpID(username), rDAO.findRoomById(idroom));
+                        brDAO.add(b);
+                        Form_DonDat form=new Form_DonDat(b.getBookRoomID());
+                        form.setVisible(true);
+                        
+                    }else{
+                        Customer c=cDAO.getCustomerByCCCD(txtCCCD.getText());
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), username, title, username, username, c, eDAO.findEmpID(username), rDAO.findRoomById(idroom));
+                        brDAO.add(b);
+                        Form_DonDat form=new Form_DonDat(b.getBookRoomID());
+                        form.setVisible(true);
+                    }
+                }
+            }
+        }
         
-        
+    }
+    
+    private String maTuSinhKhachHang() {
+        String ma = "KH";
+        int tachMa;
+        int i = 0, j = 1;
+        int[] dem = new int[999];
+        String id;
+        for (Customer c : cDAO.getalltbKhachHang()) {
+            id = c.getCustomerID();
+            tachMa = Integer.parseInt(id.substring(2, 5));
+            dem[i] = tachMa;
+            i++;
+        }
+        i = 0;
+        while (j < 999) {
+            if (dem[i] < j) {
+                if (j <= 9) {
+                    ma += "00" + (j);
+                } else {
+                    ma += "0" + (j);
+                }
+                break;
+            } else if (dem[i] > j) {
+                j = dem[i];
+            } else {
+                i++;
+                j++;
+            }
+        }
+        return ma;
+    }
+    
+    private String maTuSinhDonDat() {
+        String ma = "DDP";
+        int tachMa;
+        int i = 0, j = 1;
+        int[] dem = new int[999];
+        String id;
+        for (BookRoom br : brDAO.getAlLBookRooms()) {
+            id = br.getBookRoomID();
+            tachMa = Integer.parseInt(id.substring(3, 6));
+            dem[i] = tachMa;
+            i++;
+        }
+        i = 0;
+        while (j < 999) {
+            if (dem[i] < j) {
+                if (j <= 9) {
+                    ma += "00" + (j);
+                } else {
+                    ma += "0" + (j);
+                }
+                break;
+            } else if (dem[i] > j) {
+                j = dem[i];
+            } else {
+
+                i++;
+                j++;
+            }
+        }
+        return ma;
+    }
+    @Override
+    public void run() {
+        try {
+            txtGio = new JTextField();
+            txtNgay = new JTextField();
+            Date thoiGianHienTai = new Date();
+            SimpleDateFormat sdf_Gio = new SimpleDateFormat("hh:mm:ss");
+            SimpleDateFormat sdf_Ngay = new SimpleDateFormat("dd/MM/yyyy");
+            while (true) {
+                thoiGianHienTai = new Date(); // lấy thời gian hiện tại
+                String ngayTrongTuan = "";
+                if (thoiGianHienTai.getDay() == 0) {
+                    ngayTrongTuan = "Chủ nhật, ";
+                } else {
+                    ngayTrongTuan = "Thứ " + (thoiGianHienTai.getDay() + 1) + ", ";// do getDay() tính từ 1.
+                }
+                txtGio.setText(sdf_Gio.format(thoiGianHienTai));
+                txtNgay.setText(ngayTrongTuan + sdf_Ngay.format(thoiGianHienTai));
+                thread.sleep(1000); // cho phép ngủ trong khoảng 1000 mns =1s
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean check() {
+        return true;
     }
 }
