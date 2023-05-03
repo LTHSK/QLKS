@@ -85,7 +85,7 @@ public class RoomDAO {
         List<Room> rooms = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ROOM WHERE ROOMTYPEID = ?")) {
+                PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ROOM WHERE ROOMTYPEID = ? and roomstatustypeid = 'LTTP001' ")) {
             pstmt.setString(1, IDLoaiPhong);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {

@@ -461,8 +461,6 @@ private void doiMauPnl(){
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát ?", "Thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             this.setVisible(false);
-            
-            
             component.setVisible(true);
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed

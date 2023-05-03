@@ -46,7 +46,7 @@ public class Form_HoaDon extends javax.swing.JFrame {
         modalXuatHoaDon = (DefaultTableModel) tableXuatHoaDon.getModel();
         modalXuatHoaDon.addRow(new Object[]{});
         loadDL();
-
+        this.setUndecorated(true);
     }
 
     private void loadDL() {
@@ -282,6 +282,7 @@ public class Form_HoaDon extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlHoaDon.setPreferredSize(new java.awt.Dimension(515, 790));
         pnlHoaDon.setLayout(new javax.swing.BoxLayout(pnlHoaDon, javax.swing.BoxLayout.Y_AXIS));

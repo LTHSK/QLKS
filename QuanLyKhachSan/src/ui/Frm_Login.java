@@ -7,15 +7,8 @@ package ui;
 
 import dao.AccountDAO;
 import dao.EmployeeDAO;
-import entity.Account;
 import entity.Employee;
 import javax.swing.JOptionPane;
-import java.awt.Toolkit;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author ACER

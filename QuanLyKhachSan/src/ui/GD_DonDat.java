@@ -15,6 +15,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -83,20 +85,30 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jPanel27 = new javax.swing.JPanel();
+        txtCCCD = new javax.swing.JTextField();
+        jPanel28 = new javax.swing.JPanel();
         btnTimKhachHang = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtHoTen = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtSDT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jPanel26 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel29 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel30 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel24 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
@@ -164,7 +176,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,11 +196,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel11);
@@ -212,11 +224,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel4);
@@ -240,11 +252,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel1);
@@ -260,7 +272,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,108 +285,116 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin đặt phòng"));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.X_AXIS));
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel25);
+
+        jPanel23.setLayout(new java.awt.GridLayout(10, 2));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("CMND");
+        jLabel1.setText("CCCD :  ");
+        jPanel23.add(jLabel1);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel27.setLayout(new javax.swing.BoxLayout(jPanel27, javax.swing.BoxLayout.X_AXIS));
+
+        txtCCCD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel27.add(txtCCCD);
+
+        jPanel28.setLayout(new java.awt.GridLayout());
 
         btnTimKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKhachHang.setText("Tìm");
+        jPanel28.add(btnTimKhachHang);
+
+        jPanel27.add(jPanel28);
+
+        jPanel23.add(jPanel27);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Họ tên :");
+        jPanel23.add(jLabel2);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtHoTen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel23.add(txtHoTen);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Số điện thoại :");
+        jPanel23.add(jLabel3);
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSDT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel23.add(txtSDT);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Giới tính :");
+        jPanel23.add(jLabel4);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Ngày nhận phòng :");
-
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Giờ nhận phòng :");
-
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel26.setLayout(new java.awt.GridLayout());
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Nam");
+        jPanel26.add(jRadioButton1);
 
         jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jRadioButton2.setText("Nữ");
+        jPanel26.add(jRadioButton2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addGap(48, 48, 48)
-                        .addComponent(jRadioButton2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTimKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79))
+        jPanel23.add(jPanel26);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Giờ nhận phòng :");
+        jPanel23.add(jLabel6);
+
+        jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.LINE_AXIS));
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel29.add(jTextField3);
+
+        jPanel23.add(jPanel29);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Ngày nhận phòng :");
+        jPanel23.add(jLabel5);
+
+        jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel30.add(jTextField2);
+
+        jPanel23.add(jPanel30);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Phòng :");
+        jPanel23.add(jLabel8);
+        jPanel23.add(jTextField1);
+
+        jPanel3.add(jPanel23);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTimKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18))
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
         );
+
+        jPanel3.add(jPanel24);
 
         jPanel5.add(jPanel3);
 
@@ -390,7 +410,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 79, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +447,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 79, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,7 +478,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGap(0, 253, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,9 +559,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(627, Short.MAX_VALUE)
                 .addComponent(btnMoPhong)
-                .addGap(34, 34, 34)
+                .addGap(62, 62, 62)
                 .addComponent(jButton2)
                 .addGap(70, 70, 70))
         );
@@ -552,7 +572,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMoPhong)
                     .addComponent(jButton2))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel14.add(jPanel9);
@@ -586,6 +606,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         listRoomDon = roomDAO.findRoomByIDLoaiPhong("LP001");
         listRoomDoiLon = roomDAO.findRoomByIDLoaiPhong("LP003");
 
+        int soLuongPhong= listRoomDoi.size()+listRoomDoi.size()+listRoomDoiLon.size();
         JLabel lblListNormal;
         // Titile Normal
         lblListNormal = new JLabel("Danh sách phòng đơn");
@@ -597,7 +618,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         pnlListRoom.removeAll();
         pnlListRoom.setBackground(Color.white);
         pnlListRoom.setLayout(null);
-        pnlListRoom.setPreferredSize(new Dimension(600, 830));
+        pnlListRoom.setPreferredSize(new Dimension(600, 2000));
         pnlListRoom.add(lblListNormal);
 
         JLabel lblListDoi;
@@ -609,6 +630,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         int height = 100;
         int countHeight = 0;
         int numberRoomNormal = 1;
+        int numberRoomVip1=1;
         int countNumberRoomNormalRemove = 0;
         int numberRoomVip = 1;
         String trangThaiPhong;
@@ -629,33 +651,31 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
                 if (trangThaiPhong.equals("LTTP001")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
-                } else if (trangThaiPhong.equals("LTTP002")) {
-                    createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
-                } else {
-                    createStatusRoom(trangThaiPhong, new Color(5, 154, 3), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, Color.WHITE, room);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
                 }
 
                 pnlListRoom.add(pnlRoom, BorderLayout.CENTER);
                 x += width + 20;
 
-                if (numberRoomNormal % 4 == 0 || numberRoomNormal == listRoomDon.size() - countNumberRoomNormalRemove) {
+                if (numberRoomNormal % 4 == 0) {
                     y += width + 20;
                     x = 20;
                     countHeight = y + 40;
                 }
-                if (numberRoomNormal == listRoomDon.size() - countNumberRoomNormalRemove) {
-                    lblListDoi = new JLabel("Danh sách phòng đôi");
-                    lblListDoi.setBounds(20, y, 300, 30);
-                    lblListDoi.setFont(new Font("Segoe UI", Font.BOLD, 14));
-                    pnlListRoom.add(lblListDoi);
-                }
                 numberRoomNormal++;
+               
+                
+                
             }
         }
-
+        countHeight+= height;
+         if ( listRoomDoi.size()>0) {
+                    lblListDoi = new JLabel("Danh sách phòng đôi");
+                    lblListDoi.setBounds(20, countHeight, 300, 30);
+                    lblListDoi.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                    pnlListRoom.add(lblListDoi);
+        countHeight+=  40;
+        x = 20;
         for (Room room : listRoomDoi) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
             if (!trangThaiPhong.equals("LTTP004")) {
@@ -667,14 +687,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
                 if (trangThaiPhong.equals("LTTP001")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
-                } else if (trangThaiPhong.equals("LTTP002")) {
-                    createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
-                } else {
-                    createStatusRoom(trangThaiPhong, new Color(5, 154, 3), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, Color.WHITE, room);
-
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
                 }
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;
@@ -686,10 +699,18 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
                 numberRoomVip++;
             }
         }
-        
+         }
+         countHeight+=  height+ 20;
+        if (listRoomDoiLon.size()>0) {
+                    lblListDoiLon = new JLabel("Danh sách phòng đôi lớn");
+                    lblListDoiLon.setBounds(20, countHeight, 300, 30);
+                    lblListDoiLon.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                    pnlListRoom.add(lblListDoiLon);
+                }
+        countHeight+=  40;
+        x=20;
         for (Room room : listRoomDoiLon) {
             trangThaiPhong = room.getRoomStatusType().getRoomStatusTypeID().toUpperCase();
-            if (!trangThaiPhong.equals("LTTP004")) {
                 //Room
                 pnlRoom = new JPanel();
                 pnlRoom.setBackground(Color.white);
@@ -698,26 +719,18 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
 
                 if (trangThaiPhong.equals("LTTP001")) {
                     createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(241, 91, 56), room);
-                } else if (trangThaiPhong.equals("LTTP002")) {
-                    createStatusRoom(trangThaiPhong, new Color(51, 176, 224), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(113, 108, 176), room);
-                } else {
-                    createStatusRoom(trangThaiPhong, new Color(5, 154, 3), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, Color.WHITE, room);
-
-                }
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
+                } 
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;
 
-                if (numberRoomVip % 4 == 0) {
+                if (numberRoomVip1 % 4 == 0) {
                     countHeight += width + 20;
                     x = 20;
                 }
-                numberRoomVip++;
-            }
+                numberRoomVip1++;
         }
-
+        pnlListRoom.setPreferredSize(new Dimension(600, countHeight+height+20));
         scrollPanel.setViewportView(pnlListRoom);
     }
 
@@ -737,11 +750,13 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
         lblRoom.setOpaque(true);
         lblRoom.setBackground(colorBackground);
         lblRoom.setFont(new Font("Segoe UI", Font.BOLD, 14));
+//        lblRoom.setForeground(Color.WHITE);
         lblRoom.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         lblRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 nameRoom = room.getRoomName();
+                lblRoom.setRequestFocusEnabled(true);
             }
         });
         pnlRom.add(lblRoom, BorderLayout.CENTER);
@@ -761,6 +776,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -776,7 +792,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -791,13 +815,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlRoom;
     private javax.swing.JScrollPane scrollPanel;
+    private javax.swing.JTextField txtCCCD;
+    private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtSDT;
     // End of variables declaration//GEN-END:variables
 
     private void taoDonDat() {
