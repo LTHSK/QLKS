@@ -19,7 +19,8 @@ import java.sql.ResultSet;
  * @author thule
  */
 public class BookRoomDAO {
-
+    private final EmployeeDAO eDAO=new EmployeeDAO();
+    private final EmployeeTypeDAO etDAO=new EmployeeTypeDAO();
     private CustomerDAO customerDAO;
     private RoomDAO roomDAO;
     private EmployeeDAO employeeDAO;
@@ -60,23 +61,27 @@ public class BookRoomDAO {
         return null;
     }
 
-    public void add(BookRoom bookRoom) {
+    public boolean add(BookRoom bookRoom) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO DONDATPHONG(bookroomid,bookDate,booktime,checkindate,checkintime,customerid,employeeid,roomid)")) {
+                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO bookroom(bookroomid,bookdate,booktime,checkindate,checkintime,customerid,employeeid,roomid)"
+            + " VALUES(?,?,?,?,?,?,?,?)")) {
+            
+            Employee e=eDAO.findEmpID(bookRoom.getEmployee().getEmployeeID());
+            
             pstmt.setString(1, bookRoom.getBookRoomID());
             pstmt.setString(2, bookRoom.getBookDate());
             pstmt.setString(3, bookRoom.getBookTime());
             pstmt.setString(4, bookRoom.getCheckInDate());
             pstmt.setString(5, bookRoom.getCheckInTime());
             pstmt.setString(6, bookRoom.getCustomer().getCustomerID());
-            pstmt.setString(7, bookRoom.getEmployee().getEmployeeID());
+            pstmt.setString(7, e.getEmployeeID());
             pstmt.setString(8, bookRoom.getRoom().getRoomID());
-
+        return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
-            System.err.println("connect db fail");
+            System.err.println("add(BookRoom bookRoom): connect db fail");
             e.printStackTrace();
         }
-    
+        return false;
     }
 
 }

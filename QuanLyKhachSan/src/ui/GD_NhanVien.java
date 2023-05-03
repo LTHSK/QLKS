@@ -47,6 +47,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
      * Creates new form MainEmployee
      */
     public GD_NhanVien(String user,Component c) {
+        username=user;
         component=c;
         this.setUndecorated(true);
         this.setResizable(true);
@@ -66,7 +67,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblGioiThieu.setForeground(new Color(255,255,255));
         
         frGioiThieu = new GD_GioiThieu(username);
-        gdDonDat=new GD_DonDat();
+        gdDonDat=new GD_DonDat(username);
         openComponent(frGioiThieu);
     }
 

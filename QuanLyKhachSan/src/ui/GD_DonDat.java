@@ -12,6 +12,7 @@ import dao.RoomDAO;
 import dao.RoomStatusTypeDAO;
 import entity.BookRoom;
 import entity.Customer;
+import entity.Employee;
 import entity.Room;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -58,7 +59,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     /**
      * Creates new form QuanLyHoaDon
      */
-    public GD_DonDat() {
+    public GD_DonDat(String user) {
+        username=user;
         thread.start();
         roomDAO=new RoomDAO();
         roomStatusTypeDAO =new RoomStatusTypeDAO();
@@ -909,17 +911,21 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                             gt="Nữ";
                         Customer c=new Customer(maTuSinhKhachHang(),txtHoTen.getText(),ctDAO.timLoaiKHBangMa("LKH001"),txtCCCD.getText(),gt, txtSDT.getText(), "", 0);
                         cDAO.add(c);
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), username, title, username, username, c, eDAO.findEmpID(username), rDAO.findRoomById(idroom));
-                        brDAO.add(b);
-                        Form_DonDat form=new Form_DonDat(b.getBookRoomID());
-                        form.setVisible(true);
+                        Employee e= eDAO.findEmpID(username);
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), txtNgay.getText(), txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom));
+                        if(brDAO.add(b)){
+                            Form_DonDat form=new Form_DonDat(b.getBookRoomID());
+                            form.setVisible(true);
+                        }
                         
                     }else{
+                        Employee e= eDAO.findEmpID(username);
                         Customer c=cDAO.getCustomerByCCCD(txtCCCD.getText());
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), username, title, username, username, c, eDAO.findEmpID(username), rDAO.findRoomById(idroom));
-                        brDAO.add(b);
-                        Form_DonDat form=new Form_DonDat(b.getBookRoomID());
-                        form.setVisible(true);
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), txtNgay.getText(), txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom));
+                        if(brDAO.add(b)){
+                            Form_DonDat form=new Form_DonDat(b.getBookRoomID());
+                            form.setVisible(true);
+                        }
                     }
                 }
             }
