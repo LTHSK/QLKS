@@ -25,13 +25,13 @@ import java.util.Timer;
 public class BookRoomDAO {
     private final EmployeeDAO eDAO=new EmployeeDAO();
     private final EmployeeTypeDAO etDAO=new EmployeeTypeDAO();
-    private CustomerDAO customerDAO;
-    private RoomDAO roomDAO;
-    private EmployeeDAO employeeDAO;
+    private CustomerDAO customerDAO = new CustomerDAO();
+    private RoomDAO roomDAO = new RoomDAO();
+    private EmployeeDAO employeeDAO=new EmployeeDAO();
     public ArrayList<BookRoom> getAlLBookRooms() {
-        customerDAO = new CustomerDAO();
-        roomDAO = new RoomDAO();
-        employeeDAO=new EmployeeDAO();
+        
+        
+        
 
         ArrayList<BookRoom> bookRooms = new ArrayList<>();
         try (Connection conn = DatabaseConnection.opConnection();
@@ -59,6 +59,38 @@ public class BookRoomDAO {
             }
         } catch (Exception e) {
             System.err.println("connect db fail");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    public BookRoom getBookRoomByID(String id) {
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("select * from BookRoom where BookRoomid = ?")) {
+            pstmt.setString(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {  
+                    String maDDP = rs.getString("bookroomID");
+                    String ngayDat = rs.getString("bookdate");
+                    String gioDat = rs.getString("booktime");
+                    String ngayNhan = rs.getString("checkindate");
+                    String gioNhan = rs.getString("checkintime");
+
+                    Customer customer = customerDAO.getCustomerID(rs.getString("customerId"));
+                    Room room = roomDAO.findRoomById(rs.getString("roomid"));
+                    Employee employee = employeeDAO.findEmpID(rs.getString("employeeid"));
+
+                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room);
+                    
+                    return bookRoom;
+                }
+            } catch (Exception e) {
+                System.err.println("getBookRoomByID(String id): get data fail");
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.err.println("getBookRoomByID(String id): connect db fail");
             e.printStackTrace();
         }
 
@@ -92,6 +124,17 @@ public class BookRoomDAO {
         return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             System.err.println("add(BookRoom bookRoom): connect db fail");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteBookRoom(String maDonDat) {
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("DELETE FROM bookroom WHERE bookroomid = ?")) {
+            pstmt.setString(1, maDonDat);
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;

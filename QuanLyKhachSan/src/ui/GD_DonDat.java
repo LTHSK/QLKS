@@ -8,11 +8,13 @@ import dao.BookRoomDAO;
 import dao.CustomerDAO;
 import dao.CustomerTypeDAO;
 import dao.EmployeeDAO;
+import dao.OrderDAO;
 import dao.RoomDAO;
 import dao.RoomStatusTypeDAO;
 import entity.BookRoom;
 import entity.Customer;
 import entity.Employee;
+import entity.Order;
 import entity.Room;
 import entity.RoomStatusType;
 import java.awt.BorderLayout;
@@ -24,6 +26,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -61,6 +64,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     private final EmployeeDAO eDAO=new EmployeeDAO();
     private final RoomStatusTypeDAO rstDAO=new RoomStatusTypeDAO();
     private DefaultTableModel dtm;
+    private final OrderDAO oDAO=new OrderDAO();
     /**
      * Creates new form QuanLyHoaDon
      */
@@ -155,7 +159,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         tblDDP = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         btnMoPhong = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnHuyDonDat = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -598,10 +602,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Hủy đơn đặt");
+        btnHuyDonDat.setBackground(new java.awt.Color(255, 102, 102));
+        btnHuyDonDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHuyDonDat.setForeground(new java.awt.Color(255, 255, 255));
+        btnHuyDonDat.setText("Hủy đơn đặt");
+        btnHuyDonDat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyDonDatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -611,7 +620,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 .addContainerGap(627, Short.MAX_VALUE)
                 .addComponent(btnMoPhong)
                 .addGap(62, 62, 62)
-                .addComponent(jButton2)
+                .addComponent(btnHuyDonDat)
                 .addGap(70, 70, 70))
         );
         jPanel9Layout.setVerticalGroup(
@@ -620,7 +629,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMoPhong)
-                    .addComponent(jButton2))
+                    .addComponent(btnHuyDonDat))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -638,7 +647,26 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoPhongActionPerformed
-        JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
+        int index=tblDDP.getSelectedRow();
+        if(index==-1){
+            JOptionPane.showMessageDialog(null, "Hãy chọn phòng cần mở!");
+        }else{
+            ArrayList<BookRoom> listBr=new ArrayList<>();
+            BookRoom br=brDAO.getBookRoomByID(tblDDP.getValueAt(index, 0).toString());
+            listBr.add(br);
+            Employee e=eDAO.findEmpID(username);
+            Order order=new Order(maTuSinhHoaDon(), null, null, listBookRooms, e);
+            if(oDAO.add(order)){
+                Room r=rDAO.findRoomById(br.getRoom().getRoomID());
+                RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP002");
+                r.setRoomStatusType(rst);
+                rDAO.updateRoom(r);
+                
+                dtm.removeRow(index);
+                JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
+            }
+            
+        }
     }//GEN-LAST:event_btnMoPhongActionPerformed
 
     private void btnTaoDonDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonDatActionPerformed
@@ -673,6 +701,24 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         xoaTrang();
        
     }//GEN-LAST:event_btnXoaTrangActionPerformed
+
+    private void btnHuyDonDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyDonDatActionPerformed
+        int index=tblDDP.getSelectedRow();
+        if(index==-1){
+            JOptionPane.showMessageDialog(null, "Hãy chọn phòng cần hủy!");
+        }else{
+            
+            if (JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn hủy đơn đặt phòng này?", "Xác nhận", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                {
+                    BookRoom br=brDAO.getBookRoomByID(tblDDP.getValueAt(index, 0).toString());
+                    if(brDAO.deleteBookRoom(br.getBookRoomID())){
+                           dtm.removeRow(index);
+                           JOptionPane.showMessageDialog(null, "Hủy thành công!");
+                    }
+                }
+            } 
+        }
+    }//GEN-LAST:event_btnHuyDonDatActionPerformed
 // Create list rooms
     private void createRoom() {
         listRoomDoi = roomDAO.findRoomByIDLoaiPhong("LP002");
@@ -730,7 +776,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlListRoom.add(pnlRoom, BorderLayout.CENTER);
                 x += width + 20;
 
-                if (numberRoomNormal % 4 == 0) {
+                if (numberRoomNormal ==4) {
+                    
+                }else if(numberRoomNormal % 4 == 0 && listRoomDon.size()% 4 !=0){
                     y += width + 20;
                     x = 20;
                     countHeight = y + 40;
@@ -741,7 +789,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 
             }
         }
-        countHeight+= height;
+        countHeight+= (height + y+20);
          if ( listRoomDoi.size()>0) {
                     lblListDoi = new JLabel("Danh sách phòng đôi");
                     lblListDoi.setBounds(20, countHeight, 300, 30);
@@ -765,7 +813,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;
 
-                if (numberRoomVip % 4 == 0) {
+                if (numberRoomVip ==4) {
+                    
+                }else if (numberRoomVip % 4 == 0 && listRoomDoi.size()% 4 !=0) {
                     countHeight += width + 20;
                     x = 20;
                 }
@@ -797,7 +847,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;
 
-                if (numberRoomVip1 % 4 == 0) {
+                if (numberRoomVip1 % 4 == 0 && listRoomDoi.size()% 4 !=0) {
                     countHeight += width + 20;
                     x = 20;
                 }
@@ -837,13 +887,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         });
         pnlRom.add(lblRoom, BorderLayout.CENTER);
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHuyDonDat;
     private javax.swing.JButton btnMoPhong;
     private javax.swing.JButton btnTaoDonDat;
     private javax.swing.JButton btnTimKhachHang;
     private javax.swing.JButton btnXoaTrang;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1005,6 +1056,37 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         for (BookRoom br : brDAO.getAlLBookRooms()) {
             id = br.getBookRoomID();
             tachMa = Integer.parseInt(id.substring(3, 6));
+            dem[i] = tachMa;
+            i++;
+        }
+        i = 0;
+        while (j < 999) {
+            if (dem[i] < j) {
+                if (j <= 9) {
+                    ma += "00" + (j);
+                } else {
+                    ma += "0" + (j);
+                }
+                break;
+            } else if (dem[i] > j) {
+                j = dem[i];
+            } else {
+                i++;
+                j++;
+            }
+        }
+        return ma;
+    }
+    
+    private String maTuSinhHoaDon() {
+        String ma = "HD";
+        int tachMa;
+        int i = 0, j = 1;
+        int[] dem = new int[999];
+        String id;
+        for (Order order : oDAO.getAlLOrder()) {
+            id = order.getOrderID();
+            tachMa = Integer.parseInt(id.substring(2, 5));
             dem[i] = tachMa;
             i++;
         }
