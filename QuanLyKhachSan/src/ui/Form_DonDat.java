@@ -19,6 +19,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +40,14 @@ public class Form_DonDat extends javax.swing.JFrame {
      * Creates new form Form_HoaDon
      */
     public Form_DonDat(String ma) {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addInternalFrameListener(new InternalFrameAdapter() {
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+        dispose(); // Đóng frame hóa đơn
+    }
+});
+
         maHD = ma;
         initComponents();
         setLocationRelativeTo(null);
@@ -282,6 +292,11 @@ public class Form_DonDat extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlHoaDon.setPreferredSize(new java.awt.Dimension(515, 790));
         pnlHoaDon.setLayout(new javax.swing.BoxLayout(pnlHoaDon, javax.swing.BoxLayout.Y_AXIS));
@@ -662,6 +677,10 @@ public class Form_DonDat extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnInActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -697,6 +716,8 @@ public class Form_DonDat extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHoanThanh;
@@ -750,4 +771,7 @@ public class Form_DonDat extends javax.swing.JFrame {
     private javax.swing.JPanel pnlGiua;
     private javax.swing.JPanel pnlHoaDon;
     // End of variables declaration//GEN-END:variables
+
+    private void addInternalFrameListener(InternalFrameAdapter internalFrameAdapter) {
+    }
 }

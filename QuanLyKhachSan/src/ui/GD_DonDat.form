@@ -68,7 +68,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Danh s&#xe1;ch ph&#xf2;ng"/>
+                    <TitledBorder title="Danh s&#xe1;ch ph&#xf2;ng tr&#x1ed1;ng"/>
                   </Border>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -726,7 +726,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="jButton5">
+                            <Component class="javax.swing.JButton" name="btnXoaTrang">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="ff" type="rgb"/>
@@ -740,7 +740,7 @@
                                 <Property name="text" type="java.lang.String" value="X&#xf3;a tr&#x1eaf;ng"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaTrangActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -849,7 +849,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
+                            <Component class="javax.swing.JTable" name="tblDDP">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="5" rowCount="4">
@@ -859,6 +859,9 @@
                                     <Column editable="true" title="Ng&#xe0;y m&#x1edf; ph&#xf2;ng" type="java.lang.Object"/>
                                     <Column editable="true" title="Gi&#x1edd; m&#x1edf; ph&#xf2;ng" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                               </Properties>
                             </Component>

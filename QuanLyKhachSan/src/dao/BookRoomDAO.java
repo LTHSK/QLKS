@@ -14,6 +14,10 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
 /**
  *
  * @author thule
@@ -65,15 +69,24 @@ public class BookRoomDAO {
         try (Connection conn = DatabaseConnection.opConnection();
                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO bookroom(bookroomid,bookdate,booktime,checkindate,checkintime,customerid,employeeid,roomid)"
             + " VALUES(?,?,?,?,?,?,?,?)")) {
-            
+            Customer c=customerDAO.getCustomerByCCCD(bookRoom.getCustomer().getCCCD());
             Employee e=eDAO.findEmpID(bookRoom.getEmployee().getEmployeeID());
             
+            
+            java.sql.Date bookDate= java.sql.Date.valueOf(bookRoom.getBookDate());
+            java.sql.Date checkInDate =  java.sql.Date.valueOf(bookRoom.getCheckInDate());
+             
+            
+            java.sql.Time bookTime=Time.valueOf(bookRoom.getBookTime());
+            java.sql.Time checkInTime=Time.valueOf(bookRoom.getCheckInTime());
+            
+            
             pstmt.setString(1, bookRoom.getBookRoomID());
-            pstmt.setString(2, bookRoom.getBookDate());
-            pstmt.setString(3, bookRoom.getBookTime());
-            pstmt.setString(4, bookRoom.getCheckInDate());
-            pstmt.setString(5, bookRoom.getCheckInTime());
-            pstmt.setString(6, bookRoom.getCustomer().getCustomerID());
+            pstmt.setDate(2, bookDate);
+            pstmt.setTime(3, bookTime);
+            pstmt.setDate(4,checkInDate );
+            pstmt.setTime(5, checkInTime);
+            pstmt.setString(6, c.getCustomerID());
             pstmt.setString(7, e.getEmployeeID());
             pstmt.setString(8, bookRoom.getRoom().getRoomID());
         return pstmt.executeUpdate() > 0;
