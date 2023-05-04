@@ -4,6 +4,12 @@
  */
 package entity;
 
+import dao.ServiceDetailDAO;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,10 +19,53 @@ import java.util.Objects;
  */
 public class Order {
     private String orderID;
-    private String checkOutDate;
+    private String checkOutDate; 
     private String checkOutTime;
     private List<BookRoom> bookRooms;
+    
+    
     private Employee employee;
+    
+    // tính theo giờ
+    private double getTongTienPhong() throws ParseException {
+        double sum = 0; 
+        for( BookRoom br : bookRooms ) {
+            sum += br.getRoom().getRoomType().getPrice(); 
+        }
+        return sum*thoiGianSuDung(); 
+    }
+    
+    private Date chuyenDoiNgay(String timeString1, String dateString1) throws ParseException {
+        timeString1 = timeString1.substring(0, 8);
+        DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        Date date1 = dateFormat.parse(dateString1 + " " + timeString1); 
+        return date1; 
+    }
+    
+  
+    private double thoiGianSuDung() throws ParseException {
+        String checkInTime = bookRooms.get(0).getBookTime();
+        String checkInDate = bookRooms.get(0).getCheckInDate(); 
+        
+        Date vao = chuyenDoiNgay(checkInTime, checkInDate);
+        Date ra = chuyenDoiNgay(checkOutTime, checkOutDate);
+        
+        double timeDiff = ra.getTime() - vao.getTime(); 
+        double hourDiff = timeDiff/3600000;  
+        return hourDiff; 
+    }
+    
+    private double getTongTienDichVu() throws SQLException, ClassNotFoundException {
+        double sum = 0; 
+        for( ServiceDetail sv : new ServiceDetailDAO().getListSericeByRoomID(orderID) ) {
+            sum += sv.getQuantity()*sv.getService().getPrice(); 
+        }
+        return sum; 
+    }
+    
+    private double getTongTien() throws SQLException, ClassNotFoundException, ParseException {
+        return getTongTienDichVu() + getTongTienPhong(); 
+    }
 
     public Order() {
     }
