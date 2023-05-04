@@ -35,7 +35,7 @@ public class Order {
         return sum*thoiGianSuDung(); 
     }
     
-    private Date chuyenDoiNgay(String timeString1, String dateString1) throws ParseException {
+    public Date chuyenDoiNgay(String timeString1, String dateString1) throws ParseException {
         timeString1 = timeString1.substring(0, 8);
         DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
         Date date1 = dateFormat.parse(dateString1 + " " + timeString1); 
@@ -57,9 +57,9 @@ public class Order {
     
     private double getTongTienDichVu() throws SQLException, ClassNotFoundException {
         double sum = 0; 
-        for( ServiceDetail sv : new ServiceDetailDAO().getListSericeByRoomID(orderID) ) {
-            sum += sv.getQuantity()*sv.getService().getPrice(); 
-        }
+//        for( OrderDetail od :  ) {
+//            sum += sv.getQuantity()*sv.getService().getPrice(); 
+//        }
         return sum; 
     }
     
