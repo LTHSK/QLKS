@@ -6,6 +6,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -30,6 +31,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
         this.setResizable(true);
 
         initComponents();
+        setCursorForPaneḷ();
 //        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/tuisach.png")));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -40,6 +42,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
         
         GD_GioiThieu frGioiThieu = new GD_GioiThieu(username);
         openComponent(frGioiThieu);
+        
 
     }
 
@@ -622,6 +625,19 @@ private void doiMauPnl(){
     private keeptoo.KGradientPanel pnlTraCuu;
     private keeptoo.KGradientPanel pnlTroGiup;
     // End of variables declaration//GEN-END:variables
+
+    private void setCursorForPaneḷ() {
+        pnlGioiThieu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlPhong.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlNhanVien.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlDichVu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlTaiKhoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlTraCuu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlThongKe.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        pnlTroGiup.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnDoiMatKhau1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnDangXuat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
 
 
 }

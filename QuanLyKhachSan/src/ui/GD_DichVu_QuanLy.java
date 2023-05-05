@@ -28,6 +28,11 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
      * Creates new form GD_DichVu_QuanLy
      */
     public GD_DichVu_QuanLy() {
+        this.setRootPaneCheckingEnabled(false);
+        javax.swing.plaf.InternalFrameUI ui
+                = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
+        
         initComponents();
         model = new DefaultTableModel();
         serviceD = new ServiceDAO();
@@ -50,9 +55,9 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
                    };
                    model.addRow(row);
                }  } catch (ClassNotFoundException ex) {
-               Logger.getLogger(GD_QLDichVu.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(GD_DichVu_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
            } catch (SQLException ex) {
-               Logger.getLogger(GD_QLDichVu.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(GD_DichVu_QuanLy.class.getName()).log(Level.SEVERE, null, ex);
            }
            model.fireTableDataChanged();
     }
@@ -376,6 +381,8 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         Main.add(jPanel4);
 
         getContentPane().add(Main, java.awt.BorderLayout.CENTER);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
