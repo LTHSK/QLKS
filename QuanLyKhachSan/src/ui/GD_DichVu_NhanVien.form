@@ -148,10 +148,11 @@
                         <Component class="javax.swing.JTable" name="tblPhong">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="4">
+                              <Table columnCount="5" rowCount="4">
+                                <Column editable="true" title="M&#xe3; h&#xf3;a &#x111;&#x1a1;n" type="java.lang.Object"/>
                                 <Column editable="true" title="M&#xe3; ph&#xf2;ng" type="java.lang.Object"/>
                                 <Column editable="true" title="T&#xea;n ph&#xf2;ng" type="java.lang.Object"/>
-                                <Column editable="true" title="CCCD kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
+                                <Column editable="true" title="CCCD" type="java.lang.Object"/>
                                 <Column editable="true" title="T&#xea;n kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                               </Table>
                             </Property>
@@ -239,7 +240,7 @@
                                     <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng: "/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JSpinner" name="jSpinner1">
+                                <Component class="javax.swing.JSpinner" name="txtSoLuong">
                                   <Properties>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI" size="18" style="1"/>
@@ -260,6 +261,9 @@
                                     <Property name="text" type="java.lang.String" value="Th&#xea;m d&#x1ecb;ch v&#x1ee5; v&#xe0;o ph&#xf2;ng"/>
                                     <Property name="horizontalTextPosition" type="int" value="0"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>

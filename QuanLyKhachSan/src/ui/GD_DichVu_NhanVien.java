@@ -8,12 +8,16 @@ import dao.BookRoomDAO;
 import dao.CustomerDAO;
 import dao.OrderDAO;
 import dao.ServiceDAO;
+import dao.ServiceDetailDAO;
 import entity.Order;
 import entity.Room;
 import entity.Service;
+import entity.ServiceDetail;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,9 +30,13 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private final OrderDAO oDAO=new OrderDAO();
     private ArrayList<Order> listOrders;
     private ArrayList<Service> listServices;
+    private ArrayList<ServiceDetail> listServiceDetails;
     private final BookRoomDAO  brDAO=new BookRoomDAO();
     private final CustomerDAO cDAO=new CustomerDAO();
     private final ServiceDAO sDAO=new ServiceDAO();
+    private final ServiceDetailDAO sdDAO=new ServiceDetailDAO();
+    
+    
     
     /**
      * Creates new form GD_DichVu_NhanVien
@@ -82,7 +90,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         btnXemChiTiet = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        txtSoLuong = new javax.swing.JSpinner();
         jPanel11 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
@@ -137,13 +145,13 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         tblPhong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã phòng", "Tên phòng", "CCCD khách hàng", "Tên khách hàng"
+                "Mã hóa đơn", "Mã phòng", "Tên phòng", "CCCD", "Tên khách hàng"
             }
         ));
         jScrollPane2.setViewportView(tblPhong);
@@ -182,14 +190,19 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jLabel3.setText("Số lượng: ");
         jPanel10.add(jLabel3);
 
-        jSpinner1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jPanel10.add(jSpinner1);
+        txtSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel10.add(txtSoLuong);
 
         jPanel13.add(jPanel10);
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThem.setText("Thêm dịch vụ vào phòng");
         btnThem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel11.add(btnThem);
 
         jPanel13.add(jPanel11);
@@ -286,9 +299,32 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         if(index==-1){
             JOptionPane.showMessageDialog(null, "Hãy chọn phòng cần muốn xem chi tiết!");
         }else{
-            
+            try {
+                loadChiTietToTable(dtmChiTietDichVu,listServiceDetails);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnXemChiTietActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        int indexDichVu=tblDichVu.getSelectedRow();
+        int indexPhong=tblPhong.getSelectedRow();
+        int soLuong=Integer.parseInt(txtSoLuong.getValue().toString());
+        if(indexPhong==-1){
+            JOptionPane.showMessageDialog(null, "Hãy chọn phòng muốn thêm dịch vụ!");
+        }else if(indexDichVu==-1){
+            JOptionPane.showMessageDialog(null, "Hãy chọn dịch vụ muốn thêm vào phòng!");
+        }else if(soLuong <=0 ){
+            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
+        }else{
+//            Thêm code: tạo chi tiết hóa đơn, load lại bảng cthd, xóa trắng ô số lượng
+            
+            JOptionPane.showMessageDialog(null,"Thêm thành công!" );
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -322,7 +358,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblPhong;
     private javax.swing.JLabel lblThanhTien;
     private javax.swing.JPanel pnlOption;
@@ -330,6 +365,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblChiTietDichVu;
     private javax.swing.JTable tblDichVu;
     private javax.swing.JTable tblPhong;
+    private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
 
@@ -352,6 +388,18 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         
         for(Service s:list){
             dtm.addRow(new String []{s.getServiceID(),s.getServiceName(),s.getPrice()+"",s.getInventory()+""});
+        }
+    }
+
+    private void loadChiTietToTable(DefaultTableModel dtm, ArrayList<ServiceDetail> list) throws ClassNotFoundException, SQLException {
+        dtm.setRowCount(0);
+        int index= tblPhong.getSelectedRow();
+        String maPhong=tblPhong.getValueAt(index, 0).toString();
+        list=(ArrayList<ServiceDetail>) sdDAO.getListSericeByRoomID(maPhong);
+        if(list!=null){
+            for(ServiceDetail sd:list){
+            dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+""});
+            }
         }
     }
 }
