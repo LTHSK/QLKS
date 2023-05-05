@@ -9,17 +9,21 @@ package entity;
  * @author thule
  */
 public class ServiceDetail {
+    private String ServiceDetailID;
     private Service service;
     private BookRoom bookRoom;
     private int quantity;
+    private OrderDetail orderDetail; 
 
-    public ServiceDetail() {
-    }
-
-    public ServiceDetail(Service service, BookRoom bookRoom, int quantity) {
+    public ServiceDetail(String ServiceDetailID, Service service, BookRoom bookRoom, int quantity, OrderDetail orderDetail) {
+        this.ServiceDetailID = ServiceDetailID;
         this.service = service;
         this.bookRoom = bookRoom;
         this.quantity = quantity;
+        this.orderDetail = orderDetail;
+    }
+
+    public ServiceDetail() {
     }
 
     public Service getService() {
@@ -46,9 +50,24 @@ public class ServiceDetail {
         this.quantity = quantity;
     }
 
+    public String getServiceDetailID() {
+        return ServiceDetailID;
+    }
+
+    public void setServiceDetailID(String ServiceDetailID) {
+        this.ServiceDetailID = ServiceDetailID;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
     @Override
     public String toString() {
-        return "ServiceDetail{" + "service=" + service + ", bookRoom=" + bookRoom + ", quantity=" + quantity + '}';
+        return "ServiceDetail{" + "ServiceDetailID=" + ServiceDetailID + ", service=" + service + ", bookRoom=" + bookRoom + ", quantity=" + quantity + ", orderDetail=" + orderDetail + '}';
     }
-    
 }
