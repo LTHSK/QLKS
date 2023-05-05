@@ -56,6 +56,25 @@ public class OrderDAO {
 
         return null;
     }
+    
+    public Order getOrderByID(String id) {
+        for( Order o : getAlLOrder() ) {
+            if( id.equals(o.getOrderID()) ) 
+                return o; 
+        }
+        return null; 
+    }
+    
+    public ArrayList<Order> getOrderByStatus( String status ) {
+        ArrayList<Order> ds = new ArrayList<Order>(); 
+        for( Order o : getAlLOrder() ) {
+            if( o.getStatus().equals(status) ) 
+                ds.add(o); 
+        }
+        return ds; 
+    }
+    
+    
     public boolean add(Order order) {
         try (Connection conn = DatabaseConnection.opConnection();
                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO [QLKS].[dbo].[Order](orderid,employeeid,bookroomid,status)"

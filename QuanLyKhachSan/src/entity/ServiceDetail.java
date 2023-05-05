@@ -13,14 +13,12 @@ public class ServiceDetail {
     private Service service;
     private BookRoom bookRoom;
     private int quantity;
-    private OrderDetail orderDetail; 
 
-    public ServiceDetail(String ServiceDetailID, Service service, BookRoom bookRoom, int quantity, OrderDetail orderDetail) {
+    public ServiceDetail(String ServiceDetailID, Service service, BookRoom bookRoom, int quantity) {
         this.ServiceDetailID = ServiceDetailID;
         this.service = service;
         this.bookRoom = bookRoom;
         this.quantity = quantity;
-        this.orderDetail = orderDetail;
     }
 
     public ServiceDetail() {
@@ -58,16 +56,9 @@ public class ServiceDetail {
         this.ServiceDetailID = ServiceDetailID;
     }
 
-    public OrderDetail getOrderDetail() {
-        return orderDetail;
-    }
-
-    public void setOrderDetail(OrderDetail orderDetail) {
-        this.orderDetail = orderDetail;
-    }
-
+   
     @Override
     public String toString() {
-        return "ServiceDetail{" + "ServiceDetailID=" + ServiceDetailID + ", service=" + service + ", bookRoom=" + bookRoom + ", quantity=" + quantity + ", orderDetail=" + orderDetail + '}';
+        return "ServiceDetail{" + "ServiceDetailID=" + ServiceDetailID + ", service=" + service + ", bookRoom=" + bookRoom + ", quantity=" + quantity + '}';
     }
 }

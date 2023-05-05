@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +14,13 @@ import java.util.List;
 public class OrderDetail {
     private String OrderDetailID; 
     private Order order;
-    private List<ServiceDetail> seviceDetails; 
+    private ArrayList<ServiceDetail> seviceDetails; 
     
     // 
     public OrderDetail() {
     }
 
-    public OrderDetail(String OrderDetailID, Order order, List<ServiceDetail> seviceDetails) {
+    public OrderDetail(String OrderDetailID, Order order, ArrayList<ServiceDetail> seviceDetails) {
         this.OrderDetailID = OrderDetailID;
         this.order = order;
         this.seviceDetails = seviceDetails;
@@ -46,7 +47,7 @@ public class OrderDetail {
         return seviceDetails;
     }
 
-    public void setSeviceDetails(List<ServiceDetail> seviceDetails) {
+    public void setSeviceDetails(ArrayList<ServiceDetail> seviceDetails) {
         this.seviceDetails = seviceDetails;
     }
 
