@@ -40,7 +40,7 @@ public class OrderDAO {
                     ArrayList<BookRoom> brs=new ArrayList<>();
                     brs.add(bookRoom);
                     String status =rs.getString("status");
-                    Order o =new Order(ma, checkOutDate, checkOutTime,brs, status,employee);
+                    Order o =new Order(ma, checkOutDate, checkOutTime,brs, employee,status);
                     list.add(o);
                 }
 

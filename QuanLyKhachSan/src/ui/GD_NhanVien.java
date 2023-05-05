@@ -18,6 +18,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.lang.reflect.Constructor;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -482,8 +483,15 @@ private void doiMauPnl(){
         pnlDichVu.setkEndColor(new java.awt.Color(235,144,46));
         pnlDichVu.setkStartColor(new java.awt.Color(235,144,46));
         lblDichVu.setForeground(new Color(255,255,255)); 
-//        GD_DichVuNhanVien gddvnv=new GD_DichVuNhanVien();
-//        openComponent(gddvnv);
+        GD_DichVu_NhanVien gddvnv = null;
+        try {
+            gddvnv = new GD_DichVu_NhanVien();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        openComponent(gddvnv);
     }//GEN-LAST:event_pnlDichVuMousePressed
 
     private void pnlTraCuuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMousePressed

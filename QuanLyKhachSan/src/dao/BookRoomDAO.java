@@ -29,10 +29,6 @@ public class BookRoomDAO {
     private RoomDAO roomDAO = new RoomDAO();
     private EmployeeDAO employeeDAO=new EmployeeDAO();
     public ArrayList<BookRoom> getAlLBookRooms() {
-        
-        
-        
-
         ArrayList<BookRoom> bookRooms = new ArrayList<>();
         try (Connection conn = DatabaseConnection.opConnection();
                 PreparedStatement pstmt = conn.prepareStatement("Select * from bookroom")) {
@@ -54,11 +50,11 @@ public class BookRoomDAO {
 
                 return bookRooms;
             } catch (Exception e) {
-                System.err.println("get data fail");
+                System.err.println("getAlLBookRooms():get data fail");
                 e.printStackTrace();
             }
         } catch (Exception e) {
-            System.err.println("connect db fail");
+            System.err.println("getAlLBookRooms():connect db fail");
             e.printStackTrace();
         }
 
