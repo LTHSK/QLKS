@@ -22,10 +22,11 @@ public class Order {
     private String checkOutDate; 
     private String checkOutTime;
     private List<BookRoom> bookRooms;
+    private Employee employee;
     private String status;
     
     
-    private Employee employee;
+    
     
     // tính theo giờ
     private double getTongTienPhong() throws ParseException {
@@ -71,7 +72,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderID, String checkOutDate, String checkOutTime, List<BookRoom> bookRooms, String status, Employee employee) {
+    public Order(String orderID, String checkOutDate, String checkOutTime, List<BookRoom> bookRooms, Employee employee, String status) {
         this.orderID = orderID;
         this.checkOutDate = checkOutDate;
         this.checkOutTime = checkOutTime;
@@ -79,7 +80,7 @@ public class Order {
         this.status = status;
         this.employee = employee;
     }
-
+    
     public String getOrderID() {
         return orderID;
     }

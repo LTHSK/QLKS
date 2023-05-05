@@ -11,6 +11,7 @@ import java.util.List;
  * @author thule
  */
 public class OrderDetail {
+    private String OrderDetailID; 
     private Order order;
     private List<ServiceDetail> seviceDetails; 
     
@@ -18,10 +19,20 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, List<ServiceDetail> seviceDetails) {
+    public OrderDetail(String OrderDetailID, Order order, List<ServiceDetail> seviceDetails) {
+        this.OrderDetailID = OrderDetailID;
         this.order = order;
         this.seviceDetails = seviceDetails;
     }
+
+    public String getOrderDetailID() {
+        return OrderDetailID;
+    }
+
+    public void setOrderDetailID(String OrderDetailID) {
+        this.OrderDetailID = OrderDetailID;
+    }
+     
 
     public Order getOrder() {
         return order;
