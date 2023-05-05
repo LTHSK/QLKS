@@ -129,6 +129,10 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
     }
     
     public GD_QLPhong() {
+        this.setRootPaneCheckingEnabled(false);
+        javax.swing.plaf.InternalFrameUI ui
+                = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
         initComponents();
         loadData();        
         // tăng tốc độ scroll
