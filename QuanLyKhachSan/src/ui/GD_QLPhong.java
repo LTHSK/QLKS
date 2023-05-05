@@ -650,6 +650,7 @@ public class GD_QLPhong extends javax.swing.JInternalFrame {
         cbbTrangThai.setSelectedItem("Bảo trì");
         txtTenPhong.setText( "Phòng "+ txtMaPhong.getText()); 
         btnLuu.setText("Lưu");
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-save-25.png")));
     }//GEN-LAST:event_btnThemMoiMouseReleased
 
     private void btnTimKiemMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseReleased

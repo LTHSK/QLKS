@@ -18,6 +18,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.lang.reflect.Constructor;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -439,14 +440,18 @@ private void doiMauPnl(){
     }//GEN-LAST:event_pnlTroGiupMousePressed
 
     private void pnlHoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHoaDonMousePressed
-        doiMauPnl();
-        
-        pnlHoaDon.setkEndColor(new java.awt.Color(235,144,46));
-        pnlHoaDon.setkStartColor(new java.awt.Color(235,144,46));
-        lblHoaDon.setForeground(new Color(255,255,255)); 
-        
-        GD_HoaDon gdhd=new GD_HoaDon();
-        openComponent(gdhd);
+        try {
+            doiMauPnl();
+            
+            pnlHoaDon.setkEndColor(new java.awt.Color(235,144,46));
+            pnlHoaDon.setkStartColor(new java.awt.Color(235,144,46));
+            lblHoaDon.setForeground(new Color(255,255,255));
+            
+            GD_ThanhToan gdhd=new GD_ThanhToan();
+            openComponent(gdhd);
+        } catch (ParseException ex) {
+            Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pnlHoaDonMousePressed
 
     private void pnlThongKeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlThongKeMousePressed

@@ -12,8 +12,9 @@ import java.util.List;
  */
 public class OrderDetail {
     private Order order;
-    private List<ServiceDetail> seviceDetails;
-
+    private List<ServiceDetail> seviceDetails; 
+    
+    // 
     public OrderDetail() {
     }
 
