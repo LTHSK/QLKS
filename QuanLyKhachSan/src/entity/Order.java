@@ -22,6 +22,7 @@ public class Order {
     private String checkOutDate; 
     private String checkOutTime;
     private List<BookRoom> bookRooms;
+    private String status;
     
     
     private Employee employee;
@@ -70,11 +71,12 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderID, String checkOutDate, String checkOutTime, List<BookRoom> bookRooms, Employee employee) {
+    public Order(String orderID, String checkOutDate, String checkOutTime, List<BookRoom> bookRooms, String status, Employee employee) {
         this.orderID = orderID;
         this.checkOutDate = checkOutDate;
         this.checkOutTime = checkOutTime;
         this.bookRooms = bookRooms;
+        this.status = status;
         this.employee = employee;
     }
 
@@ -110,6 +112,14 @@ public class Order {
         this.bookRooms = bookRooms;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -120,13 +130,13 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "orderID=" + orderID + ", checkOutDate=" + checkOutDate + ", checkOutTime=" + checkOutTime + ", bookRooms=" + bookRooms + ", employee=" + employee + '}';
+        return "Order{" + "orderID=" + orderID + ", checkOutDate=" + checkOutDate + ", checkOutTime=" + checkOutTime + ", bookRooms=" + bookRooms + ", status=" + status + ", employee=" + employee + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.orderID);
+        hash = 11 * hash + Objects.hashCode(this.orderID);
         return hash;
     }
 
@@ -144,5 +154,7 @@ public class Order {
         final Order other = (Order) obj;
         return Objects.equals(this.orderID, other.orderID);
     }
+
+    
     
 }

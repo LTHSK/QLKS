@@ -655,7 +655,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
             BookRoom br=brDAO.getBookRoomByID(tblDDP.getValueAt(index, 0).toString());
             listBr.add(br);
             Employee e=eDAO.findEmpID(username);
-            Order order=new Order(maTuSinhHoaDon(), null, null, listBookRooms, e);
+            String status="Chưa thanh toán";
+            Order order=new Order(maTuSinhHoaDon(), null, null, listBookRooms, status,e);
             if(oDAO.add(order)){
                 Room r=rDAO.findRoomById(br.getRoom().getRoomID());
                 RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP002");

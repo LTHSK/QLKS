@@ -39,7 +39,8 @@ public class OrderDAO {
                     Employee employee = eDAO.findEmpID(rs.getString("employeeid"));
                     ArrayList<BookRoom> brs=new ArrayList<>();
                     brs.add(bookRoom);
-                    Order o =new Order(ma, checkOutDate, checkOutTime,brs, employee);
+                    String status =rs.getString("status");
+                    Order o =new Order(ma, checkOutDate, checkOutTime,brs, status,employee);
                     list.add(o);
                 }
 
@@ -57,7 +58,7 @@ public class OrderDAO {
     }
     public boolean add(Order order) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO [QLKS].[dbo].[Order](orderid,employeeid,bookroomid)"
+                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO [QLKS].[dbo].[Order](orderid,employeeid,bookroomid,status)"
             + " VALUES(?,?,?)")) {
             Employee e=eDAO.findEmpID(order.getEmployee().getEmployeeID());
             
@@ -68,6 +69,7 @@ public class OrderDAO {
             pstmt.setString(1, order.getOrderID());
             pstmt.setString(2, e.getEmployeeID());
             pstmt.setString(3, br.getBookRoomID());
+            pstmt.setString(4, order.getStatus());
         return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             System.err.println("add(Order order): connect db fail");
