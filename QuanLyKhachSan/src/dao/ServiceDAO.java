@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,6 +40,22 @@ public class ServiceDAO {
         } catch (SQLException e) {
         }
         return list;
+    }
+    
+    public Service getServiceByID( String serviceID ) {
+        try {
+            Service service = new Service();
+            for( Service sv :  getAllService()  ) {
+                if(serviceID.equals(sv.getServiceID()) )
+                    return sv; 
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; 
     }
     
     public boolean add(Service s)
@@ -97,32 +115,4 @@ public class ServiceDAO {
         return false;
     }
     
-//    public Service findServiceID(String id)
-//    {
-//        try(
-//            Connection con = connection.DatabaseConnection.opConnection();
-//            java.sql.PreparedStatement pts = con.prepareStatement("SELECT * FROM Service WHERE serviceID = ?")
-//            )
-//        {
-//            pts.getString(1,id);
-//            try(java.sql.ResultSet rs = pts.executeQuery())
-//            {
-//                if(rs.next())
-//                {
-//                    Service s = new Service(
-//                            rs.getString("serviceID"),
-//                            rs.getString("serviceName"),
-//                            rs.getDouble("price"),
-//                            rs.getInt("inventory")
-//                            
-//                    );
-//                    return s;
-//                }
-//            }
-//        }
-//        catch(Exception e)
-//        {
-//        }
-//        return null;
-//    }
 }
