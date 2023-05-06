@@ -7,6 +7,7 @@ package entity;
 import dao.ServiceDetailDAO;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,12 +30,13 @@ public class Order {
     
     
     // tính theo giờ
-    private double getTongTienPhong() throws ParseException {
+    public double getTongTienPhong() throws ParseException {
         double sum = 0; 
         for( BookRoom br : bookRooms ) {
             sum += br.getRoom().getRoomType().getPrice(); 
         }
-        return sum*thoiGianSuDung(); 
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(sum*thoiGianSuDung()));
     }
     
     public Date chuyenDoiNgay(String timeString1, String dateString1) throws ParseException {
@@ -45,7 +47,7 @@ public class Order {
     }
     
   
-    private double thoiGianSuDung() throws ParseException {
+    public double thoiGianSuDung() throws ParseException {
         String checkInTime = bookRooms.get(0).getBookTime();
         String checkInDate = bookRooms.get(0).getCheckInDate(); 
         
@@ -54,19 +56,28 @@ public class Order {
         
         double timeDiff = ra.getTime() - vao.getTime(); 
         double hourDiff = timeDiff/3600000;  
-        return hourDiff; 
+        
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(hourDiff));
     }
     
-    private double getTongTienDichVu() throws SQLException, ClassNotFoundException {
+    public double getTongTienDichVu() throws SQLException, ClassNotFoundException {
         double sum = 0; 
-//        for( OrderDetail od :  ) {
-//            sum += sv.getQuantity()*sv.getService().getPrice(); 
-//        }
-        return sum; 
+        for( ServiceDetail sv : new ServiceDetailDAO().getListServiceDetailByOrderID(orderID) ) {
+            sum += sv.getQuantity()*sv.getService().getPrice(); 
+        }
+        
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(sum));
     }
     
-    private double getTongTien() throws SQLException, ClassNotFoundException, ParseException {
-        return getTongTienDichVu() + getTongTienPhong(); 
+    // có khuyến mãi cho khách vip 
+    public double getTongTien() throws SQLException, ClassNotFoundException, ParseException {
+        double sum = getTongTienDichVu() + getTongTienPhong(); 
+        if( bookRooms.get(0).getEmployee().getEmployeeName().equals("Vip") ) 
+            sum = sum; 
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(sum));
     }
 
     public Order() {

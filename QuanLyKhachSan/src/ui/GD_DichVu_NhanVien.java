@@ -395,7 +395,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         dtm.setRowCount(0);
         int index= tblPhong.getSelectedRow();
         String maPhong=tblPhong.getValueAt(index, 0).toString();
-        list=(ArrayList<ServiceDetail>) sdDAO.getListSericeByRoomID(maPhong);
+//        list=(ArrayList<ServiceDetail>) sdDAO.getListSericeByRoomID(maPhong);
         if(list!=null){
             for(ServiceDetail sd:list){
             dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+""});

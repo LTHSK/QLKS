@@ -5,11 +5,20 @@
 package ui;
 
 import dao.OrderDAO;
+import dao.RoomDAO;
+import dao.ServiceDetailDAO;
 import entity.BookRoom;
 import entity.Order;
+import entity.Room;
+import entity.RoomStatusType;
+import entity.ServiceDetail;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -26,13 +35,14 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
      * Creates new form GD_ThanhToan
      */
     public String chuyenDoiNgay(String timeString1, String dateString1) {
+  
         timeString1 = timeString1.substring(0, 8);
         return (dateString1 + " " + timeString1);
     }
     ArrayList<Order> dsHoaDon = null;
 
     private void loadDataTableHoaDon() throws ParseException {
-        dsHoaDon = new OrderDAO().getAlLOrder();
+        dsHoaDon = new OrderDAO().getOrderByStatus("Chưa thanh toán");
         Object[][] data = new Object[dsHoaDon.size()][5];
         for (int i = 0; i < dsHoaDon.size(); i++) {
             BookRoom br = dsHoaDon.get(i).getBookRooms().get(0);
@@ -103,7 +113,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         txtTienPhong = new javax.swing.JTextField();
         txtKhuyenMaiTien = new javax.swing.JTextField();
         txtKhuyenMaiPhanTram = new javax.swing.JTextField();
-        txtKhuyenMaiTien1 = new javax.swing.JTextField();
+        txtTongCong = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         txtCMNDTK = new javax.swing.JTextField();
@@ -164,24 +174,31 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
 
         txtCCCD.setEditable(false);
         txtCCCD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCCCD.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtKhachHang.setEditable(false);
         txtKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtKhachHang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtThuNgan.setEditable(false);
         txtThuNgan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtThuNgan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtNgayDen.setEditable(false);
         txtNgayDen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNgayDen.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtNgayDi.setEditable(false);
         txtNgayDi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNgayDi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtMaPhong.setEditable(false);
         txtMaPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMaPhong.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtMaHoaDon.setEditable(false);
         txtMaHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMaHoaDon.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -259,10 +276,10 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(txtNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 330));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 310));
 
         tableDichVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tableDichVu.setModel(new javax.swing.table.DefaultTableModel(
@@ -273,7 +290,8 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 "Dịch vụ", "Giá", "Thành tiền"
             }
         ));
-        tableDichVu.setShowGrid(true);
+        tableDichVu.setRowHeight(22);
+        tableDichVu.setShowGrid(false);
         jScrollPane2.setViewportView(tableDichVu);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -310,6 +328,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
 
         txtTienThoi.setEditable(false);
         txtTienThoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTienThoi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtTienThoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTienThoiActionPerformed(evt);
@@ -318,6 +337,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
 
         txtTienPhong.setEditable(false);
         txtTienPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTienPhong.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtTienPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTienPhongActionPerformed(evt);
@@ -326,12 +346,15 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
 
         txtKhuyenMaiTien.setEditable(false);
         txtKhuyenMaiTien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtKhuyenMaiTien.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtKhuyenMaiPhanTram.setEditable(false);
         txtKhuyenMaiPhanTram.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtKhuyenMaiPhanTram.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        txtKhuyenMaiTien1.setEditable(false);
-        txtKhuyenMaiTien1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTongCong.setEditable(false);
+        txtTongCong.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtTongCong.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -360,7 +383,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                             .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtKhuyenMaiTien1)
+                            .addComponent(txtTongCong)
                             .addComponent(txtTienPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                             .addComponent(txtKhuyenMaiTien)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -373,7 +396,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,7 +409,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtKhuyenMaiTien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -401,10 +424,10 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel25)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 357, 380, 400));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 337, 380, 420));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DANH SÁCH HOÁ ĐƠN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -570,6 +593,8 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 data[cnt][1] = br.getCustomer().getCustomerName();
                 data[cnt][2] = br.getCustomer().getCCCD();
                 data[cnt][3] = br.getRoom().getRoomID();
+                
+                System.out.println(br.getCheckInTime() +" :haha2");
                 data[cnt][4] = chuyenDoiNgay(br.getCheckInTime(), br.getCheckInDate()).toString();
                 cnt++; 
             }
@@ -592,15 +617,21 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
     
     //tải chi tiết hoá đơn từ table
+    
+    Order o = null;
     private void loadChiTietHoaDon( int row ) {
         String idHoaDon = tableHoaDon.getValueAt(row, 0)+""; 
-        Order o = null; 
         for( Order o1 : dsHoaDon ){
             if( o1.getOrderID().equals(idHoaDon) ) {
                 o = o1; 
                 break;
             }
         }
+        if(o==null) {
+            System.out.println("hoá đơn bị null"); 
+            return; 
+        }
+        
         BookRoom br = o.getBookRooms().get(0); 
         txtKhachHang.setText(br.getEmployee().getEmployeeName());
         txtCCCD.setText(br.getCustomer().getCCCD());
@@ -612,17 +643,27 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         
         
         // TẢI DỊCH VỤ LÊN
+        ArrayList<ServiceDetail> ds = new ServiceDetailDAO().getListServiceDetailByOrderID(o.getOrderID()); 
+        Object[][] data = new Object[ds.size()+1][3]; 
+        double sum = 0;
+        for(int i = 0 ; i < ds.size(); i++) {
+            data[i][0] = ds.get(i).getService().getServiceName() + "(" + ds.get(i).getQuantity()+")"; 
+            data[i][1] = ds.get(i).getService().getPrice(); 
+            data[i][2] = ds.get(i).getService().getPrice()* ds.get(i).getQuantity(); 
+            sum +=(double)data[i][2]; 
+        }
+        data[ds.size()][0] = "Tổng"; 
+        data[ds.size()][2] = sum; 
+        
+        
         tableDichVu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"cocacola(5)", 15000, 15000*5},
-                {"pepsi(2)", 15000, 15000*2},
-                {"Tổng", "", 15000*7},
-            },
+            data,
             new String [] {
                 "Dịch vụ", "Giá", "Thành tiền"
             }
         ));
-    }
+        
+   }
     
     private void tableHoaDonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHoaDonMouseReleased
         int row = tableHoaDon.getSelectedRow();
@@ -651,7 +692,39 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTatCaMousePressed
 
     private void btnThanhToan1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToan1MouseReleased
-        // TODO add your handling code here:
+        
+        if(o==null){
+            JOptionPane.showMessageDialog(this, "Chưa chọn hoá đơn cần thanh toán");
+            return; 
+        }
+        LocalTime currentTime = LocalTime.now();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String checkOutTime = currentTime.format(formatter);
+        String checkOutDate = currentDate.format(formatter2);
+        o.setCheckOutTime(checkOutTime);
+        o.setCheckOutDate(checkOutDate);
+        o.setStatus("Đã thanh toán");
+        
+        new OrderDAO().update(o);
+        Room r = o.getBookRooms().get(0).getRoom(); 
+        r.setRoomStatusType(new RoomStatusType("LTTP005", "Dọn dẹp"));
+        new RoomDAO().updateRoom(r);
+        
+        try {
+            txtTienPhong.setText( o.getTongTienPhong() +"");
+            txtTongCong.setText(o.getTongTien()+"");
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        txtNgayDi.setText(checkOutDate+" "+checkOutTime);
     }//GEN-LAST:event_btnThanhToan1MouseReleased
 
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
@@ -699,7 +772,6 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtKhachHang;
     private javax.swing.JTextField txtKhuyenMaiPhanTram;
     private javax.swing.JTextField txtKhuyenMaiTien;
-    private javax.swing.JTextField txtKhuyenMaiTien1;
     private javax.swing.JTextField txtMaHoaDon;
     private javax.swing.JTextField txtMaPhong;
     private javax.swing.JTextField txtNgayDen;
@@ -708,5 +780,6 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTienMat;
     private javax.swing.JTextField txtTienPhong;
     private javax.swing.JTextField txtTienThoi;
+    private javax.swing.JTextField txtTongCong;
     // End of variables declaration//GEN-END:variables
 }

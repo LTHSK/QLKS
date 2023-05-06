@@ -93,8 +93,7 @@ public class ServiceDetailDAO {
             PreparedStatement stm = conn.prepareStatement("select * from ServiceDetail \n"
                     + "inner join [dbo].[Order] on ServiceDetail.bookRoomID = [dbo].[Order].bookRoomID\n"
                     + "where [dbo].[Order].orderID = ?");
-            
-            stm.setString(0, OrderID);
+            stm.setString(1, OrderID);
             ResultSet rs = stm.executeQuery(); 
             while(rs.next()) {
                 String id = rs.getString("ServiceDetailID"); 
