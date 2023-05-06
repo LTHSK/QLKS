@@ -100,7 +100,6 @@ public class ServiceDetailDAO {
                 Service service = new ServiceDAO().getServiceByID( rs.getString("ServiceID")); 
                 Order o=oDAO.getOrderByID(rs.getString("orderID"));
                 int quantity = rs.getInt("quantity"); 
-                
                 ds.add( new ServiceDetail(id, service, o, quantity));
             }
             
