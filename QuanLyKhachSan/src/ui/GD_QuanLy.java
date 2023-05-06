@@ -69,6 +69,8 @@ public class GD_QuanLy extends javax.swing.JFrame {
         lblPhong = new javax.swing.JLabel();
         pnlNhanVien = new keeptoo.KGradientPanel();
         lblNhanVien = new javax.swing.JLabel();
+        pnlKhachHang = new keeptoo.KGradientPanel();
+        lblKhachHang = new javax.swing.JLabel();
         pnlDichVu = new keeptoo.KGradientPanel();
         lblDichVu = new javax.swing.JLabel();
         pnlTaiKhoan = new keeptoo.KGradientPanel();
@@ -220,6 +222,35 @@ public class GD_QuanLy extends javax.swing.JFrame {
         pnlNhanVien.add(lblNhanVien, java.awt.BorderLayout.CENTER);
 
         kGradientPanel2.add(pnlNhanVien);
+
+        pnlKhachHang.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        pnlKhachHang.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlKhachHang.setkGradientFocus(10);
+        pnlKhachHang.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlKhachHang.setMaximumSize(new java.awt.Dimension(2147483647, 40));
+        pnlKhachHang.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlKhachHangMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlKhachHangMousePressed(evt);
+            }
+        });
+        pnlKhachHang.setLayout(new java.awt.BorderLayout());
+
+        lblKhachHang.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblKhachHang.setForeground(new java.awt.Color(79, 51, 22));
+        lblKhachHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblKhachHang.setText("KHÁCH HÀNG");
+        lblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblKhachHangMouseClicked(evt);
+            }
+        });
+        pnlKhachHang.add(lblKhachHang, java.awt.BorderLayout.CENTER);
+
+        kGradientPanel2.add(pnlKhachHang);
 
         pnlDichVu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         pnlDichVu.setkEndColor(new java.awt.Color(252, 210, 165));
@@ -530,6 +561,25 @@ public class GD_QuanLy extends javax.swing.JFrame {
         GD_DoiMatKhau gd=new GD_DoiMatKhau(username);
         gd.setVisible(true);
     }//GEN-LAST:event_btnDoiMatKhau1ActionPerformed
+
+    private void pnlKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlKhachHangMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlKhachHangMouseClicked
+
+    private void pnlKhachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlKhachHangMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlKhachHangMousePressed
+
+    private void lblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhachHangMouseClicked
+        // TODO add your handling code here:
+        doiMauPnl();
+        
+        pnlKhachHang.setkEndColor(new java.awt.Color(235,144,46));
+        pnlKhachHang.setkStartColor(new java.awt.Color(235,144,46));
+        pnlKhachHang.setForeground(new Color(255,255,255));
+        GD_QLKhachHang kh = new GD_QLKhachHang();
+        openComponent(kh);
+    }//GEN-LAST:event_lblKhachHangMouseClicked
     
 private void doiMauPnl(){
         pnlGioiThieu.setkEndColor(new java.awt.Color(252,210,165));
@@ -563,6 +613,10 @@ private void doiMauPnl(){
         pnlTroGiup.setkEndColor(new java.awt.Color(252,210,165));
         pnlTroGiup.setkStartColor(new java.awt.Color(252,210,165));
         lblTroGiup.setForeground(new java.awt.Color(79,51,22));
+        
+        pnlKhachHang.setkEndColor(new java.awt.Color(252,210,165));
+        pnlKhachHang.setkStartColor(new java.awt.Color(252,210,165));
+        pnlKhachHang.setForeground(new java.awt.Color(79,51,22));
 }
 
 // open frame when click panel
@@ -605,6 +659,7 @@ private void doiMauPnl(){
     private javax.swing.JLabel lblDichVu;
     private javax.swing.JLabel lblGioiThieu;
     private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblKhachHang;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblPhong;
     private javax.swing.JLabel lblTaiKhoan;
@@ -615,6 +670,7 @@ private void doiMauPnl(){
     private keeptoo.KGradientPanel pnlDichVu;
     private javax.swing.JPanel pnlForm;
     private keeptoo.KGradientPanel pnlGioiThieu;
+    private keeptoo.KGradientPanel pnlKhachHang;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlNguoiDung;

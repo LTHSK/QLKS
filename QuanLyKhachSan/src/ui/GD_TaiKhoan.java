@@ -39,18 +39,12 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         DocDuLieuLenTable();
     }
     private void DocDuLieuLenTable(){
-        try {
-            aD = new AccountDAO();
-            List<entity.Account> list =aD.getAllListAccount();
-            modelTaiKhoan.setRowCount(0);
-            for (entity.Account a : list) {
-                modelTaiKhoan.addRow(new Object[]{
-                    a.getUserName(),a.getPassword()});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GD_TaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GD_TaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        aD = new AccountDAO();
+        List<entity.Account> list =aD.getAllListAccount();
+        modelTaiKhoan.setRowCount(0);
+        for (entity.Account a : list) {
+            modelTaiKhoan.addRow(new Object[]{
+                a.getUserName(),a.getPassword()});
         }
     }
 
