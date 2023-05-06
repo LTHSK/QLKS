@@ -662,7 +662,9 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP002");
                 r.setRoomStatusType(rst);
                 rDAO.updateRoom(r);
-                
+                BookRoom bookRoom=brDAO.getBookRoomByID(order.getBookRooms().get(0).getBookRoomID());
+                bookRoom.setStatus("Đã mở phòng");
+                brDAO.updateBookRoom(bookRoom);
                 loadDataToTable();
                 JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
             }

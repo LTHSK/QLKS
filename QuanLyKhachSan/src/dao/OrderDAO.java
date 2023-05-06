@@ -81,7 +81,7 @@ public class OrderDAO {
 
     public boolean add(Order order) {
         try (Connection conn = DatabaseConnection.opConnection(); PreparedStatement pstmt = conn.prepareStatement("INSERT INTO [QLKS].[dbo].[Order](orderid,employeeid,bookroomid,status)"
-                + " VALUES(?,?,?)")) {
+                + " VALUES(?,?,?,?)")) {
             Employee e = eDAO.findEmpID(order.getEmployee().getEmployeeID());
 
             BookRoom br = brDAO.getBookRoomByID(order.getBookRooms().get(0).getBookRoomID());

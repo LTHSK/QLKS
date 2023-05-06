@@ -171,8 +171,9 @@ public class BookRoomDAO {
     
     public boolean updateBookRoom(BookRoom bookRoom) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("UPDATE BookRoom SET status=?")) {
+                PreparedStatement pstmt = conn.prepareStatement("UPDATE BookRoom  SET status=? where BookRoomid = ?")) {
             pstmt.setString(1, bookRoom.getStatus());
+            pstmt.setString(2, bookRoom.getBookRoomID());
             
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
