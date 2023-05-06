@@ -54,7 +54,7 @@ public class GD_GioiThieu extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(235, 144, 46));
+        jLabel1.setForeground(new java.awt.Color(36, 89, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Phần mềm quản lý đặt phòng khách sạn H&M");
 
@@ -109,7 +109,6 @@ public class GD_GioiThieu extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("T:\\QLKS\\QuanLyKhachSan\\src\\icons\\Anh_GT.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

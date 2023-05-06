@@ -66,25 +66,25 @@ public class Frm_Login extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         kGradientPanel3.setForeground(new java.awt.Color(255, 255, 255));
-        kGradientPanel3.setkEndColor(new java.awt.Color(0, 0, 0));
+        kGradientPanel3.setkEndColor(new java.awt.Color(86, 157, 170));
         kGradientPanel3.setkGradientFocus(2000);
-        kGradientPanel3.setkStartColor(new java.awt.Color(240, 160, 75));
+        kGradientPanel3.setkStartColor(new java.awt.Color(135, 203, 185));
         kGradientPanel3.setLayout(null);
 
         jLabel7.setFont(new java.awt.Font("Ink Free", 0, 150)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(24, 58, 29));
+        jLabel7.setForeground(new java.awt.Color(36, 89, 83));
         jLabel7.setText("H");
         kGradientPanel3.add(jLabel7);
         jLabel7.setBounds(130, 20, 110, 250);
 
         jLabel5.setFont(new java.awt.Font("Viner Hand ITC", 0, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(24, 58, 29));
+        jLabel5.setForeground(new java.awt.Color(36, 89, 83));
         jLabel5.setText("&");
         kGradientPanel3.add(jLabel5);
-        jLabel5.setBounds(220, 80, 60, 170);
+        jLabel5.setBounds(230, 90, 60, 170);
 
         jLabel8.setFont(new java.awt.Font("Ink Free", 0, 150)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(24, 58, 29));
+        jLabel8.setForeground(new java.awt.Color(36, 89, 83));
         jLabel8.setText("M");
         kGradientPanel3.add(jLabel8);
         jLabel8.setBounds(250, 120, 140, 250);
@@ -93,29 +93,29 @@ public class Frm_Login extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("H&M Hotel");
         kGradientPanel3.add(jLabel10);
-        jLabel10.setBounds(50, 280, 400, 40);
+        jLabel10.setBounds(50, 310, 400, 40);
 
         jPanel1.add(kGradientPanel3, java.awt.BorderLayout.CENTER);
 
         kGradientPanel1.setBackground(new java.awt.Color(246, 246, 246));
-        kGradientPanel1.setkEndColor(new java.awt.Color(153, 153, 153));
+        kGradientPanel1.setkEndColor(new java.awt.Color(135, 203, 185));
         kGradientPanel1.setkGradientFocus(1500);
-        kGradientPanel1.setkStartColor(new java.awt.Color(255, 255, 255));
+        kGradientPanel1.setkStartColor(new java.awt.Color(216, 216, 216));
         kGradientPanel1.setPreferredSize(new java.awt.Dimension(400, 423));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(240, 160, 75));
+        jLabel1.setForeground(new java.awt.Color(87, 125, 134));
         jLabel1.setText("Tài khoản :");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(240, 160, 75));
+        jLabel2.setForeground(new java.awt.Color(87, 125, 134));
         jLabel2.setText("Mật khẩu :");
 
-        txtTenDN.setBackground(new java.awt.Color(252, 252, 252));
+        txtTenDN.setBackground(new java.awt.Color(241, 246, 249));
         txtTenDN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTenDN.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        txtMatKhau.setBackground(new java.awt.Color(252, 252, 252));
+        txtMatKhau.setBackground(new java.awt.Color(241, 246, 249));
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMatKhau.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -125,20 +125,20 @@ public class Frm_Login extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(224, 135, 40));
+        jLabel6.setForeground(new java.awt.Color(36, 89, 83));
         jLabel6.setText("ĐĂNG NHẬP");
 
-        jSeparator3.setForeground(new java.awt.Color(255, 153, 0));
+        jSeparator3.setForeground(new java.awt.Color(87, 125, 134));
         jSeparator3.setMinimumSize(new java.awt.Dimension(50, 10));
         jSeparator3.setPreferredSize(new java.awt.Dimension(50, 10));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 153, 0));
+        jSeparator4.setForeground(new java.awt.Color(87, 125, 134));
         jSeparator4.setMinimumSize(new java.awt.Dimension(50, 10));
         jSeparator4.setPreferredSize(new java.awt.Dimension(50, 10));
 
-        jButton1.setBackground(new java.awt.Color(228, 179, 98));
+        jButton1.setBackground(new java.awt.Color(36, 89, 83));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(135, 203, 185));
         jButton1.setText("Thoát");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 102), 3, true));
         jButton1.setBorderPainted(false);
@@ -151,9 +151,9 @@ public class Frm_Login extends javax.swing.JFrame {
             }
         });
 
-        btnDangNhap.setBackground(new java.awt.Color(228, 179, 98));
+        btnDangNhap.setBackground(new java.awt.Color(36, 89, 83));
         btnDangNhap.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangNhap.setForeground(new java.awt.Color(135, 203, 185));
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 102), 3, true));
         btnDangNhap.setBorderPainted(false);
@@ -166,7 +166,7 @@ public class Frm_Login extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 153, 0));
+        jButton3.setForeground(new java.awt.Color(36, 89, 83));
         jButton3.setText("Quên mật khẩu?");
         jButton3.setToolTipText("Nhấn vào nút này khi quên mật khẩu");
         jButton3.setBorder(null);
