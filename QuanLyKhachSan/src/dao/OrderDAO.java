@@ -59,6 +59,38 @@ public class OrderDAO {
 
         return null;
     }
+    public ArrayList<Order> getOrderBeforeTime(int time) {
+        ArrayList<Order> list = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM [dbo].[Order] o where [checkOutDate] >= DATEADD(WEEK, ?, GETDATE()) AND [checkOutDate] <= GETDATE() and o.status like N'Đã thanh toán'")) {
+            pstmt.setInt(1, time);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String ma = rs.getString("orderID");
+                    String checkOutDate = rs.getString("checkOutDate");
+                    String checkOutTime = rs.getString("checkOutTime");
+
+                    BookRoom bookRoom = brDAO.getBookRoomByID(rs.getString("bookroomid"));
+                    Employee employee = eDAO.findEmpID(rs.getString("employeeid"));
+                    ArrayList<BookRoom> brs = new ArrayList<>();
+                    brs.add(bookRoom);
+                    String status = rs.getString("status");
+                    Order o = new Order(ma, checkOutDate, checkOutTime, brs, employee, status);
+                    list.add(o);
+                }
+
+                return list;
+            } catch (Exception e) {
+                System.err.println("getAlLOrder(): get data fail");
+                e.printStackTrace();
+            }
+            
+        } catch (Exception e) {
+            System.err.println("getBookRoomByID(String id): connect db fail");
+            e.printStackTrace();
+        }
+        return null;
+    }
     
     public ArrayList<Order> getAlLOrderWithStatus() {
 
