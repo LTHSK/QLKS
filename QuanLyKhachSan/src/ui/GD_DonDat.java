@@ -413,12 +413,18 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel23.add(jLabel6);
 
         jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.LINE_AXIS));
+
+        gio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel29.add(gio);
         SpinnerNumberModel modelGio = new SpinnerNumberModel(0, 0, 23, 1);
         gio.setModel(modelGio);
+
+        phut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel29.add(phut);
         SpinnerNumberModel modelPhut = new SpinnerNumberModel(0, 0, 59, 1);
         phut.setModel(modelPhut);
+
+        giay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel29.add(giay);
         SpinnerNumberModel modelGiay = new SpinnerNumberModel(0, 0, 59, 1);
         giay.setModel(modelGiay);
@@ -432,6 +438,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
 
         txtNgayCheckIn.setDateFormatString("yyyy-MM-dd");
+        txtNgayCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel30.add(txtNgayCheckIn);
 
         jPanel23.add(jPanel30);
@@ -482,7 +489,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
 
-        btnTaoDonDat.setBackground(new java.awt.Color(92, 179, 70));
+        btnTaoDonDat.setBackground(new java.awt.Color(0, 102, 102));
         btnTaoDonDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTaoDonDat.setForeground(new java.awt.Color(255, 255, 255));
         btnTaoDonDat.setText("Tạo đơn đặt");
@@ -563,6 +570,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jLabel7.setText("Tìm đơn đặt theo CCCD:   ");
         jPanel7.add(jLabel7);
 
+        txtTim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTim.setCaretColor(new java.awt.Color(255, 255, 255));
         txtTim.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -603,7 +611,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel9.setMinimumSize(new java.awt.Dimension(100, 50));
         jPanel9.setPreferredSize(new java.awt.Dimension(300, 100));
 
-        btnMoPhong.setBackground(new java.awt.Color(92, 179, 70));
+        btnMoPhong.setBackground(new java.awt.Color(0, 102, 102));
         btnMoPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMoPhong.setForeground(new java.awt.Color(255, 255, 255));
         btnMoPhong.setText("Mở phòng");
@@ -641,7 +649,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMoPhong)
                     .addComponent(btnHuyDonDat))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel14.add(jPanel9);
@@ -804,8 +812,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlRoom.setBounds(x, y, width, height);
 
                 if (trangThaiPhong.equals("LTTP001")) {
-                    createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
+                    createStatusRoom(trangThaiPhong, new Color(36,89,83), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(185,237,221), room);
                 }
 
                 pnlListRoom.add(pnlRoom, BorderLayout.CENTER);
@@ -842,8 +850,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlRoom.setBounds(x, countHeight, width, height);
 
                 if (trangThaiPhong.equals("LTTP001")) {
-                    createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
+                    createStatusRoom(trangThaiPhong, new Color(36,89,83), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(185,237,221), room);
                 }
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;
@@ -876,8 +884,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 pnlRoom.setBounds(x, countHeight, width, height);
 
                 if (trangThaiPhong.equals("LTTP001")) {
-                    createStatusRoom(trangThaiPhong, new Color(241, 98, 86), pnlRoom);
-                    createNameRoom(room.getRoomID(), pnlRoom, new Color(240,160,75), room);
+                    createStatusRoom(trangThaiPhong, new Color(36,89,83), pnlRoom);
+                    createNameRoom(room.getRoomID(), pnlRoom, new Color(185,237,221), room);
                 } 
                 pnlListRoom.add(pnlRoom);
                 x += width + 20;

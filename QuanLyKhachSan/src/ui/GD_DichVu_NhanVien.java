@@ -114,6 +114,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         Main.setLayout(new javax.swing.BoxLayout(Main, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -122,14 +124,19 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         Main.add(jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
 
+        pnlPhong.setBackground(new java.awt.Color(255, 255, 255));
         pnlPhong.setLayout(new javax.swing.BoxLayout(pnlPhong, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMaximumSize(new java.awt.Dimension(1000, 300));
         jPanel3.setPreferredSize(new java.awt.Dimension(138, 70));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(500, 300));
         jPanel5.setMinimumSize(new java.awt.Dimension(80, 50));
         jPanel5.setPreferredSize(new java.awt.Dimension(100, 65));
@@ -149,6 +156,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         pnlPhong.add(jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách các phòng đang sử dụng"));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -171,19 +179,29 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         jPanel2.add(pnlPhong);
 
+        pnlOption.setBackground(new java.awt.Color(255, 255, 255));
         pnlOption.setLayout(new javax.swing.BoxLayout(pnlOption, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.X_AXIS));
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setMaximumSize(new java.awt.Dimension(800, 800));
         jPanel7.setPreferredSize(new java.awt.Dimension(300, 304));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.add(jPanel14);
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jPanel13.setLayout(new javax.swing.BoxLayout(jPanel13, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnXemChiTiet.setBackground(new java.awt.Color(36, 89, 83));
         btnXemChiTiet.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXemChiTiet.setForeground(new java.awt.Color(255, 255, 255));
         btnXemChiTiet.setText("Xem chi tiết dịch vụ");
         btnXemChiTiet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +212,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jPanel12.add(btnXemChiTiet);
 
         jPanel13.add(jPanel12);
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Số lượng: ");
@@ -206,7 +226,11 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         jPanel13.add(jPanel10);
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnThem.setBackground(new java.awt.Color(36, 89, 83));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm dịch vụ vào phòng");
         btnThem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +246,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         jPanel6.add(jPanel7);
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách dịch vụ"));
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -244,13 +269,17 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         pnlOption.add(jPanel6);
 
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new javax.swing.BoxLayout(jPanel15, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết dịch vụ trong phòng"));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Danh sách dịch vụ ");
+        jLabel4.setText("Danh sách dịch vụ :");
         jPanel16.add(jLabel4);
 
         lblPhong.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -274,11 +303,14 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         pnlOption.add(jPanel15);
 
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 162, 58)));
         jPanel19.setLayout(new java.awt.GridLayout(1, 2));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
