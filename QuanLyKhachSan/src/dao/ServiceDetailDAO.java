@@ -98,7 +98,7 @@ public class ServiceDetailDAO {
             while(rs.next()) {
                 String id = rs.getString("ServiceDetailID"); 
                 Service service = new ServiceDAO().getServiceByID( rs.getString("ServiceID")); 
-                Order o=oDAO.getOrderByID("orderID");
+                Order o=oDAO.getOrderByID(rs.getString("orderID"));
                 int quantity = rs.getInt(rs.getString("quantity")); 
                 
                 ds.add( new ServiceDetail(id, service, o, quantity));
