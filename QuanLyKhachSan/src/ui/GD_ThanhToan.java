@@ -12,6 +12,8 @@ import entity.Order;
 import entity.Room;
 import entity.RoomStatusType;
 import entity.ServiceDetail;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -127,8 +129,8 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         tableHoaDon = new javax.swing.JTable();
         btnTimKiem = new javax.swing.JButton();
         btnTatCa = new javax.swing.JButton();
+        btnInHoaDon = new javax.swing.JButton();
         btnThanhToan = new javax.swing.JButton();
-        btnThanhToan1 = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -536,11 +538,31 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnTatCa, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 110, 40));
 
+        btnInHoaDon.setBackground(new java.awt.Color(0, 102, 102));
+        btnInHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInHoaDon.setForeground(new java.awt.Color(255, 255, 255));
+        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-print-25.png"))); // NOI18N
+        btnInHoaDon.setMnemonic('I');
+        btnInHoaDon.setText("In hoá đơn");
+        btnInHoaDon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
+        btnInHoaDon.setName("btnInHoaDon"); // NOI18N
+        btnInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseReleased(evt);
+            }
+        });
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHoaDonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnInHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 120, 34));
+
         btnThanhToan.setBackground(new java.awt.Color(0, 102, 102));
         btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
-        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-print-25.png"))); // NOI18N
-        btnThanhToan.setText("In hoá đơn");
+        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-receive-cash-25.png"))); // NOI18N
+        btnThanhToan.setText("Thanh toán");
         btnThanhToan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
         btnThanhToan.setName("btnThanhToan"); // NOI18N
         btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -553,26 +575,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
                 btnThanhToanActionPerformed(evt);
             }
         });
-        jPanel2.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 120, 34));
-
-        btnThanhToan1.setBackground(new java.awt.Color(0, 102, 102));
-        btnThanhToan1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnThanhToan1.setForeground(new java.awt.Color(255, 255, 255));
-        btnThanhToan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-receive-cash-25.png"))); // NOI18N
-        btnThanhToan1.setText("Thanh toán");
-        btnThanhToan1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 2, true));
-        btnThanhToan1.setName("btnThanhToan"); // NOI18N
-        btnThanhToan1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnThanhToan1MouseReleased(evt);
-            }
-        });
-        btnThanhToan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToan1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnThanhToan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 660, 120, 34));
+        jPanel2.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 660, 120, 34));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -606,14 +609,21 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCMNDTKActionPerformed
 
-    private void btnThanhToanMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseReleased
+    private void btnInHoaDonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInHoaDonMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThanhToanMouseReleased
+    }//GEN-LAST:event_btnInHoaDonMouseReleased
 
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        
-        // 
-    }//GEN-LAST:event_btnThanhToanActionPerformed
+    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
+        PrinterJob job = PrinterJob.getPrinterJob(); // tạo một công việc in
+        boolean ok = job.printDialog(); // hiển thị hộp thoại in
+        if (ok) {
+            try {
+                job.print(); // in hoá đơn
+            } catch (PrinterException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi in hoá đơn: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnInHoaDonActionPerformed
 
     private void btnTimKiemMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseReleased
 
@@ -729,7 +739,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnTatCaMousePressed
 
-    private void btnThanhToan1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToan1MouseReleased
+    private void btnThanhToanMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseReleased
         
         if(o==null){
             JOptionPane.showMessageDialog(this, "Chưa chọn hoá đơn cần thanh toán");
@@ -776,17 +786,17 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnThanhToan1MouseReleased
+    }//GEN-LAST:event_btnThanhToanMouseReleased
 
-    private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThanhToan1ActionPerformed
+    }//GEN-LAST:event_btnThanhToanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInHoaDon;
     private javax.swing.JButton btnTatCa;
     private javax.swing.JButton btnThanhToan;
-    private javax.swing.JButton btnThanhToan1;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
