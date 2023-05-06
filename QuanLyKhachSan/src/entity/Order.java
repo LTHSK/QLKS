@@ -35,8 +35,7 @@ public class Order {
         for( BookRoom br : bookRooms ) {
             sum += br.getRoom().getRoomType().getPrice(); 
         }
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(sum*thoiGianSuDung()));
+        return sum*thoiGianSuDung();
     }
     
     public Date chuyenDoiNgay(String timeString1, String dateString1) throws ParseException {
@@ -56,9 +55,7 @@ public class Order {
         
         double timeDiff = ra.getTime() - vao.getTime(); 
         double hourDiff = timeDiff/3600000;  
-        
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(hourDiff));
+        return hourDiff;
     }
     
     public double getTongTienDichVu() throws SQLException, ClassNotFoundException {
@@ -67,17 +64,12 @@ public class Order {
             sum += sv.getQuantity()*sv.getService().getPrice(); 
         }
         
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(sum));
+        return sum;
     }
     
-    // có khuyến mãi cho khách vip 
+    // chưa tính km và thuế vat
     public double getTongTien() throws SQLException, ClassNotFoundException, ParseException {
-        double sum = getTongTienDichVu() + getTongTienPhong(); 
-        if( bookRooms.get(0).getEmployee().getEmployeeName().equals("Vip") ) 
-            sum = sum; 
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(sum));
+        return getTongTienDichVu() + getTongTienPhong(); 
     }
 
     public Order() {
