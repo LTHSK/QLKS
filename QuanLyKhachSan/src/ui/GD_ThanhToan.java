@@ -37,7 +37,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     /**
      * Creates new form GD_ThanhToan
      */
-    DecimalFormat df = new DecimalFormat("#,###.##₫");
+    DecimalFormat df = new DecimalFormat("#,###.#₫");
     
     public String chuyenDoiNgay(String timeString1, String dateString1) {
   
@@ -328,6 +328,11 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
         txtTienMat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTienMatActionPerformed(evt);
+            }
+        });
+        txtTienMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTienMatKeyReleased(evt);
             }
         });
 
@@ -742,7 +747,8 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
             Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnTatCaMousePressed
-
+    
+    double tongTien = 0; 
     private void btnThanhToanMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseReleased
         
         if(o==null){
@@ -773,7 +779,7 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
             }
             
             txtThueVAT.setText( df.format( vat=o.getTongTien()*0.08 ) );
-            txtTongCong.setText( df.format( o.getTongTien()+vat-km) );
+            txtTongCong.setText( df.format(tongTien =  o.getTongTien()+vat-km) );
             
         } catch (ParseException ex) {
             Logger.getLogger(GD_ThanhToan.class.getName()).log(Level.SEVERE, null, ex);
@@ -795,6 +801,12 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThanhToanActionPerformed
+
+    private void txtTienMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienMatKeyReleased
+        double tienMat = Double.parseDouble(txtTienMat.getText());
+        txtTienThoi.setText(df.format(tienMat - tongTien)); 
+ 
+    }//GEN-LAST:event_txtTienMatKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
