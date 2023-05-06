@@ -193,13 +193,13 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(36, 89, 83));
         jLabel10.setText("Giới tính :");
 
-        radNam.setBackground(new java.awt.Color(255, 255, 255));
+        radNam.setBackground(new java.awt.Color(245, 245, 245));
         grbGioiTinh.add(radNam);
         radNam.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         radNam.setSelected(true);
         radNam.setText("Nam");
 
-        radNu.setBackground(new java.awt.Color(255, 255, 255));
+        radNu.setBackground(new java.awt.Color(245, 245, 245));
         grbGioiTinh.add(radNu);
         radNu.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         radNu.setText("Nữ");

@@ -4,6 +4,7 @@
  */
 package ui;
 
+import dao.EmployeeDAO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -42,7 +43,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
     private static String username;
     private static Component component;
     private final GD_GioiThieu frGioiThieu;
-    
+    private dao.EmployeeDAO eD;
 
     /**
      * Creates new form MainEmployee
@@ -69,6 +70,10 @@ public class GD_NhanVien extends javax.swing.JFrame {
         
         frGioiThieu = new GD_GioiThieu(username);
         openComponent(frGioiThieu);
+        
+        eD = new EmployeeDAO();
+        lblTen.setText(eD.findEmpID(user).getEmployeeName());
+        lblChucVu.setText(eD.findEmpID(user).getEmployeeType().getEmployeeTypeName());
     }
 
     /**
