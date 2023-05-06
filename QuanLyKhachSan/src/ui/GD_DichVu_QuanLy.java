@@ -214,7 +214,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(priceTF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -313,7 +313,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 9, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel7);
@@ -359,7 +359,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 11, Short.MAX_VALUE)
         );
 
         jPanel6.add(jPanel9);
@@ -394,9 +394,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
         );
 
         Main.add(jPanel4);
@@ -450,20 +448,20 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         }
         else
         {
-//            Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
-//            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng này?", "Cảnh báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-//            {
-//                if(serviceD.delete(s))
-//                {
-//                    JOptionPane.showMessageDialog(this, "Đã xóa thành công!");
-//                    clearText();
-//                    loadDataToTBService();
-//                }
-//                else
-//                {
-//                    JOptionPane.showMessageDialog(this, "Xóa không thành công!");
-//                }
-//            }
+            Service s = serviceD.findServiceByID(tbService.getValueAt(index, 0).toString());
+            if(JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng này?", "Cảnh báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+            {
+                if(serviceD.delete(s))
+                {
+                    JOptionPane.showMessageDialog(this, "Đã xóa thành công!");
+                    clearText();
+                    loadDataToTBService();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Xóa không thành công!");
+                }
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -478,20 +476,20 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         {
             if(checkData())
             {
-//                Service s = serviceD.findServiceID(tbService.getValueAt(index, 0).toString());
-//                s.setServiceName(nameTF.getText());
-//                s.setPrice(Double.parseDouble(priceTF.getText()));
-//                s.setInventory(Integer.parseInt(quantityTF.getText()));
-//                if(serviceD.update(s))
-//                {
-//                    JOptionPane.showMessageDialog(this, "Đã chỉnh sửa thành công!");
-//                    clearText();
-//                    loadDataToTBService();
-//                }
-//                else
-//                {
-//                    JOptionPane.showMessageDialog(this, "Chỉnh sửa thất bại!");
-//                }
+                Service s = serviceD.findServiceByID(tbService.getValueAt(index, 0).toString());
+                s.setServiceName(nameTF.getText());
+                s.setPrice(Double.parseDouble(priceTF.getText()));
+                s.setInventory(Integer.parseInt(quantityTF.getText()));
+                if(serviceD.update(s))
+                {
+                    JOptionPane.showMessageDialog(this, "Đã chỉnh sửa thành công!");
+                    clearText();
+                    loadDataToTBService();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Chỉnh sửa thất bại!");
+                }
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

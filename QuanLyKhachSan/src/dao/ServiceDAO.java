@@ -115,4 +115,30 @@ public class ServiceDAO {
         return false;
     }
     
+    public Service findServiceByID(String id)
+    {
+        try(Connection con = connection.DatabaseConnection.opConnection();
+                java.sql.PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Service WHERE serviceID = ?"))
+        {
+            pstmt.setString(1, id);
+            try(java.sql.ResultSet rs = pstmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    Service s = new Service(
+                        rs.getString("serviceID"),
+                        rs.getString("serviceName"),
+                        rs.getDouble("price"),
+                        rs.getInt("inventory")
+                );
+                return s;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
