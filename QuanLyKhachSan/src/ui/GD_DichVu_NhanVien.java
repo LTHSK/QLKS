@@ -454,8 +454,18 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
-                double gia=sd.getQuantity()*sd.getService().getPrice();
-                dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
+                for(int i=0;i<tblChiTietDichVu.getRowCount();i++){
+                    if(tblChiTietDichVu.getValueAt(i, 0).toString().equals(sd.getService().getServiceID())){
+                        int sl=Integer.parseInt((String) dtm.getValueAt(i, 2))+sd.getQuantity();
+                        double gia=sl*sd.getService().getPrice();
+                        dtm.setValueAt(sl+"", i, 2);
+                        dtm.setValueAt(gia+"", i, 3);
+                    }else{
+                        double gia=sd.getQuantity()*sd.getService().getPrice();
+                        dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
+                    }
+                }
+                
             }
         }
     }
