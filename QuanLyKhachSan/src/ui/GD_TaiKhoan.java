@@ -5,7 +5,11 @@
 package ui;
 
 
+import dao.AccountDAO;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +21,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class GD_TaiKhoan extends javax.swing.JInternalFrame {
     private String username;
-//    private DAO_TaiKhoan tk;
+    private dao.AccountDAO aD ;
     private DefaultTableModel modelTaiKhoan;
     /**
      * Creates new form QuanLyHoaDon
@@ -32,17 +36,23 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         username=_username;
   
         modelTaiKhoan=(DefaultTableModel)tblTaiKhoan.getModel();
-//        DocDuLieuLenTable();
+        DocDuLieuLenTable();
     }
-//    private void DocDuLieuLenTable(){
-//        tk = new DAO_TaiKhoan();
-//        List<TaiKhoan> list =tk.layTatCaTaiKhoanVaoBang();
-//        modelTaiKhoan.setRowCount(0);
-//        for (TaiKhoan tk : list) {
-//            modelTaiKhoan.addRow(new Object[]{
-//                tk.getTenDN(),tk.getMatKhau()});
-//        }
-//    }
+    private void DocDuLieuLenTable(){
+        try {
+            aD = new AccountDAO();
+            List<entity.Account> list =aD.getAllListAccount();
+            modelTaiKhoan.setRowCount(0);
+            for (entity.Account a : list) {
+                modelTaiKhoan.addRow(new Object[]{
+                    a.getUserName(),a.getPassword()});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GD_TaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GD_TaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +76,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         btnXoaTK = new javax.swing.JButton();
         pnlGiua = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFind = new javax.swing.JTextField();
         pnlDuoi = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTaiKhoan = new javax.swing.JTable();
@@ -211,7 +221,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(865, Short.MAX_VALUE))
         );
         pnlGiuaLayout.setVerticalGroup(
@@ -220,7 +230,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -267,34 +277,34 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMKActionPerformed
 
     private void btnXoaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTKActionPerformed
-//        int index = tblTaiKhoan.getSelectedRow();
-//        if (index==-1){
-//            JOptionPane.showMessageDialog(this, "Hãy chọn tài khoản cần xóa!");
-//        }else{
-//            int chon= JOptionPane.showConfirmDialog(this, "Bạn có chắn chắn muốn xóa tài khoản này?", "Hỏi",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-//            if(chon==JOptionPane.YES_OPTION){
-//                tk.xoaTK(modelTaiKhoan.getValueAt(index, 0)+"");
-////                DocDuLieuLenTable();
-//                JOptionPane.showMessageDialog(this, "Xóa thành công!");
-//                txtTenDN.setText("");
-//                txtMK.setText("");
-//            }
-//            
-//            }
+        int index = tblTaiKhoan.getSelectedRow();
+        if (index==-1){
+            JOptionPane.showMessageDialog(this, "Hãy chọn tài khoản cần xóa!");
+        }else{
+            int chon= JOptionPane.showConfirmDialog(this, "Bạn có chắn chắn muốn xóa tài khoản này?", "Hỏi",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if(chon==JOptionPane.YES_OPTION){
+                aD.delete(aD.getAccountById(tblTaiKhoan.getValueAt(index, 0).toString()));
+                DocDuLieuLenTable();
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                txtTenDN.setText("");
+                txtMK.setText("");
+            }
+            
+            }
     }//GEN-LAST:event_btnXoaTKActionPerformed
 
     private void btnDatLaiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLaiMatKhauActionPerformed
-//        int index = tblTaiKhoan.getSelectedRow();
-//        if (index==-1){
-//            JOptionPane.showMessageDialog(this, "Hãy chọn tài khoản cần đặt lại mật khẩu mặc định!");
-//        }else{
-//            tk.capNhatTaiKhoan("123456", modelTaiKhoan.getValueAt(index, 0)+"");
-//            
-////            DocDuLieuLenTable();
-//            JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
-//            txtTenDN.setText("");
-//            txtMK.setText("");
-//            }
+        int index = tblTaiKhoan.getSelectedRow();
+        if (index==-1){
+            JOptionPane.showMessageDialog(this, "Hãy chọn tài khoản cần đặt lại mật khẩu mặc định!");
+        }else{
+            aD.update("123456", modelTaiKhoan.getValueAt(index, 0)+"");
+            
+            DocDuLieuLenTable();
+            JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
+            txtTenDN.setText("");
+            txtMK.setText("");
+            }
         
     }//GEN-LAST:event_btnDatLaiMatKhauActionPerformed
 
@@ -305,8 +315,8 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblTaiKhoanMouseClicked
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
-//        String f=txtTimKiem.getText();
-//        filter(f);
+        String f= txtFind.getText();
+        filter(f);
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
                                       
@@ -326,7 +336,6 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlDuoi;
     private javax.swing.JPanel pnlGiua;
     private javax.swing.JPanel pnlMain;
@@ -334,6 +343,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlThongTin;
     private javax.swing.JPanel pnlTren;
     private javax.swing.JTable tblTaiKhoan;
+    private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtMK;
     private javax.swing.JTextField txtTenDN;
     // End of variables declaration//GEN-END:variables
