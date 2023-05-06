@@ -826,7 +826,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="jLabel7">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="T&#xec;m &#x111;&#x1a1;n &#x111;&#x1eb7;t theo CCCD:   "/>
+                            <Property name="text" type="java.lang.String" value="T&#xec;m &#x111;&#x1a1;n &#x111;&#x1eb7;t :   "/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtTim">
@@ -938,11 +938,11 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="627" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                                   <Component id="btnMoPhong" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
                                   <Component id="btnHuyDonDat" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace pref="249" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

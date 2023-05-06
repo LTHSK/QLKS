@@ -21,8 +21,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import org.jfree.ui.tabbedui.DetailEditor;
 
 /**
  *
@@ -223,6 +225,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         txtSoLuong.setMaximumSize(new java.awt.Dimension(300, 100));
         txtSoLuong.setPreferredSize(new java.awt.Dimension(85, 31));
         jPanel10.add(txtSoLuong);
+        SpinnerNumberModel modelGio = new SpinnerNumberModel(0, 0, 999, 1);
+        txtSoLuong.setModel(modelGio);
 
         jPanel13.add(jPanel10);
 
@@ -364,26 +368,40 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         }else if(soLuong>s.getInventory()) {JOptionPane.showMessageDialog(null, "Số lượng không được lớn hơn số tồn của dịch vụ!");}
         else{
             Order o=oDAO.getOrderByID(tblPhong.getValueAt(indexPhong, 0).toString());
-            
-            ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, soLuong);
-            if(sdDAO.add(sd)){
-                try {
-                    s.setInventory(s.getInventory()-soLuong);
-                    if(sDAO.update(s)){
-                    loadServiceToTable(dtmDichVu, listServices);
+            boolean flag=false;
+            for(ServiceDetail sd:sdDAO.getListServiceDetailByOrderID(o.getOrderID())){
+                if(sd.getService().getServiceID().equals(dtmChiTietDichVu.getValueAt(indexDichVu, 0))){
+                    int sl=sd.getQuantity()+soLuong;
+                    sd.setQuantity(sl);
+                    double gia=sl*sd.getService().getPrice();
+                    if(sdDAO.update(sd)){
+                        flag=true;
                     }
-                    
-                    loadChiTietToTable(dtmChiTietDichVu, listServiceDetails);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                txtSoLuong.setValue(0);
-                JOptionPane.showMessageDialog(null,"Thêm thành công!" );
-            } 
+                        JOptionPane.showMessageDialog(null, "Thêm thành công!");
+                    }
+            }
+            if(flag==false){
+                ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, soLuong);
+                if(sdDAO.add(sd)){
+                    try {
+                        s.setInventory(s.getInventory()-soLuong);
+                        if(sDAO.update(s)){
+                        loadServiceToTable(dtmDichVu, listServices);
+                        }
+
+                        loadChiTietToTable(dtmChiTietDichVu, listServiceDetails);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    txtSoLuong.setValue(0);
+                    JOptionPane.showMessageDialog(null,"Thêm thành công!" );
+                } 
+            }
         }
         }
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
@@ -477,13 +495,15 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
     private void loadPhongToTable(DefaultTableModel dtm, ArrayList<Order> list) {
 //        Cần sửa thành get all sd có trạng thái chưa thanh toán
-        list=oDAO.getOrderByStatus("Chưa thanh toán");
+        list=oDAO.getAlLOrderWithStatus();
         
         dtm.setRowCount(0);
         
         for(Order o:list){
             Room r=o.getBookRooms().get(0).getRoom();
-            dtm.addRow(new String []{o.getOrderID(),r.getRoomID(),r.getRoomName(),o.getEmployee().getCCCD(),o.getEmployee().getEmployeeName()});
+            String cccd =o.getBookRooms().get(0).getCustomer().getCCCD();
+            String name=o.getBookRooms().get(0).getCustomer().getCustomerName();
+            dtm.addRow(new String []{o.getOrderID(),r.getRoomID(),r.getRoomName(),cccd,name});
         }
     }
 
@@ -505,29 +525,11 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
-                if(dtmChiTietDichVu.getRowCount()!=0){
-                    boolean flag=false;
-                    for(int i=0;i<dtmChiTietDichVu.getRowCount();i++){
-                        if(dtmChiTietDichVu.getValueAt(i, 0).toString().equals(sd.getService().getServiceID())){
-                            int sl=Integer.parseInt((String) dtm.getValueAt(i, 2))+sd.getQuantity();
-                            double gia=sl*sd.getService().getPrice();
-                            dtm.setValueAt(sl+"", i, 2);
-                            dtm.setValueAt(gia+"", i, 3);
-                            flag=true;
-                        }
-                    }
-                    if(flag==false){
-                        double gia=sd.getQuantity()*sd.getService().getPrice();
-                        dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
-                    }
-                    
-                }else{
                     double gia=sd.getQuantity()*sd.getService().getPrice();
                     dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
                 }
-                
-            }
         }
+
         double thanhTien=0;
         for(int i=0;i<dtmChiTietDichVu.getRowCount();i++){
             thanhTien+= Double.parseDouble( dtmChiTietDichVu.getValueAt(i, 3).toString());

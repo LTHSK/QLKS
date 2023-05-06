@@ -567,7 +567,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel7.setText("Tìm đơn đặt theo CCCD:   ");
+        jLabel7.setText("Tìm đơn đặt :   ");
         jPanel7.add(jLabel7);
 
         txtTim.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -636,11 +636,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(627, Short.MAX_VALUE)
+                .addGap(263, 263, 263)
                 .addComponent(btnMoPhong)
-                .addGap(62, 62, 62)
+                .addGap(247, 247, 247)
                 .addComponent(btnHuyDonDat)
-                .addGap(70, 70, 70))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,6 +666,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoPhongActionPerformed
+        
         int index=tblDDP.getSelectedRow();
         if(index==-1){
             JOptionPane.showMessageDialog(null, "Hãy chọn phòng cần mở!");
@@ -675,15 +676,13 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
             listBr.add(br);
             Employee e=eDAO.findEmpID(username);
             String status="Chưa thanh toán";
-            Order order=new Order(maTuSinhHoaDon(), null, null, listBookRooms, e,status);
+            Order order=new Order(maTuSinhHoaDon(), null, null, listBr, e,status);
             if(oDAO.add(order)){
                 Room r=rDAO.findRoomById(br.getRoom().getRoomID());
                 RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP002");
                 r.setRoomStatusType(rst);
-                rDAO.updateRoom(r);
-                BookRoom bookRoom=brDAO.getBookRoomByID(order.getBookRooms().get(0).getBookRoomID());
-                bookRoom.setStatus("Đã mở phòng");
-                brDAO.updateBookRoom(bookRoom);
+                listBr.get(0).setStatus("Đã mở phòng");
+                brDAO.updateBookRoom(listBr.get(0));
                 loadDataToTable();
                 JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
             }

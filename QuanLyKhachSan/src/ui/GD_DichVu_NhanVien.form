@@ -311,6 +311,9 @@
                                       <Dimension value="[85, 31]"/>
                                     </Property>
                                   </Properties>
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SpinnerNumberModel modelGio = new SpinnerNumberModel(0, 0, 999, 1);&#xa;txtSoLuong.setModel(modelGio);"/>
+                                  </AuxValues>
                                 </Component>
                               </SubComponents>
                             </Container>

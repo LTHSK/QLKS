@@ -131,5 +131,19 @@ public class ServiceDetailDAO {
         }
         return false;
     }
+
+    public boolean update(ServiceDetail sd) {
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("UPDATE ServiceDetail  SET quantity=? where ServiceDetailID = ?")) {
+            pstmt.setInt(1, sd.getQuantity());
+            pstmt.setString(2, sd.getServiceDetailID());
+            
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.err.println("connect db fail");
+            e.printStackTrace();
+        }
+        return false;
+    }
     
 }

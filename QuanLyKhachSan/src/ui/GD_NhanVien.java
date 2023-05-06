@@ -42,7 +42,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
     private static String username;
     private static Component component;
     private final GD_GioiThieu frGioiThieu;
-    private final GD_DonDat gdDonDat;
     
 
     /**
@@ -69,7 +68,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblGioiThieu.setForeground(new Color(36, 89, 83));
         
         frGioiThieu = new GD_GioiThieu(username);
-        gdDonDat=new GD_DonDat(username);
         openComponent(frGioiThieu);
     }
 
@@ -488,15 +486,15 @@ private void doiMauPnl(){
         pnlDichVu.setkEndColor(new java.awt.Color(185,237,221));
         pnlDichVu.setkStartColor(new java.awt.Color(185,237,221));
         lblDichVu.setForeground(new Color(36,89,83)); 
-        GD_DichVu_NhanVien gddvnv = null;
         try {
-            gddvnv = new GD_DichVu_NhanVien();
+            GD_DichVu_NhanVien gddvnv = new GD_DichVu_NhanVien();
+            openComponent(gddvnv);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(GD_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-        openComponent(gddvnv);
+        
     }//GEN-LAST:event_pnlDichVuMousePressed
 
     private void pnlTraCuuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMousePressed
@@ -517,7 +515,8 @@ private void doiMauPnl(){
         lblDonDat.setForeground(new Color(36,89,83)); 
         
         
-
+        
+        GD_DonDat gdDonDat=new GD_DonDat(username);
         openComponent(gdDonDat);
     }//GEN-LAST:event_pnlDonDatMousePressed
     // open frame when click panel
@@ -533,9 +532,6 @@ private void doiMauPnl(){
         pnlForm.add(frame);
         frame.setVisible(true);
     }
-
-
-
     /**
      * @param args the command line arguments
      */
