@@ -191,6 +191,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jPanel10.add(jLabel3);
 
         txtSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtSoLuong.setMaximumSize(new java.awt.Dimension(300, 100));
+        txtSoLuong.setPreferredSize(new java.awt.Dimension(85, 31));
         jPanel10.add(txtSoLuong);
 
         jPanel13.add(jPanel10);
@@ -371,13 +373,13 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
     private void loadPhongToTable(DefaultTableModel dtm, ArrayList<Order> list) {
 //        Cần sửa thành get all order có trạng thái chưa thanh toán
-        list=oDAO.getAlLOrder();
+        list=oDAO.getOrderByStatus("Chưa thanh toán");
         
         dtm.setRowCount(0);
         
         for(Order o:list){
             Room r=o.getBookRooms().get(0).getRoom();
-            dtm.addRow(new String []{r.getRoomID(),r.getRoomName(),o.getEmployee().getCCCD(),o.getEmployee().getEmployeeName()});
+            dtm.addRow(new String []{o.getOrderID(),r.getRoomID(),r.getRoomName(),o.getEmployee().getCCCD(),o.getEmployee().getEmployeeName()});
         }
     }
 
@@ -394,8 +396,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private void loadChiTietToTable(DefaultTableModel dtm, ArrayList<ServiceDetail> list) throws ClassNotFoundException, SQLException {
         dtm.setRowCount(0);
         int index= tblPhong.getSelectedRow();
-        String maPhong=tblPhong.getValueAt(index, 0).toString();
-//        list=(ArrayList<ServiceDetail>) sdDAO.getListSericeByRoomID(maPhong);
+        String maHoaDon=tblPhong.getValueAt(index, 0).toString();
+        list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
             dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+""});
