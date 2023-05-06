@@ -101,8 +101,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblDichVu = new javax.swing.JLabel();
         pnlHoaDon = new keeptoo.KGradientPanel();
         lblHoaDon = new javax.swing.JLabel();
-        pnlTraCuu = new keeptoo.KGradientPanel();
-        lblTraCuu = new javax.swing.JLabel();
         pnlThongKe = new keeptoo.KGradientPanel();
         lblThongKe = new javax.swing.JLabel();
         pnlTroGiup = new keeptoo.KGradientPanel();
@@ -139,7 +137,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlNguoiDung.setBackground(new java.awt.Color(255, 255, 255));
 
         lblChucVu.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblChucVu.setForeground(new java.awt.Color(79, 51, 22));
+        lblChucVu.setForeground(new java.awt.Color(36, 89, 83));
         lblChucVu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblChucVu.setText("Nhân viên");
 
@@ -147,7 +145,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblImage.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblTen.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblTen.setForeground(new java.awt.Color(79, 51, 22));
+        lblTen.setForeground(new java.awt.Color(36, 89, 83));
         lblTen.setText("Trần Văn A");
 
         javax.swing.GroupLayout pnlNguoiDungLayout = new javax.swing.GroupLayout(pnlNguoiDung);
@@ -223,7 +221,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         lblDonDat.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblDonDat.setForeground(new java.awt.Color(240, 238, 237));
         lblDonDat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDonDat.setText("ĐƠN ĐẶT");
+        lblDonDat.setText("ĐẶT PHÒNG");
         pnlDonDat.add(lblDonDat, java.awt.BorderLayout.CENTER);
 
         kGradientPanel2.add(pnlDonDat);
@@ -269,29 +267,6 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlHoaDon.add(lblHoaDon, java.awt.BorderLayout.CENTER);
 
         kGradientPanel2.add(pnlHoaDon);
-
-        pnlTraCuu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlTraCuu.setkEndColor(new java.awt.Color(0, 102, 102));
-        pnlTraCuu.setkGradientFocus(10);
-        pnlTraCuu.setkStartColor(new java.awt.Color(0, 102, 102));
-        pnlTraCuu.setMaximumSize(new java.awt.Dimension(300, 40));
-        pnlTraCuu.setMinimumSize(new java.awt.Dimension(50, 40));
-        pnlTraCuu.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlTraCuu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlTraCuuMousePressed(evt);
-            }
-        });
-        pnlTraCuu.setLayout(new java.awt.BorderLayout());
-
-        lblTraCuu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblTraCuu.setForeground(new java.awt.Color(240, 238, 237));
-        lblTraCuu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTraCuu.setText("TRA CỨU");
-        lblTraCuu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlTraCuu.add(lblTraCuu, java.awt.BorderLayout.CENTER);
-
-        kGradientPanel2.add(pnlTraCuu);
 
         pnlThongKe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         pnlThongKe.setkEndColor(new java.awt.Color(0, 102, 102));
@@ -425,9 +400,7 @@ private void doiMauPnl(){
         pnlDichVu.setkStartColor(new java.awt.Color(0,102,102));
         lblDichVu.setForeground(new java.awt.Color(240,238,237));
         
-        pnlTraCuu.setkEndColor(new java.awt.Color(0,102,102));
-        pnlTraCuu.setkStartColor(new java.awt.Color(0,102,102));
-        lblTraCuu.setForeground(new java.awt.Color(240,238,237));
+      
         
         pnlThongKe.setkEndColor(new java.awt.Color(0,102,102));
         pnlThongKe.setkStartColor(new java.awt.Color(0,102,102));
@@ -502,16 +475,6 @@ private void doiMauPnl(){
         
     }//GEN-LAST:event_pnlDichVuMousePressed
 
-    private void pnlTraCuuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTraCuuMousePressed
-        doiMauPnl();
-        
-        pnlTraCuu.setkEndColor(new java.awt.Color(185,237,221));
-        pnlTraCuu.setkStartColor(new java.awt.Color(185,237,221));
-        lblTraCuu.setForeground(new Color(36,89,83)); 
-        GD_TraCuu gdTraCuu=new GD_TraCuu();
-        openComponent(gdTraCuu);
-    }//GEN-LAST:event_pnlTraCuuMousePressed
-
     private void pnlDonDatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDonDatMousePressed
         doiMauPnl();
         
@@ -567,7 +530,6 @@ private void doiMauPnl(){
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblTen;
     private javax.swing.JLabel lblThongKe;
-    private javax.swing.JLabel lblTraCuu;
     private javax.swing.JLabel lblTroGiup;
     private keeptoo.KGradientPanel pnlDichVu;
     private keeptoo.KGradientPanel pnlDonDat;
@@ -578,7 +540,6 @@ private void doiMauPnl(){
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlNguoiDung;
     private keeptoo.KGradientPanel pnlThongKe;
-    private keeptoo.KGradientPanel pnlTraCuu;
     private keeptoo.KGradientPanel pnlTroGiup;
     // End of variables declaration//GEN-END:variables
 
