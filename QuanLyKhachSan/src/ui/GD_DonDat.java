@@ -973,7 +973,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                             gt="Nam";
                         else
                             gt="Nữ";
-                        Customer c=new Customer(maTuSinhKhachHang(),txtHoTen.getText(),txtCCCD.getText(), txtSDT.getText(), "", 0,ctDAO.findCusTypeID("LKH001"),gt);
+                        Customer c=new Customer(maTuSinhKhachHang(),txtHoTen.getText(),txtCCCD.getText(), txtSDT.getText(), "", 0,ctDAO.findEmpTypeID("LKH001"),gt);
                         cDAO.add(c);
                         Employee e= eDAO.findEmpID(username);
                         

@@ -477,7 +477,7 @@ public class GD_QLKhachHang1 extends javax.swing.JInternalFrame {
         String phone = txtSoDienThoai.getText();
         String gender = radNam.isSelected() ? "Nam" : "Nữ";
         EmployeeTypeDAO etD = new EmployeeTypeDAO();
-        entity.CustomerType ctype = cTD.findCusByName(cmbLoaiKH.getSelectedItem().toString());
+        entity.CustomerType ctype = cTD.findEmpTypeID(cmbLoaiKH.getSelectedItem().toString());
         String email = name.toLowerCase().trim() + "@gmail.com";
         entity.Customer c = new Customer(setMaKH() , name, iden, phone, email, 0, ctype, gender );
         return c;

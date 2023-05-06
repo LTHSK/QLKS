@@ -10,6 +10,7 @@ import dao.OrderDAO;
 import dao.ServiceDAO;
 import dao.ServiceDetailDAO;
 import entity.Order;
+import entity.OrderDetail;
 import entity.Room;
 import entity.Service;
 import entity.ServiceDetail;
@@ -322,12 +323,49 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         }else if(soLuong <=0 ){
             JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
         }else{
+            Order o=oDAO.getOrderByID(tblPhong.getValueAt(indexPhong, 0).toString());
+            Service s=sDAO.getServiceByID(tblDichVu.getValueAt(indexDichVu, 0).toString());
+            ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, (int)txtSoLuong.getValue());
 //            Thêm code: tạo chi tiết hóa đơn, load lại bảng cthd, xóa trắng ô số lượng
             
             JOptionPane.showMessageDialog(null,"Thêm thành công!" );
         }
     }//GEN-LAST:event_btnThemActionPerformed
+    private String maTuSinhChiTietDV() {
+        String ma = "CTDV";
+        int tachMa;
+        int i = 0, j = 1;
+        int[] dem = new int[999];
+        String id;
+        if(sdDAO.getAlLServiceDetail() != null){
+        for (ServiceDetail sd : sdDAO.getAlLServiceDetail()) {
+            id = sd.getServiceDetailID();
+            tachMa = Integer.parseInt(id.substring(4, 7));
+            dem[i] = tachMa;
+            i++;
+        }
+        i = 0;
+        while (j < 999) {
+            if (dem[i] < j) {
+                if (j <= 9) {
+                    ma += "00" + (j);
+                } else {
+                    ma += "0" + (j);
+                }
+                break;
+            } else if (dem[i] > j) {
+                j = dem[i];
+            } else {
 
+                i++;
+                j++;
+            }
+        }
+        }else{
+            ma="CTDV001";
+        }
+        return ma;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
@@ -372,7 +410,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadPhongToTable(DefaultTableModel dtm, ArrayList<Order> list) {
-//        Cần sửa thành get all order có trạng thái chưa thanh toán
+//        Cần sửa thành get all sd có trạng thái chưa thanh toán
         list=oDAO.getOrderByStatus("Chưa thanh toán");
         
         dtm.setRowCount(0);

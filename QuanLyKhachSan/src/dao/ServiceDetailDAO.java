@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @author win
  */
 public class ServiceDetailDAO {
+    private final OrderDAO oDAO=new OrderDAO();
 
 //        ArrayList<Order> list = new ArrayList<>();
 //        try (Connection conn = DatabaseConnection.opConnection();
@@ -60,10 +61,9 @@ public class ServiceDetailDAO {
             while (rs.next()) {
                 String id = rs.getString("ServiceDetailID");
                 Service sv = new ServiceDAO().getServiceByID(rs.getString("ServiceID"));
-                BookRoom br = new BookRoomDAO().getBookRoomByID(rs.getString("bookRoomID"));
                 int quantity = rs.getInt("quantity");
-
-                ds.add(new ServiceDetail(id, sv, br, quantity));
+                Order o=oDAO.getOrderByID("orderID");
+                ds.add(new ServiceDetail(id, sv, o, quantity));
             }
 
             return ds;
@@ -90,18 +90,16 @@ public class ServiceDetailDAO {
         try {
             Connection conn = DatabaseConnection.opConnection();
             ArrayList<ServiceDetail> ds = new ArrayList<ServiceDetail>();
-            PreparedStatement stm = conn.prepareStatement("select * from ServiceDetail \n"
-                    + "inner join [dbo].[Order] on ServiceDetail.bookRoomID = [dbo].[Order].bookRoomID\n"
-                    + "where [dbo].[Order].orderID = ?");
+            PreparedStatement stm = conn.prepareStatement("select * from ServiceDetail where orderID = ?");
             stm.setString(1, OrderID);
             ResultSet rs = stm.executeQuery(); 
             while(rs.next()) {
                 String id = rs.getString("ServiceDetailID"); 
                 Service service = new ServiceDAO().getServiceByID( rs.getString("ServiceID")); 
-                BookRoom br = new BookRoomDAO().getBookRoomByID( rs.getString("bookRoomID")); 
-                int quantity = rs.getInt("quantity"); 
+                Order o=oDAO.getOrderByID("orderID");
+                int quantity = rs.getInt(rs.getString("quantity")); 
                 
-                ds.add( new ServiceDetail(id, service, br, quantity));
+                ds.add( new ServiceDetail(id, service, o, quantity));
             }
             
             
