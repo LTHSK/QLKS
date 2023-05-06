@@ -430,6 +430,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel23.add(jLabel5);
 
         jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
+
+        txtNgayCheckIn.setDateFormatString("yyyy-MM-dd");
         jPanel30.add(txtNgayCheckIn);
 
         jPanel23.add(jPanel30);

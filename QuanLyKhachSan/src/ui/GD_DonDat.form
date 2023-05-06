@@ -582,6 +582,9 @@
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                           <SubComponents>
                             <Component class="com.toedter.calendar.JDateChooser" name="txtNgayCheckIn">
+                              <Properties>
+                                <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
