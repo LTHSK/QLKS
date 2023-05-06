@@ -110,7 +110,9 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         lblThanhTien = new javax.swing.JLabel();
 
-        Main.setLayout(new java.awt.BorderLayout());
+        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
+
+        Main.setLayout(new javax.swing.BoxLayout(Main, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -118,7 +120,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jLabel1.setText("Dịch Vụ");
         jPanel1.add(jLabel1, java.awt.BorderLayout.NORTH);
 
-        Main.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        Main.add(jPanel1);
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
 
@@ -252,10 +254,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         tblChiTietDichVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Mã dịch vụ", "Tên dịch vụ", "Số lượng", "Giá"
@@ -292,9 +291,9 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
         jPanel2.add(pnlOption);
 
-        Main.add(jPanel2, java.awt.BorderLayout.CENTER);
+        Main.add(jPanel2);
 
-        getContentPane().add(Main, java.awt.BorderLayout.CENTER);
+        getContentPane().add(Main);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietActionPerformed
@@ -320,14 +319,22 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Hãy chọn phòng muốn thêm dịch vụ!");
         }else if(indexDichVu==-1){
             JOptionPane.showMessageDialog(null, "Hãy chọn dịch vụ muốn thêm vào phòng!");
-        }else if(soLuong <=0 ){
-            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
-        }else{
-            Order o=oDAO.getOrderByID(tblPhong.getValueAt(indexPhong, 0).toString());
+        }else {
             Service s=sDAO.getServiceByID(tblDichVu.getValueAt(indexDichVu, 0).toString());
-            ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, (int)txtSoLuong.getValue());
+            if(soLuong <=0 ){
+            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
+        }else if(soLuong>s.getInventory()) {JOptionPane.showMessageDialog(null, "Số lượng không được lớn hơn số tồn của dịch vụ!");}
+        else{
+            Order o=oDAO.getOrderByID(tblPhong.getValueAt(indexPhong, 0).toString());
+            
+            ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, soLuong);
             if(sdDAO.add(sd)){
                 try {
+                    s.setInventory(s.getInventory()-soLuong);
+                    if(sDAO.update(s)){
+                    loadServiceToTable(dtmDichVu, listServices);
+                    }
+                    
                     loadChiTietToTable(dtmChiTietDichVu, listServiceDetails);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
@@ -336,10 +343,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
                 }
                 txtSoLuong.setValue(0);
                 JOptionPane.showMessageDialog(null,"Thêm thành công!" );
-            }
-//            Thêm code: tạo chi tiết hóa đơn, load lại bảng cthd, xóa trắng ô số lượng
-            
-            
+            } 
+        }
         }
     }//GEN-LAST:event_btnThemActionPerformed
     private String maTuSinhChiTietDV() {
@@ -449,7 +454,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
-            dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+""});
+                double gia=sd.getQuantity()*sd.getService().getPrice();
+                dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
             }
         }
     }

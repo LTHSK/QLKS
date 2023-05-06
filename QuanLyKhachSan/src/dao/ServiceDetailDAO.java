@@ -63,8 +63,8 @@ public class ServiceDetailDAO {
             while (rs.next()) {
                 String id = rs.getString("ServiceDetailID");
                 Service sv = new ServiceDAO().getServiceByID(rs.getString("ServiceID"));
-                int quantity = rs.getInt("quantity");
-                Order o=oDAO.getOrderByID("orderID");
+                int quantity = rs.getInt("quantity"); 
+                Order o=oDAO.getOrderByID(rs.getString("orderID"));
                 ds.add(new ServiceDetail(id, sv, o, quantity));
             }
 
@@ -99,7 +99,7 @@ public class ServiceDetailDAO {
                 String id = rs.getString("ServiceDetailID"); 
                 Service service = new ServiceDAO().getServiceByID( rs.getString("ServiceID")); 
                 Order o=oDAO.getOrderByID(rs.getString("orderID"));
-                int quantity = rs.getInt(rs.getString("quantity")); 
+                int quantity = rs.getInt("quantity"); 
                 
                 ds.add( new ServiceDetail(id, service, o, quantity));
             }
