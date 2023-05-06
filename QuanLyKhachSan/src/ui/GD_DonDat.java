@@ -36,8 +36,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -134,10 +137,12 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         radNu = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel29 = new javax.swing.JPanel();
-        txtGioCheckIn = new javax.swing.JTextField();
+        gio = new javax.swing.JSpinner();
+        phut = new javax.swing.JSpinner();
+        giay = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        txtNgayCheckIn = new javax.swing.JTextField();
+        txtNgayCheckIn = new com.toedter.calendar.JDateChooser();
         jPanel24 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
@@ -152,8 +157,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel14 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtTim = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDDP = new javax.swing.JTable();
@@ -230,7 +234,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel11);
@@ -258,7 +262,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel4);
@@ -286,7 +290,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
         );
 
         jPanel12.add(jPanel1);
@@ -327,7 +331,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 321, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel25);
@@ -409,9 +413,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel23.add(jLabel6);
 
         jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.LINE_AXIS));
-
-        txtGioCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel29.add(txtGioCheckIn);
+        jPanel29.add(gio);
+        SpinnerNumberModel modelGio = new SpinnerNumberModel(0, 0, 23, 1);
+        gio.setModel(modelGio);
+        jPanel29.add(phut);
+        SpinnerNumberModel modelPhut = new SpinnerNumberModel(0, 0, 59, 1);
+        phut.setModel(modelPhut);
+        jPanel29.add(giay);
+        SpinnerNumberModel modelGiay = new SpinnerNumberModel(0, 0, 59, 1);
+        giay.setModel(modelGiay);
 
         jPanel23.add(jPanel29);
 
@@ -420,8 +430,6 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel23.add(jLabel5);
 
         jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
-
-        txtNgayCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel30.add(txtNgayCheckIn);
 
         jPanel23.add(jPanel30);
@@ -438,7 +446,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 321, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel24);
@@ -553,13 +561,14 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jLabel7.setText("Tìm đơn đặt theo CCCD:   ");
         jPanel7.add(jLabel7);
 
-        jTextField4.setCaretColor(new java.awt.Color(255, 255, 255));
-        jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel7.add(jTextField4);
-
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Tìm kiếm");
-        jPanel7.add(jButton3);
+        txtTim.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtTim.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKeyReleased(evt);
+            }
+        });
+        jPanel7.add(txtTim);
 
         jPanel14.add(jPanel7);
 
@@ -630,7 +639,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMoPhong)
                     .addComponent(btnHuyDonDat))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel14.add(jPanel9);
@@ -729,6 +738,20 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
             } 
         }
     }//GEN-LAST:event_btnHuyDonDatActionPerformed
+
+    private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
+        String s=txtTim.getText();
+        filter(s);
+    }//GEN-LAST:event_txtTimKeyReleased
+    private void filter(String s){
+        TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel>(dtm);
+        tblDDP.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter("(?i)"+s));
+
+        
+    }
+
+
 // Create list rooms
     private void createRoom() {
         listRoomDoi = roomDAO.findRoomByIDLoaiPhong("LP002");
@@ -905,7 +928,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     private javax.swing.JButton btnTaoDonDat;
     private javax.swing.JButton btnTimKhachHang;
     private javax.swing.JButton btnXoaTrang;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JSpinner giay;
+    private javax.swing.JSpinner gio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -945,7 +969,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JSpinner phut;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlRoom;
     private javax.swing.JRadioButton radNam;
@@ -954,12 +978,12 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
     private javax.swing.JTable tblDDP;
     private javax.swing.JTextField txtCCCD;
     private javax.swing.JTextField txtGio;
-    private javax.swing.JTextField txtGioCheckIn;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtNgay;
-    private javax.swing.JTextField txtNgayCheckIn;
+    private com.toedter.calendar.JDateChooser txtNgayCheckIn;
     private javax.swing.JTextField txtPhong;
     private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
 
     private void taoDonDat() {
@@ -968,7 +992,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         else
         
         {
-            if(txtCCCD.getText().isEmpty() || txtHoTen.getText().isEmpty() || txtSDT.getText().isEmpty() || txtSDT.getText().isEmpty() ||txtGioCheckIn.getText().isEmpty())
+            if(txtCCCD.getText().isEmpty() || txtHoTen.getText().isEmpty() || txtSDT.getText().isEmpty() || txtSDT.getText().isEmpty() ||txtNgayCheckIn.getDate().toString().isEmpty())
                 JOptionPane.showMessageDialog(null, "Hãy điền đầy đủ thống tin!");
             else
               
@@ -985,9 +1009,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                         Customer c=new Customer(maTuSinhKhachHang(),txtHoTen.getText(),txtCCCD.getText(), txtSDT.getText(), "", 0,ctDAO.findCusTypeID("LKH001"),gt);
                         cDAO.add(c);
                         Employee e= eDAO.findEmpID(username);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String ngayCheckIn = sdf.format(txtNgayCheckIn.getDate());
                         
-                        
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, getGioCheckIn(), ngayCheckIn, txtGio.getText(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
                         if(brDAO.add(b)){
                             Room room=rDAO.findRoomById(idroom);
                             RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP003");
@@ -1005,7 +1030,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                     }else{
                         Employee e= eDAO.findEmpID(username);
                         Customer c=cDAO.getCustomerByCCCD(txtCCCD.getText());
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String ngayCheckIn = sdf.format(txtNgayCheckIn.getDate());
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), ngayCheckIn,getGioCheckIn(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
+                        
                         if(brDAO.add(b)){
                             Room room=rDAO.findRoomById(idroom);
                             RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP003");
@@ -1087,6 +1115,24 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         }
         return ma;
     }
+    private String getGioCheckIn(){
+        String s="";
+        int g=(int)gio.getValue();
+        int p=(int)phut.getValue();
+        int gi=(int)giay.getValue();
+        
+        if(g<10){
+            s+="0"+g+":";
+        }
+        if(p<10){
+            s+="0"+p+":";
+        }
+        if(gi<10){
+            s+="0"+gi;
+        }
+        
+        return s;
+    }
     
     private String maTuSinhHoaDon() {
         String ma = "HD";
@@ -1154,8 +1200,10 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         txtCCCD.setText("");
         txtHoTen.setText("");
         txtSDT.setText("");
-        txtNgayCheckIn.setText("");
-        txtGioCheckIn.setText("");
+        gio.setValue(0);
+        phut.setValue(0);
+        giay.setValue(0);
+        txtNgayCheckIn.setDate(null);
     }
 
     private void loadDataToTable() {

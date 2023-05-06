@@ -20,7 +20,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -36,8 +38,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private final CustomerDAO cDAO=new CustomerDAO();
     private final ServiceDAO sDAO=new ServiceDAO();
     private final ServiceDetailDAO sdDAO=new ServiceDetailDAO();
-    
-    
     
     /**
      * Creates new form GD_DichVu_NhanVien
@@ -94,8 +94,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         txtSoLuong = new javax.swing.JSpinner();
         jPanel11 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
-        jPanel20 = new javax.swing.JPanel();
-        btnCapNhat = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDichVu = new javax.swing.JTable();
@@ -136,6 +134,12 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jPanel5.setMinimumSize(new java.awt.Dimension(80, 50));
         jPanel5.setPreferredSize(new java.awt.Dimension(100, 65));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKeyReleased(evt);
+            }
+        });
         jPanel5.add(txtTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 340, 30));
 
         jLabel2.setText("Tìm phòng:");
@@ -213,18 +217,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jPanel11.add(btnThem);
 
         jPanel13.add(jPanel11);
-
-        btnCapNhat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCapNhat.setText("Cập nhật số lượng dịch vụ");
-        btnCapNhat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCapNhatActionPerformed(evt);
-            }
-        });
-        jPanel20.add(btnCapNhat);
-
-        jPanel13.add(jPanel20);
 
         jPanel7.add(jPanel13);
 
@@ -362,20 +354,17 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        int index= tblChiTietDichVu.getSelectedRow();
-        int sl=(int)txtSoLuong.getValue();
-        Service s=sDAO.getServiceByID(tblChiTietDichVu.getValueAt(0, index).toString());
-        if(index==-1){
-            JOptionPane.showMessageDialog(null, "Hãy chọn chi tiết dịch vụ muốn cập nhật số lượng!");
-        }else if(sl<=0){
-            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
-        }else if(sl>s.getInventory()){
-            JOptionPane.showMessageDialog(null, "Số lượng không được lớn hơn số tồncủa dịch vụ!");
-        }else{
-             
-        }
-    }//GEN-LAST:event_btnCapNhatActionPerformed
+    private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
+        String s=txtTim.getText();
+        filter(s);
+    }//GEN-LAST:event_txtTimKeyReleased
+    private void filter(String s){
+        TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel>(dtmPhong);
+        tblPhong.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter("(?i)"+s));
+
+        
+    }
     private String maTuSinhChiTietDV() {
         String ma = "CTDV";
         int tachMa;
@@ -414,7 +403,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
-    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXemChiTiet;
     private javax.swing.JLabel jLabel1;
@@ -434,7 +422,6 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -482,6 +469,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         dtm.setRowCount(0);
         int index= tblPhong.getSelectedRow();
         String maHoaDon=tblPhong.getValueAt(index, 0).toString();
+        lblPhong.setText(tblPhong.getValueAt(index, 2).toString());
         list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
@@ -508,5 +496,11 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
                 
             }
         }
+        double thanhTien=0;
+        for(int i=0;i<dtmChiTietDichVu.getRowCount();i++){
+            thanhTien+= Double.parseDouble( dtmChiTietDichVu.getValueAt(i, 3).toString());
+        }
+        lblThanhTien.setText(""+thanhTien);
+        
     }
 }
