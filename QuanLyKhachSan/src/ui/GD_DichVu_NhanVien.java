@@ -377,6 +377,19 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
                     if(sdDAO.update(sd)){
                         flag=true;
                     }
+                    try {
+                        s.setInventory(s.getInventory()-soLuong);
+                        if(sDAO.update(s)){
+                        loadServiceToTable(dtmDichVu, listServices);
+                        loadChiTietToTable(dtmChiTietDichVu, listServiceDetails);
+                        txtSoLuong.setValue(0);
+                        }
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                         JOptionPane.showMessageDialog(null, "Thêm thành công!");
                     }
             }
