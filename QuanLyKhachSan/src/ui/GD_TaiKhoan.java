@@ -89,7 +89,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         pnlTren.setPreferredSize(new java.awt.Dimension(1324, 130));
         pnlTren.setLayout(new java.awt.BorderLayout());
 
-        pnlThongTin.setBackground(new java.awt.Color(255, 255, 255));
+        pnlThongTin.setBackground(new java.awt.Color(245, 245, 245));
         pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Thông tin tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlThongTin.setToolTipText("");
         pnlThongTin.setMaximumSize(new java.awt.Dimension(841, 32767));
@@ -152,7 +152,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlTren.add(pnlThongTin, java.awt.BorderLayout.WEST);
 
-        pnlNut.setBackground(new java.awt.Color(255, 255, 255));
+        pnlNut.setBackground(new java.awt.Color(245, 245, 245));
         pnlNut.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlNut.setMaximumSize(new java.awt.Dimension(300, 32767));
         pnlNut.setPreferredSize(new java.awt.Dimension(300, 300));
@@ -233,7 +233,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlMain.add(pnlGiua);
 
-        pnlDuoi.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDuoi.setBackground(new java.awt.Color(245, 245, 245));
         pnlDuoi.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Danh sách tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlDuoi.setMaximumSize(new java.awt.Dimension(2147483647, 900));
         pnlDuoi.setPreferredSize(new java.awt.Dimension(1314, 505));

@@ -65,6 +65,10 @@ public class GD_ThanhToan extends javax.swing.JInternalFrame {
     }
 
     public GD_ThanhToan() throws ParseException {
+        this.setRootPaneCheckingEnabled(false);
+        javax.swing.plaf.InternalFrameUI ui
+                = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
         initComponents();
         loadDataTableHoaDon();
     }
