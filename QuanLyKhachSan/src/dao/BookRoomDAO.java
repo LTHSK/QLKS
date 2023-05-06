@@ -43,8 +43,40 @@ public class BookRoomDAO {
                     Customer customer = customerDAO.getCustomerID(rs.getString("customerid"));
                     Room room = roomDAO.findRoomById(rs.getString("roomid"));
                     Employee employee = employeeDAO.findEmpID(rs.getString("employeeid"));
+                    String status = rs.getString("status");
+                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room,status);
+                    bookRooms.add(bookRoom);
+                }
 
-                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room);
+                return bookRooms;
+            } catch (Exception e) {
+                System.err.println("getAlLBookRooms():get data fail");
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.err.println("getAlLBookRooms():connect db fail");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    public ArrayList<BookRoom> getAlLBookRoomsWithStatus() {
+        ArrayList<BookRoom> bookRooms = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("Select * from bookroom where status= 'Chưa mở phòng'")) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String maDDP = rs.getString("bookroomID");
+                    String ngayDat = rs.getString("bookdate");
+                    String gioDat = rs.getString("booktime");
+                    String ngayNhan = rs.getString("checkindate");
+                    String gioNhan = rs.getString("checkintime");
+
+                    Customer customer = customerDAO.getCustomerID(rs.getString("customerid"));
+                    Room room = roomDAO.findRoomById(rs.getString("roomid"));
+                    Employee employee = employeeDAO.findEmpID(rs.getString("employeeid"));
+                    String status = rs.getString("status");
+                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room,status);
                     bookRooms.add(bookRoom);
                 }
 
@@ -63,7 +95,7 @@ public class BookRoomDAO {
     
     public BookRoom getBookRoomByID(String id) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("select * from BookRoom where BookRoomid = ?")) {
+                PreparedStatement pstmt = conn.prepareStatement("select * from BookRoom where BookRoomid = ? ")) {
             pstmt.setString(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {  
@@ -76,8 +108,8 @@ public class BookRoomDAO {
                     Customer customer = customerDAO.getCustomerID(rs.getString("customerId"));
                     Room room = roomDAO.findRoomById(rs.getString("roomid"));
                     Employee employee = employeeDAO.findEmpID(rs.getString("employeeid"));
-
-                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room);
+                    String status = rs.getString("status");
+                    BookRoom bookRoom = new BookRoom(maDDP, ngayDat, gioDat, ngayNhan, gioNhan,  customer, employee,room,status);
                     
                     return bookRoom;
                 }
@@ -131,6 +163,19 @@ public class BookRoomDAO {
             pstmt.setString(1, maDonDat);
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean updateBookRoom(BookRoom bookRoom) {
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("UPDATE BookRoom SET status=?")) {
+            pstmt.setString(1, bookRoom.getStatus());
+            
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.err.println("connect db fail");
             e.printStackTrace();
         }
         return false;

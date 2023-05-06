@@ -663,7 +663,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 r.setRoomStatusType(rst);
                 rDAO.updateRoom(r);
                 
-                dtm.removeRow(index);
+                loadDataToTable();
                 JOptionPane.showMessageDialog(null, "Mở phòng thành công!");
             }
             
@@ -713,8 +713,15 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                 {
                     BookRoom br=brDAO.getBookRoomByID(tblDDP.getValueAt(index, 0).toString());
                     if(brDAO.deleteBookRoom(br.getBookRoomID())){
-                           dtm.removeRow(index);
+                           Room room=rDAO.findRoomById(br.getRoom().getRoomID());
+                           RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP001");
+                           room.setRoomStatusType(rst);
+                           rDAO.updateRoom(room);
+                           
+                           loadDataToTable();
+                           createRoom();
                            JOptionPane.showMessageDialog(null, "Hủy thành công!");
+                           
                     }
                 }
             } 
@@ -978,7 +985,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                         Employee e= eDAO.findEmpID(username);
                         
                         
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom));
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
                         if(brDAO.add(b)){
                             Room room=rDAO.findRoomById(idroom);
                             RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP003");
@@ -996,7 +1003,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
                     }else{
                         Employee e= eDAO.findEmpID(username);
                         Customer c=cDAO.getCustomerByCCCD(txtCCCD.getText());
-                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom));
+                        BookRoom b=new BookRoom(maTuSinhDonDat(), ngaydat, txtGio.getText(), txtNgayCheckIn.getText(), txtGioCheckIn.getText(), c, e, rDAO.findRoomById(idroom),"Chưa mở phòng");
                         if(brDAO.add(b)){
                             Room room=rDAO.findRoomById(idroom);
                             RoomStatusType rst=rstDAO.finRoomStatusTypeById("LTTP003");
@@ -1151,7 +1158,7 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
 
     private void loadDataToTable() {
         dtm.setRowCount(0);
-        listBookRooms=brDAO.getAlLBookRooms();
+        listBookRooms=brDAO.getAlLBookRoomsWithStatus();
         if(listBookRooms!=null){
         for (BookRoom bookRoom : listBookRooms) {
             dtm.addRow(new String[]{bookRoom.getBookRoomID(), bookRoom.getRoom().getRoomName(),

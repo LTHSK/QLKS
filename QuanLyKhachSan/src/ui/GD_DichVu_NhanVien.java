@@ -94,6 +94,8 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         txtSoLuong = new javax.swing.JSpinner();
         jPanel11 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
+        jPanel20 = new javax.swing.JPanel();
+        btnCapNhat = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDichVu = new javax.swing.JTable();
@@ -211,6 +213,18 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         jPanel11.add(btnThem);
 
         jPanel13.add(jPanel11);
+
+        btnCapNhat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCapNhat.setText("Cập nhật số lượng dịch vụ");
+        btnCapNhat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnCapNhat);
+
+        jPanel13.add(jPanel20);
 
         jPanel7.add(jPanel13);
 
@@ -347,6 +361,21 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         }
         }
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        int index= tblChiTietDichVu.getSelectedRow();
+        int sl=(int)txtSoLuong.getValue();
+        Service s=sDAO.getServiceByID(tblChiTietDichVu.getValueAt(0, index).toString());
+        if(index==-1){
+            JOptionPane.showMessageDialog(null, "Hãy chọn chi tiết dịch vụ muốn cập nhật số lượng!");
+        }else if(sl<=0){
+            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
+        }else if(sl>s.getInventory()){
+            JOptionPane.showMessageDialog(null, "Số lượng không được lớn hơn số tồncủa dịch vụ!");
+        }else{
+             
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
     private String maTuSinhChiTietDV() {
         String ma = "CTDV";
         int tachMa;
@@ -385,6 +414,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXemChiTiet;
     private javax.swing.JLabel jLabel1;
@@ -404,6 +434,7 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -454,16 +485,25 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
         list=(ArrayList<ServiceDetail>) sdDAO.getListServiceDetailByOrderID(maHoaDon);
         if(list!=null){
             for(ServiceDetail sd:list){
-                for(int i=0;i<tblChiTietDichVu.getRowCount();i++){
-                    if(tblChiTietDichVu.getValueAt(i, 0).toString().equals(sd.getService().getServiceID())){
-                        int sl=Integer.parseInt((String) dtm.getValueAt(i, 2))+sd.getQuantity();
-                        double gia=sl*sd.getService().getPrice();
-                        dtm.setValueAt(sl+"", i, 2);
-                        dtm.setValueAt(gia+"", i, 3);
-                    }else{
+                if(dtmChiTietDichVu.getRowCount()!=0){
+                    boolean flag=false;
+                    for(int i=0;i<dtmChiTietDichVu.getRowCount();i++){
+                        if(dtmChiTietDichVu.getValueAt(i, 0).toString().equals(sd.getService().getServiceID())){
+                            int sl=Integer.parseInt((String) dtm.getValueAt(i, 2))+sd.getQuantity();
+                            double gia=sl*sd.getService().getPrice();
+                            dtm.setValueAt(sl+"", i, 2);
+                            dtm.setValueAt(gia+"", i, 3);
+                            flag=true;
+                        }
+                    }
+                    if(flag==false){
                         double gia=sd.getQuantity()*sd.getService().getPrice();
                         dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
                     }
+                    
+                }else{
+                    double gia=sd.getQuantity()*sd.getService().getPrice();
+                    dtm.addRow(new String [] {sd.getService().getServiceID(), sd.getService().getServiceName(),sd.getQuantity()+"",gia+""});
                 }
                 
             }

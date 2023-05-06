@@ -20,11 +20,12 @@ public class BookRoom {
     private Customer customer;
     private Employee employee;
     private Room room;
+    private String status;
 
     public BookRoom() {
     }
 
-    public BookRoom(String bookRoomID, String bookDate, String bookTime, String checkInDate, String checkInTime, Customer customer, Employee employee, Room room) {
+    public BookRoom(String bookRoomID, String bookDate, String bookTime, String checkInDate, String checkInTime, Customer customer, Employee employee, Room room, String status) {
         this.bookRoomID = bookRoomID;
         this.bookDate = bookDate;
         this.bookTime = bookTime;
@@ -33,6 +34,7 @@ public class BookRoom {
         this.customer = customer;
         this.employee = employee;
         this.room = room;
+        this.status = status;
     }
 
     public String getBookRoomID() {
@@ -99,9 +101,17 @@ public class BookRoom {
         this.room = room;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "BookRoom{" + "bookRoomID=" + bookRoomID + ", bookDate=" + bookDate + ", bookTime=" + bookTime + ", checkInDate=" + checkInDate + ", checkInTime=" + checkInTime + ", customer=" + customer + ", employee=" + employee + ", room=" + room + '}';
+        return "BookRoom{" + "bookRoomID=" + bookRoomID + ", bookDate=" + bookDate + ", bookTime=" + bookTime + ", checkInDate=" + checkInDate + ", checkInTime=" + checkInTime + ", customer=" + customer + ", employee=" + employee + ", room=" + room + ", status=" + status + '}';
     }
 
     @Override
@@ -125,5 +135,7 @@ public class BookRoom {
         final BookRoom other = (BookRoom) obj;
         return Objects.equals(this.bookRoomID, other.bookRoomID);
     }
+
+    
     
 }
