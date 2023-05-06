@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class ServiceDetailDAO {
     private final OrderDAO oDAO=new OrderDAO();
+    private final ServiceDAO sDAO=new ServiceDAO();
 
 //        ArrayList<Order> list = new ArrayList<>();
 //        try (Connection conn = DatabaseConnection.opConnection();
@@ -111,4 +113,24 @@ public class ServiceDetailDAO {
         }
         return null; 
     }
+
+    public boolean add(ServiceDetail sd) {
+        try (Connection conn = DatabaseConnection.opConnection();
+                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO ServiceDetail(ServiceDetailid,ServiceID,orderID,quantity)"
+            + " VALUES(?,?,?,?)")) {
+            Order o=oDAO.getOrderByID(sd.getOrder().getOrderID());
+            Service s=sDAO.getServiceByID(sd.getService().getServiceID());
+            
+            pstmt.setString(1, sd.getServiceDetailID());
+            pstmt.setString(2, s.getServiceID());
+            pstmt.setString(3, o.getOrderID());
+            pstmt.setInt(4, sd.getQuantity());
+        return pstmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.err.println("add(ServiceDetail sd): connect db fail");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

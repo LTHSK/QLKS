@@ -326,9 +326,20 @@ public class GD_DichVu_NhanVien extends javax.swing.JInternalFrame {
             Order o=oDAO.getOrderByID(tblPhong.getValueAt(indexPhong, 0).toString());
             Service s=sDAO.getServiceByID(tblDichVu.getValueAt(indexDichVu, 0).toString());
             ServiceDetail sd=new ServiceDetail(maTuSinhChiTietDV(), s, o, (int)txtSoLuong.getValue());
+            if(sdDAO.add(sd)){
+                try {
+                    loadChiTietToTable(dtmChiTietDichVu, listServiceDetails);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GD_DichVu_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                txtSoLuong.setValue(0);
+                JOptionPane.showMessageDialog(null,"Thêm thành công!" );
+            }
 //            Thêm code: tạo chi tiết hóa đơn, load lại bảng cthd, xóa trắng ô số lượng
             
-            JOptionPane.showMessageDialog(null,"Thêm thành công!" );
+            
         }
     }//GEN-LAST:event_btnThemActionPerformed
     private String maTuSinhChiTietDV() {
