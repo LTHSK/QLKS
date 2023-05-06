@@ -14,6 +14,10 @@ public class GD_TraCuu extends javax.swing.JInternalFrame {
      * Creates new form GD_TraCuu
      */
     public GD_TraCuu() {
+        this.setRootPaneCheckingEnabled(false);
+        javax.swing.plaf.InternalFrameUI ui
+                = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
         initComponents();
     }
 

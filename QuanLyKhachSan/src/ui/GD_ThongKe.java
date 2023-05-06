@@ -14,6 +14,10 @@ public class GD_ThongKe extends javax.swing.JInternalFrame {
      * Creates new form GD_ThongKe
      */
     public GD_ThongKe() {
+        this.setRootPaneCheckingEnabled(false);
+        javax.swing.plaf.InternalFrameUI ui
+                = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) ui).setNorthPane(null);
         initComponents();
     }
 

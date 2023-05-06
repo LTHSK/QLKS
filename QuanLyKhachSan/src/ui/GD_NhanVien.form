@@ -26,6 +26,13 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pnlMain">
       <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Default Cursor"/>
+        </Property>
+        <Property name="doubleBuffered" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="inheritsPopupMenu" type="boolean" value="true"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[2147483647, 2147483647]"/>
         </Property>
@@ -540,7 +547,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder roundedCorners="true" thickness="3">
-                          <Color PropertyName="color" blue="a5" green="d2" red="fc" type="rgb"/>
+                          <Color PropertyName="color" blue="53" green="59" red="24" type="rgb"/>
                         </LineBorder>
                       </Border>
                     </Property>
@@ -581,7 +588,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder roundedCorners="true" thickness="3">
-                          <Color PropertyName="color" blue="a5" green="d2" red="fc" type="rgb"/>
+                          <Color PropertyName="color" blue="53" green="59" red="24" type="rgb"/>
                         </LineBorder>
                       </Border>
                     </Property>

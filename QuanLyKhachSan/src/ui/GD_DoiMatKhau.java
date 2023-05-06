@@ -1,18 +1,20 @@
 package ui;
 
 
+import dao.AccountDAO;
 import javax.swing.JOptionPane;
 
 public class GD_DoiMatKhau extends javax.swing.JFrame {
 
     String username;
 
-
+    private dao.AccountDAO aD;
     public GD_DoiMatKhau(String _username) {
         username = _username;
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);
         initComponents();
+        aD = new AccountDAO();
     }
 
     @SuppressWarnings("unchecked")
@@ -20,8 +22,6 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlMain = new javax.swing.JPanel();
-        pnlTitle = new javax.swing.JPanel();
-        lblTitile = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtPassOld = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -31,41 +31,37 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnThoat = new javax.swing.JButton();
         btnDoiMatKhau = new javax.swing.JButton();
+        lblTitile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        pnlMain.setBackground(new java.awt.Color(235, 144, 46));
+        pnlMain.setBackground(new java.awt.Color(36, 89, 83));
 
-        pnlTitle.setBackground(new java.awt.Color(235, 144, 46));
-        pnlTitle.setLayout(new java.awt.BorderLayout());
-
-        lblTitile.setBackground(new java.awt.Color(235, 144, 46));
-        lblTitile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTitile.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitile.setText("ĐỔI MẬT KHẨU");
-        pnlTitle.add(lblTitile, java.awt.BorderLayout.CENTER);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin chi tiết"));
+        jPanel3.setBackground(new java.awt.Color(36, 89, 83));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(185, 237, 221), 2, true), "Thông tin chi tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(185, 237, 221))); // NOI18N
+        jPanel3.setForeground(new java.awt.Color(36, 89, 83));
 
         txtPassOld.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(240, 238, 237));
         jLabel3.setText("Mật khẩu cũ: ");
 
         txtNewPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(240, 238, 237));
         jLabel4.setText("Nhập mật khẩu mới: ");
 
         txtAgainPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(240, 238, 237));
         jLabel5.setText("Nhập lại mật khẩu: ");
 
-        btnThoat.setBackground(new java.awt.Color(252, 210, 165));
+        btnThoat.setBackground(new java.awt.Color(185, 237, 221));
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnThoat.setForeground(new java.awt.Color(79, 51, 22));
+        btnThoat.setForeground(new java.awt.Color(36, 89, 83));
         btnThoat.setText("THOÁT");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,9 +69,9 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
             }
         });
 
-        btnDoiMatKhau.setBackground(new java.awt.Color(252, 210, 165));
+        btnDoiMatKhau.setBackground(new java.awt.Color(185, 237, 221));
         btnDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnDoiMatKhau.setForeground(new java.awt.Color(79, 51, 22));
+        btnDoiMatKhau.setForeground(new java.awt.Color(36, 89, 83));
         btnDoiMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/capNhat1.png"))); // NOI18N
         btnDoiMatKhau.setText("ĐỔI MẬT KHẨU");
         btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +90,7 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
-                        .addComponent(txtPassOld))
+                        .addComponent(txtPassOld, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -105,11 +101,11 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
                         .addComponent(txtAgainPass)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+                .addGap(93, 93, 93)
                 .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(149, 149, 149))
+                .addGap(81, 81, 81))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,12 +122,18 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAgainPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        lblTitile.setBackground(new java.awt.Color(235, 144, 46));
+        lblTitile.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitile.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitile.setText("ĐỔI MẬT KHẨU");
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -141,17 +143,19 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(lblTitile, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
@@ -196,33 +200,33 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangePassActionPerformed
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
-//        dTK = new DAO_TaiKhoan();
-//        String passOld = dTK.timTaiKhoan(username).getMatKhau();
-//        String passNew = txtNewPass.getText();
-//        if ( !txtPassOld.getText().equals("")) {
-//            if ( !txtNewPass.getText().equals("")) {
-//                if ( !txtAgainPass.getText().equals("")) {
-//                    if (passOld.equals(txtPassOld.getText())) {
-//                        if (passNew.equals(txtAgainPass.getText())) {
-//                            dTK.capNhatTaiKhoan(passNew, username);
-//                            JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
-//                            this.setVisible(false);
-//                        } else {
-//                            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng mật khẩu mới");
-//                        }
-//
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, "Bạn nhập sai mật khẩu cũ");
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Vui lòng nhập lại mật khẩu mới");
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới");
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu cũ");
-//        }
+        aD = new AccountDAO();
+        String passOld = aD.getAccountById(username).getPassword();
+        String passNew = txtNewPass.getText();
+        if ( !txtPassOld.getText().equals("")) {
+            if ( !txtNewPass.getText().equals("")) {
+                if ( !txtAgainPass.getText().equals("")) {
+                    if (passOld.equals(txtPassOld.getText())) {
+                        if (passNew.equals(txtAgainPass.getText())) {
+                            aD.update(passNew, username);
+                            JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
+                            this.setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng mật khẩu mới");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Bạn nhập sai mật khẩu cũ");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập lại mật khẩu mới");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu cũ");
+        }
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
@@ -239,7 +243,6 @@ public class GD_DoiMatKhau extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblTitile;
     private javax.swing.JPanel pnlMain;
-    private javax.swing.JPanel pnlTitle;
     private javax.swing.JTextField txtAgainPass;
     private javax.swing.JTextField txtNewPass;
     private javax.swing.JTextField txtPassOld;
