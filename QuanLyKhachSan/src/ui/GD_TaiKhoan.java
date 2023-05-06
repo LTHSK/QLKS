@@ -89,8 +89,8 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         pnlTren.setPreferredSize(new java.awt.Dimension(1324, 130));
         pnlTren.setLayout(new java.awt.BorderLayout());
 
-        pnlThongTin.setBackground(new java.awt.Color(240, 233, 210));
-        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 102)), "Thông tin tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(36, 89, 83))); // NOI18N
+        pnlThongTin.setBackground(new java.awt.Color(255, 255, 255));
+        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Thông tin tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlThongTin.setToolTipText("");
         pnlThongTin.setMaximumSize(new java.awt.Dimension(841, 32767));
         pnlThongTin.setPreferredSize(new java.awt.Dimension(980, 280));
@@ -139,7 +139,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         pnlThongTinLayout.setVerticalGroup(
             pnlThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongTinLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(14, 14, 14)
                 .addGroup(pnlThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -152,12 +152,12 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlTren.add(pnlThongTin, java.awt.BorderLayout.WEST);
 
-        pnlNut.setBackground(new java.awt.Color(240, 233, 210));
-        pnlNut.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
+        pnlNut.setBackground(new java.awt.Color(255, 255, 255));
+        pnlNut.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlNut.setMaximumSize(new java.awt.Dimension(300, 32767));
         pnlNut.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        btnDatLaiMatKhau.setBackground(new java.awt.Color(51, 153, 0));
+        btnDatLaiMatKhau.setBackground(new java.awt.Color(36, 89, 83));
         btnDatLaiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         btnDatLaiMatKhau.setForeground(new java.awt.Color(255, 255, 255));
         btnDatLaiMatKhau.setText("Đặt lại mật khẩu");
@@ -185,7 +185,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlNutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDatLaiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoaTK, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(btnXoaTK, javax.swing.GroupLayout.DEFAULT_SIZE, 2664, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlNutLayout.setVerticalGroup(
@@ -202,7 +202,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlMain.add(pnlTren);
 
-        pnlGiua.setBackground(new java.awt.Color(240, 233, 210));
+        pnlGiua.setBackground(new java.awt.Color(255, 255, 255));
         pnlGiua.setMaximumSize(new java.awt.Dimension(32767, 50));
         pnlGiua.setPreferredSize(new java.awt.Dimension(3666, 60));
 
@@ -219,7 +219,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(865, Short.MAX_VALUE))
+                .addContainerGap(3356, Short.MAX_VALUE))
         );
         pnlGiuaLayout.setVerticalGroup(
             pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,12 +228,13 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addGroup(pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pnlMain.add(pnlGiua);
 
-        pnlDuoi.setBackground(new java.awt.Color(240, 233, 210));
+        pnlDuoi.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDuoi.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Danh sách tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlDuoi.setMaximumSize(new java.awt.Dimension(2147483647, 900));
         pnlDuoi.setPreferredSize(new java.awt.Dimension(1314, 505));
         pnlDuoi.setLayout(new javax.swing.BoxLayout(pnlDuoi, javax.swing.BoxLayout.LINE_AXIS));

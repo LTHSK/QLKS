@@ -149,11 +149,12 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         Main.setLayout(new javax.swing.BoxLayout(Main, javax.swing.BoxLayout.Y_AXIS));
 
-        pnTitle.setBackground(new java.awt.Color(240, 233, 210));
+        pnTitle.setBackground(new java.awt.Color(255, 255, 255));
         pnTitle.setLayout(new java.awt.BorderLayout());
 
-        title.setBackground(new java.awt.Color(240, 233, 210));
+        title.setBackground(new java.awt.Color(36, 89, 83));
         title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(36, 89, 83));
         title.setText("Quản Lý Dịch Vụ");
         pnTitle.add(title, java.awt.BorderLayout.CENTER);
 
@@ -161,16 +162,19 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(240, 233, 210));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin chi tiết"));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Thông tin chi tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(36, 89, 83));
         jLabel1.setText("Tên dịch vụ: ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(36, 89, 83));
         jLabel2.setText("Giá dịch vụ:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(36, 89, 83));
         jLabel3.setText("Số lượng: ");
 
         nameTF.addActionListener(new java.awt.event.ActionListener() {
@@ -220,9 +224,12 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel5.add(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(240, 233, 210));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Xử lý"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
 
+        btnAdd.setBackground(new java.awt.Color(36, 89, 83));
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Thêm dịch vụ");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +237,9 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
             }
         });
 
+        btnUpdate.setBackground(new java.awt.Color(36, 89, 83));
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Sửa dịch vụ");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +247,9 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDelete.setBackground(new java.awt.Color(36, 89, 83));
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Xóa dịch vụ");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +257,9 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
             }
         });
 
+        btnClear.setBackground(new java.awt.Color(36, 89, 83));
+        btnClear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Xóa trắng");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,13 +298,13 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         Main.add(jPanel5);
 
-        jPanel3.setBackground(new java.awt.Color(240, 233, 210));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.BorderLayout());
         Main.add(jPanel3);
 
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel7.setBackground(new java.awt.Color(240, 233, 210));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(1918, 20));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -304,9 +320,11 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel6.add(jPanel7);
 
-        jPanel8.setBackground(new java.awt.Color(240, 233, 210));
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(252, 210, 165));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(36, 89, 83));
         jLabel4.setText("Tìm kiếm theo tên dịch vụ: ");
         jPanel8.add(jLabel4);
 
@@ -323,13 +341,16 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         });
         jPanel8.add(findTF);
 
+        jButton1.setBackground(new java.awt.Color(36, 89, 83));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tìm kiếm");
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
         jPanel8.add(jButton1);
 
         jPanel6.add(jPanel8);
 
-        jPanel9.setBackground(new java.awt.Color(240, 233, 210));
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setPreferredSize(new java.awt.Dimension(1918, 20));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -346,6 +367,8 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
         jPanel6.add(jPanel9);
 
         Main.add(jPanel6);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(36, 89, 83)), "Danh sách dịch vụ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
 
         tbService.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

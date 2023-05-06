@@ -379,7 +379,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
         btnDoiMatKhau1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDoiMatKhau1.setForeground(new java.awt.Color(255, 255, 255));
         btnDoiMatKhau1.setText("ĐỔI MẬT KHẨU");
-        btnDoiMatKhau1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(252, 210, 165), 3, true));
+        btnDoiMatKhau1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 83), 3, true));
         btnDoiMatKhau1.setFocusPainted(false);
         btnDoiMatKhau1.setMaximumSize(new java.awt.Dimension(254, 42));
         btnDoiMatKhau1.setPreferredSize(new java.awt.Dimension(254, 40));
@@ -398,7 +398,7 @@ public class GD_QuanLy extends javax.swing.JFrame {
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDangXuat.setForeground(new java.awt.Color(87, 197, 182));
         btnDangXuat.setText("ĐĂNG XUẤT");
-        btnDangXuat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(252, 210, 165), 3, true));
+        btnDangXuat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 83), 3, true));
         btnDangXuat.setMaximumSize(new java.awt.Dimension(254, 42));
         btnDangXuat.setPreferredSize(new java.awt.Dimension(254, 40));
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
