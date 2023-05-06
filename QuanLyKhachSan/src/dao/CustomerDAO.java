@@ -30,7 +30,7 @@ public class CustomerDAO {
             pstmt.setString(1, cccd);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {  
-                    CustomerType ct=ctd.findEmpTypeID(rs.getString("CustomerTypeID"));
+                    CustomerType ct=ctd.findCusTypeID(rs.getString("CustomerTypeID"));
                     Customer c = new Customer(rs.getString("customerID"), rs.getString("customerName"),rs.getString("CCCD"), rs.getString("phone"), rs.getString("email"), rs.getInt("point"),ct,rs.getString("gender"));
 
 
@@ -63,7 +63,7 @@ public class CustomerDAO {
                 String email = rs.getString("email");
                 int diemTichLuy = rs.getInt("point");
                 String gioiTinh = rs.getString("gender");
-                CustomerType ct=ctd.findEmpTypeID(rs.getString("CustomerTypeID"));
+                CustomerType ct=ctd.findCusTypeID(rs.getString("CustomerTypeID"));
                 Customer kh = new Customer(maNV, tenKH,cccd,soDienThoai,email,diemTichLuy,ct,gioiTinh);
                 list.add(kh);
             }
@@ -136,7 +136,7 @@ public class CustomerDAO {
             pstmt.setString(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {  
-                    CustomerType ct=ctd.findEmpTypeID(rs.getString("CustomerTypeID"));
+                    CustomerType ct=ctd.findCusTypeID(rs.getString("CustomerTypeID"));
                     
                     Customer c = new Customer(rs.getString("customerID"), rs.getString("customerName"),rs.getString("CCCD"), rs.getString("phone"), rs.getString("email"), rs.getInt("point"),ct,rs.getString("gender"));
 
@@ -175,7 +175,7 @@ public class CustomerDAO {
                     double empSalary = rs.getDouble("Point");
                     String empGender = rs.getString("Gender");
                     ctd = new CustomerTypeDAO();
-                    CustomerType ct = ctd.findEmpTypeID(rs.getString("customerTypeID"));
+                    CustomerType ct = ctd.findCusTypeID(rs.getString("customerTypeID"));
                     Customer c = new Customer(empID, empName,  empCCCD , empPhone, "", 0,ct,empGender);
 
                     list.add(c);
@@ -212,7 +212,7 @@ public class CustomerDAO {
                     double empSalary = rs.getDouble("Point");
                     String empGender = rs.getString("Gender");
                     ctd = new CustomerTypeDAO();
-                    CustomerType ct = ctd.findEmpTypeID(rs.getString("customerTypeID"));
+                    CustomerType ct = ctd.findCusTypeID(rs.getString("customerTypeID"));
                     Customer c = new Customer(empID, empName,  empCCCD,  empPhone, "", 0,ct,empGender);
 
                     list.add(c);

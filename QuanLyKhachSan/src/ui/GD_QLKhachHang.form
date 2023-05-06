@@ -427,7 +427,7 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cmbLocGioiTinh" min="-2" pref="114" max="-2" attributes="0"/>
-                      <EmptySpace pref="2820" max="32767" attributes="0"/>
+                      <EmptySpace pref="2873" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -478,7 +478,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="15" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i kh&#xe1;ch h&#xe0;ng:"/>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c v&#x1ee5; :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">

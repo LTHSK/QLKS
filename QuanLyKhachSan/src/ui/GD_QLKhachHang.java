@@ -335,7 +335,7 @@ public class GD_QLKhachHang extends javax.swing.JInternalFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel11.setText("Loại khách hàng:");
+        jLabel11.setText("Chức vụ :");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel12.setText("Giới tính");
@@ -374,7 +374,7 @@ public class GD_QLKhachHang extends javax.swing.JInternalFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbLocGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2820, Short.MAX_VALUE))
+                .addContainerGap(2873, Short.MAX_VALUE))
         );
         pnlGiuaLayout.setVerticalGroup(
             pnlGiuaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,11 +475,11 @@ public class GD_QLKhachHang extends javax.swing.JInternalFrame {
         String name = txtTenKH.getText();
         String iden = txtCCCD.getText();
         String phone = txtSoDienThoai.getText();
-        boolean gender = cmbLocGioiTinh.getSelectedItem().toString().equals("Nam");
+        String gender = radNam.isSelected() ? "Nam" : "Nữ";
         EmployeeTypeDAO etD = new EmployeeTypeDAO();
-        entity.CustomerType ct = cTD.findEmpByName(cmbLoaiKH.getSelectedItem().toString());
+        entity.CustomerType ctype = cTD.findCusByName(cmbLoaiKH.getSelectedItem().toString());
         String email = name.toLowerCase().trim() + "@gmail.com";
-        entity.Customer c = new Customer(setMaKH() , name, iden, phone, email, 0, ct, gender?"Nam" : "Nữ" );
+        entity.Customer c = new Customer(setMaKH() , name, iden, phone, email, 0, ctype, gender );
         return c;
     }
      private String setMaKH(){
@@ -551,7 +551,7 @@ public class GD_QLKhachHang extends javax.swing.JInternalFrame {
                 c.setPhone(txtSoDienThoai.getText());
                 c.setGender(radNam.isSelected() ? "Nam": "Nữ");
                 try {
-                    c.setCustomerType(cTD.findEmpByName(cmbLoaiKH.getSelectedItem().toString()));
+                    c.setCustomerType(cTD.findCusByName(cmbLoaiKH.getSelectedItem().toString()));
                 } catch (SQLException ex) {
                     Logger.getLogger(GD_QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
@@ -615,7 +615,7 @@ public class GD_QLKhachHang extends javax.swing.JInternalFrame {
         else
         {
             try {
-                entity.CustomerType cT = cTD.findEmpByName(s);
+                entity.CustomerType cT = cTD.findCusByName(s);
                 if(s.equals("Vip"))
                 {
                     loadDataToTable(cD.getAllEmpType(cT.getCustomerTypeID()), modelKhachHang);

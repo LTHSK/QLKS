@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * @author thule
  */
 public class CustomerTypeDAO {
-    public entity.CustomerType findEmpTypeID(String id) 
+    public entity.CustomerType findCusTypeID(String id) 
     {
          
             
@@ -40,7 +40,7 @@ public class CustomerTypeDAO {
          }
        return null;
     }
-    public CustomerType findEmpByName(String name) throws SQLException, ClassNotFoundException
+    public CustomerType findCusByName(String name) throws SQLException, ClassNotFoundException
     {
         try(
                 Connection con = connection.DatabaseConnection.opConnection();
