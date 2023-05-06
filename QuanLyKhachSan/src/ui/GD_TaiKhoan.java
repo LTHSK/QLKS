@@ -83,14 +83,14 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         pnlMain.setBackground(new java.awt.Color(252, 209, 164));
         pnlMain.setLayout(new javax.swing.BoxLayout(pnlMain, javax.swing.BoxLayout.Y_AXIS));
 
-        pnlTren.setBackground(new java.awt.Color(252, 209, 164));
+        pnlTren.setBackground(new java.awt.Color(240, 233, 210));
         pnlTren.setMaximumSize(new java.awt.Dimension(2147483647, 130));
         pnlTren.setMinimumSize(new java.awt.Dimension(100, 100));
         pnlTren.setPreferredSize(new java.awt.Dimension(1324, 130));
         pnlTren.setLayout(new java.awt.BorderLayout());
 
-        pnlThongTin.setBackground(new java.awt.Color(252, 209, 164));
-        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 102)), "Thông tin tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
+        pnlThongTin.setBackground(new java.awt.Color(240, 233, 210));
+        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 102)), "Thông tin tài khoản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlThongTin.setToolTipText("");
         pnlThongTin.setMaximumSize(new java.awt.Dimension(841, 32767));
         pnlThongTin.setPreferredSize(new java.awt.Dimension(980, 280));
@@ -105,9 +105,11 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(36, 89, 83));
         jLabel4.setText("Tên đăng nhập :");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(36, 89, 83));
         jLabel6.setText("Mật khẩu :");
 
         txtMK.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -150,8 +152,8 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlTren.add(pnlThongTin, java.awt.BorderLayout.WEST);
 
-        pnlNut.setBackground(new java.awt.Color(252, 209, 164));
-        pnlNut.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlNut.setBackground(new java.awt.Color(240, 233, 210));
+        pnlNut.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlNut.setMaximumSize(new java.awt.Dimension(300, 32767));
         pnlNut.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -183,7 +185,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlNutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDatLaiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoaTK, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addComponent(btnXoaTK, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlNutLayout.setVerticalGroup(
@@ -193,18 +195,19 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
                 .addComponent(btnDatLaiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXoaTK, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlTren.add(pnlNut, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlTren);
 
-        pnlGiua.setBackground(new java.awt.Color(252, 209, 164));
+        pnlGiua.setBackground(new java.awt.Color(240, 233, 210));
         pnlGiua.setMaximumSize(new java.awt.Dimension(32767, 50));
         pnlGiua.setPreferredSize(new java.awt.Dimension(3666, 60));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(36, 89, 83));
         jLabel13.setText("Tìm kiếm :");
 
         javax.swing.GroupLayout pnlGiuaLayout = new javax.swing.GroupLayout(pnlGiua);
@@ -230,7 +233,7 @@ public class GD_TaiKhoan extends javax.swing.JInternalFrame {
 
         pnlMain.add(pnlGiua);
 
-        pnlDuoi.setBackground(new java.awt.Color(252, 209, 164));
+        pnlDuoi.setBackground(new java.awt.Color(240, 233, 210));
         pnlDuoi.setMaximumSize(new java.awt.Dimension(2147483647, 900));
         pnlDuoi.setPreferredSize(new java.awt.Dimension(1314, 505));
         pnlDuoi.setLayout(new javax.swing.BoxLayout(pnlDuoi, javax.swing.BoxLayout.LINE_AXIS));

@@ -133,8 +133,8 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         pnlTren.setPreferredSize(new java.awt.Dimension(1324, 340));
         pnlTren.setLayout(new java.awt.BorderLayout());
 
-        pnlThongTin.setBackground(new java.awt.Color(252, 210, 165));
-        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 102)), "Thông tin nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
+        pnlThongTin.setBackground(new java.awt.Color(240, 233, 210));
+        pnlThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 102)), "Thông tin nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlThongTin.setToolTipText("");
         pnlThongTin.setMaximumSize(new java.awt.Dimension(841, 32767));
         pnlThongTin.setPreferredSize(new java.awt.Dimension(980, 270));
@@ -147,9 +147,11 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(36, 89, 83));
         jLabel4.setText("Tên nhân viên :");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(36, 89, 83));
         jLabel6.setText("CMND :");
 
         txtCMND.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -160,6 +162,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(36, 89, 83));
         jLabel7.setText("Số điện thoại :");
 
         txtSoDienThoai.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -170,9 +173,11 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(36, 89, 83));
         jLabel8.setText("Chức vụ :");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(36, 89, 83));
         jLabel9.setText("Lương cơ bản :");
 
         txtLuongCoBan.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -186,15 +191,16 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         cmbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thu ngân", "Quản lý" }));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(36, 89, 83));
         jLabel10.setText("Giới tính :");
 
-        radNam.setBackground(new java.awt.Color(252, 210, 165));
+        radNam.setBackground(new java.awt.Color(240, 233, 210));
         grbGioiTinh.add(radNam);
         radNam.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         radNam.setSelected(true);
         radNam.setText("Nam");
 
-        radNu.setBackground(new java.awt.Color(252, 210, 165));
+        radNu.setBackground(new java.awt.Color(240, 233, 210));
         grbGioiTinh.add(radNu);
         radNu.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         radNu.setText("Nữ");
@@ -259,20 +265,21 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                         .addComponent(radNam)
                         .addComponent(radNu)
                         .addComponent(jLabel10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnlThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLuongCoBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pnlTren.add(pnlThongTin, java.awt.BorderLayout.WEST);
 
-        pnlNut.setBackground(new java.awt.Color(252, 210, 165));
-        pnlNut.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlNut.setBackground(new java.awt.Color(240, 233, 210));
+        pnlNut.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Xử lý", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(36, 89, 83))); // NOI18N
         pnlNut.setMaximumSize(new java.awt.Dimension(300, 32767));
         pnlNut.setPreferredSize(new java.awt.Dimension(300, 270));
 
+        btnTaoTaiKhoanNV.setBackground(new java.awt.Color(103, 137, 131));
         btnTaoTaiKhoanNV.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnTaoTaiKhoanNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/themTK.png"))); // NOI18N
         btnTaoTaiKhoanNV.setText("Tạo tài khoản");
@@ -284,6 +291,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             }
         });
 
+        btnThemNhanVien.setBackground(new java.awt.Color(103, 137, 131));
         btnThemNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnThemNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/them.png"))); // NOI18N
         btnThemNhanVien.setText("Thêm nhân viên");
@@ -295,6 +303,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             }
         });
 
+        btnXoaTrang.setBackground(new java.awt.Color(103, 137, 131));
         btnXoaTrang.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnXoaTrang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXoaTrang.setText("Xóa trắng");
@@ -306,6 +315,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSuaThongTinNV.setBackground(new java.awt.Color(103, 137, 131));
         btnSuaThongTinNV.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnSuaThongTinNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/capNhat.png"))); // NOI18N
         btnSuaThongTinNV.setText("Cập nhật thông tin nhân viên");
@@ -317,6 +327,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
             }
         });
 
+        btnXoa.setBackground(new java.awt.Color(103, 137, 131));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoa.png"))); // NOI18N
         btnXoa.setText("Xóa nhân viên");
@@ -333,9 +344,9 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         pnlNutLayout.setHorizontalGroup(
             pnlNutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnThemNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSuaThongTinNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2682, Short.MAX_VALUE)
+            .addComponent(btnSuaThongTinNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2676, Short.MAX_VALUE)
             .addComponent(btnXoaTrang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnTaoTaiKhoanNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2682, Short.MAX_VALUE)
+            .addComponent(btnTaoTaiKhoanNV, javax.swing.GroupLayout.DEFAULT_SIZE, 2676, Short.MAX_VALUE)
             .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlNutLayout.setVerticalGroup(
@@ -351,14 +362,14 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
                 .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTaoTaiKhoanNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pnlTren.add(pnlNut, java.awt.BorderLayout.CENTER);
 
         pnlMain.add(pnlTren);
 
-        pnlGiua.setBackground(new java.awt.Color(252, 210, 165));
+        pnlGiua.setBackground(new java.awt.Color(240, 233, 210));
         pnlGiua.setMaximumSize(new java.awt.Dimension(32767, 50));
         pnlGiua.setPreferredSize(new java.awt.Dimension(3666, 60));
 
@@ -371,9 +382,11 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(36, 89, 83));
         jLabel11.setText("Chức vụ :");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(36, 89, 83));
         jLabel12.setText("Giới tính");
 
         cmbLocGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -385,6 +398,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(36, 89, 83));
         jLabel13.setText("Tìm kiếm :");
 
         findTF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -430,7 +444,7 @@ public class GD_QLNhanVien extends javax.swing.JInternalFrame {
 
         pnlMain.add(pnlGiua);
 
-        pnlDuoi.setBackground(new java.awt.Color(252, 210, 165));
+        pnlDuoi.setBackground(new java.awt.Color(240, 233, 210));
         pnlDuoi.setMaximumSize(new java.awt.Dimension(2147483647, 500));
         pnlDuoi.setPreferredSize(new java.awt.Dimension(1314, 440));
 

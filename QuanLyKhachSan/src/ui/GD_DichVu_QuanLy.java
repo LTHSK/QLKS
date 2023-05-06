@@ -149,10 +149,10 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         Main.setLayout(new javax.swing.BoxLayout(Main, javax.swing.BoxLayout.Y_AXIS));
 
-        pnTitle.setBackground(new java.awt.Color(252, 210, 165));
+        pnTitle.setBackground(new java.awt.Color(240, 233, 210));
         pnTitle.setLayout(new java.awt.BorderLayout());
 
-        title.setBackground(new java.awt.Color(252, 210, 165));
+        title.setBackground(new java.awt.Color(240, 233, 210));
         title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         title.setText("Quản Lý Dịch Vụ");
         pnTitle.add(title, java.awt.BorderLayout.CENTER);
@@ -161,7 +161,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(240, 233, 210));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin chi tiết"));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -220,7 +220,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel5.add(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(240, 233, 210));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Xử lý"));
 
         btnAdd.setText("Thêm dịch vụ");
@@ -282,13 +282,13 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         Main.add(jPanel5);
 
-        jPanel3.setBackground(new java.awt.Color(252, 210, 165));
+        jPanel3.setBackground(new java.awt.Color(240, 233, 210));
         jPanel3.setLayout(new java.awt.BorderLayout());
         Main.add(jPanel3);
 
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel7.setBackground(new java.awt.Color(252, 210, 165));
+        jPanel7.setBackground(new java.awt.Color(240, 233, 210));
         jPanel7.setPreferredSize(new java.awt.Dimension(1918, 20));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -304,7 +304,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel6.add(jPanel7);
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBackground(new java.awt.Color(240, 233, 210));
 
         jLabel4.setBackground(new java.awt.Color(252, 210, 165));
         jLabel4.setText("Tìm kiếm theo tên dịch vụ: ");
@@ -329,7 +329,7 @@ public class GD_DichVu_QuanLy extends javax.swing.JInternalFrame {
 
         jPanel6.add(jPanel8);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBackground(new java.awt.Color(240, 233, 210));
         jPanel9.setPreferredSize(new java.awt.Dimension(1918, 20));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);

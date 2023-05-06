@@ -172,16 +172,16 @@ public class GD_NhanVien extends javax.swing.JFrame {
 
         pnlMenu.add(pnlNguoiDung);
 
-        kGradientPanel2.setkEndColor(new java.awt.Color(240, 160, 75));
+        kGradientPanel2.setkEndColor(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setkStartColor(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setMaximumSize(new java.awt.Dimension(999, 2000));
         kGradientPanel2.setPreferredSize(new java.awt.Dimension(245, 814));
         kGradientPanel2.setLayout(new javax.swing.BoxLayout(kGradientPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
         pnlGioiThieu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlGioiThieu.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlGioiThieu.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlGioiThieu.setkGradientFocus(10);
-        pnlGioiThieu.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlGioiThieu.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlGioiThieu.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlGioiThieu.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlGioiThieu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,7 +192,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlGioiThieu.setLayout(new java.awt.BorderLayout());
 
         lblGioiThieu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblGioiThieu.setForeground(new java.awt.Color(79, 51, 22));
+        lblGioiThieu.setForeground(new java.awt.Color(240, 238, 237));
         lblGioiThieu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGioiThieu.setText("GIỚI THIỆU");
         pnlGioiThieu.add(lblGioiThieu, java.awt.BorderLayout.CENTER);
@@ -200,9 +200,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlGioiThieu);
 
         pnlDonDat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlDonDat.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlDonDat.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlDonDat.setkGradientFocus(10);
-        pnlDonDat.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlDonDat.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlDonDat.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlDonDat.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlDonDat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,7 +213,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlDonDat.setLayout(new java.awt.BorderLayout());
 
         lblDonDat.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblDonDat.setForeground(new java.awt.Color(79, 51, 22));
+        lblDonDat.setForeground(new java.awt.Color(240, 238, 237));
         lblDonDat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDonDat.setText("ĐƠN ĐẶT");
         pnlDonDat.add(lblDonDat, java.awt.BorderLayout.CENTER);
@@ -221,9 +221,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlDonDat);
 
         pnlDichVu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlDichVu.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlDichVu.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlDichVu.setkGradientFocus(10);
-        pnlDichVu.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlDichVu.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlDichVu.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlDichVu.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,7 +234,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlDichVu.setLayout(new java.awt.BorderLayout());
 
         lblDichVu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblDichVu.setForeground(new java.awt.Color(79, 51, 22));
+        lblDichVu.setForeground(new java.awt.Color(240, 238, 237));
         lblDichVu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDichVu.setText("DỊCH VỤ");
         pnlDichVu.add(lblDichVu, java.awt.BorderLayout.CENTER);
@@ -242,9 +242,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlDichVu);
 
         pnlHoaDon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlHoaDon.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlHoaDon.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlHoaDon.setkGradientFocus(10);
-        pnlHoaDon.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlHoaDon.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlHoaDon.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlHoaDon.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,7 +255,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlHoaDon.setLayout(new java.awt.BorderLayout());
 
         lblHoaDon.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblHoaDon.setForeground(new java.awt.Color(79, 51, 22));
+        lblHoaDon.setForeground(new java.awt.Color(240, 238, 237));
         lblHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHoaDon.setText("HÓA ĐƠN");
         pnlHoaDon.add(lblHoaDon, java.awt.BorderLayout.CENTER);
@@ -263,9 +263,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlHoaDon);
 
         pnlTraCuu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlTraCuu.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlTraCuu.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlTraCuu.setkGradientFocus(10);
-        pnlTraCuu.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlTraCuu.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlTraCuu.setMaximumSize(new java.awt.Dimension(300, 40));
         pnlTraCuu.setMinimumSize(new java.awt.Dimension(50, 40));
         pnlTraCuu.setPreferredSize(new java.awt.Dimension(250, 40));
@@ -277,7 +277,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlTraCuu.setLayout(new java.awt.BorderLayout());
 
         lblTraCuu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblTraCuu.setForeground(new java.awt.Color(79, 51, 22));
+        lblTraCuu.setForeground(new java.awt.Color(240, 238, 237));
         lblTraCuu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTraCuu.setText("TRA CỨU");
         lblTraCuu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -286,9 +286,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlTraCuu);
 
         pnlThongKe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlThongKe.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlThongKe.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlThongKe.setkGradientFocus(10);
-        pnlThongKe.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlThongKe.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlThongKe.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlThongKe.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -299,7 +299,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlThongKe.setLayout(new java.awt.BorderLayout());
 
         lblThongKe.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblThongKe.setForeground(new java.awt.Color(79, 51, 22));
+        lblThongKe.setForeground(new java.awt.Color(240, 238, 237));
         lblThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblThongKe.setText("THỐNG KÊ");
         pnlThongKe.add(lblThongKe, java.awt.BorderLayout.CENTER);
@@ -307,9 +307,9 @@ public class GD_NhanVien extends javax.swing.JFrame {
         kGradientPanel2.add(pnlThongKe);
 
         pnlTroGiup.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        pnlTroGiup.setkEndColor(new java.awt.Color(252, 210, 165));
+        pnlTroGiup.setkEndColor(new java.awt.Color(0, 102, 102));
         pnlTroGiup.setkGradientFocus(10);
-        pnlTroGiup.setkStartColor(new java.awt.Color(252, 210, 165));
+        pnlTroGiup.setkStartColor(new java.awt.Color(0, 102, 102));
         pnlTroGiup.setMaximumSize(new java.awt.Dimension(2147483647, 40));
         pnlTroGiup.setPreferredSize(new java.awt.Dimension(250, 40));
         pnlTroGiup.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,7 +320,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlTroGiup.setLayout(new java.awt.BorderLayout());
 
         lblTroGiup.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblTroGiup.setForeground(new java.awt.Color(79, 51, 22));
+        lblTroGiup.setForeground(new java.awt.Color(240, 238, 237));
         lblTroGiup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTroGiup.setText("TRỢ GIÚP");
         pnlTroGiup.add(lblTroGiup, java.awt.BorderLayout.CENTER);
@@ -331,7 +331,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        btnDoiMatKhau.setBackground(new java.awt.Color(235, 144, 46));
+        btnDoiMatKhau.setBackground(new java.awt.Color(36, 89, 83));
         btnDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDoiMatKhau.setForeground(new java.awt.Color(255, 255, 255));
         btnDoiMatKhau.setText("ĐỔI MẬT KHẨU");
@@ -351,7 +351,7 @@ public class GD_NhanVien extends javax.swing.JFrame {
 
         btnDangXuat.setBackground(new java.awt.Color(252, 249, 250));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDangXuat.setForeground(new java.awt.Color(183, 31, 31));
+        btnDangXuat.setForeground(new java.awt.Color(87, 197, 182));
         btnDangXuat.setText("ĐĂNG XUẤT");
         btnDangXuat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(252, 210, 165), 3, true));
         btnDangXuat.setMaximumSize(new java.awt.Dimension(254, 42));
@@ -368,14 +368,14 @@ public class GD_NhanVien extends javax.swing.JFrame {
         pnlMain.add(pnlMenu, java.awt.BorderLayout.WEST);
         pnlMenu.getAccessibleContext().setAccessibleParent(this);
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(204, 204, 204));
+        kGradientPanel1.setkEndColor(new java.awt.Color(185, 237, 221));
         kGradientPanel1.setkGradientFocus(2600);
-        kGradientPanel1.setkStartColor(new java.awt.Color(240, 160, 75));
+        kGradientPanel1.setkStartColor(new java.awt.Color(135, 203, 185));
         kGradientPanel1.setPreferredSize(new java.awt.Dimension(1155, 45));
         kGradientPanel1.setLayout(new java.awt.GridLayout(1, 1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(36, 89, 83));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("PHẦN MỀM QUẢN LÝ KHÁCH SẠN");
         jLabel3.setToolTipText("");

@@ -44,7 +44,7 @@
         <Container class="javax.swing.JPanel" name="pnlTren">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="a4" green="d1" red="fc" type="rgb"/>
+              <Color blue="d2" green="e9" red="f0" type="rgb"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[2147483647, 130]"/>
@@ -62,7 +62,7 @@
             <Container class="javax.swing.JPanel" name="pnlThongTin">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="a4" green="d1" red="fc" type="rgb"/>
+                  <Color blue="d2" green="e9" red="f0" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -73,6 +73,7 @@
                         </LineBorder>
                       </Border>
                       <Font PropertyName="font" name="Segoe UI" size="14" style="3"/>
+                      <Color PropertyName="color" blue="53" green="59" red="24" type="rgb"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -146,6 +147,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="15" style="1"/>
                     </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="53" green="59" red="24" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p :"/>
                   </Properties>
                 </Component>
@@ -153,6 +157,9 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="15" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="53" green="59" red="24" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u :"/>
                   </Properties>
@@ -176,11 +183,14 @@
             <Container class="javax.swing.JPanel" name="pnlNut">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="a4" green="d1" red="fc" type="rgb"/>
+                  <Color blue="d2" green="e9" red="f0" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                    <BevelBorder/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="X&#x1eed; l&#xfd;">
+                      <Font PropertyName="font" name="Segoe UI" size="14" style="1"/>
+                      <Color PropertyName="color" blue="53" green="59" red="24" type="rgb"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -203,7 +213,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnDatLaiMatKhau" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnXoaTK" pref="167" max="32767" attributes="0"/>
+                              <Component id="btnXoaTK" pref="173" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -216,7 +226,7 @@
                           <Component id="btnDatLaiMatKhau" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnXoaTK" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -263,7 +273,7 @@
         <Container class="javax.swing.JPanel" name="pnlGiua">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="a4" green="d1" red="fc" type="rgb"/>
+              <Color blue="d2" green="e9" red="f0" type="rgb"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[32767, 50]"/>
@@ -304,6 +314,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="15" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="53" green="59" red="24" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m :"/>
               </Properties>
             </Component>
@@ -314,7 +327,7 @@
         <Container class="javax.swing.JPanel" name="pnlDuoi">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="a4" green="d1" red="fc" type="rgb"/>
+              <Color blue="d2" green="e9" red="f0" type="rgb"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[2147483647, 900]"/>
