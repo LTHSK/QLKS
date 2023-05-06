@@ -63,7 +63,7 @@ public class BookRoomDAO {
     public ArrayList<BookRoom> getAlLBookRoomsWithStatus() {
         ArrayList<BookRoom> bookRooms = new ArrayList<>();
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("Select * from bookroom where status= 'Chưa mở phòng'")) {
+                PreparedStatement pstmt = conn.prepareStatement("Select * from bookroom where status= N'Chưa mở phòng'")) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     String maDDP = rs.getString("bookroomID");
@@ -127,8 +127,8 @@ public class BookRoomDAO {
 
     public boolean add(BookRoom bookRoom) {
         try (Connection conn = DatabaseConnection.opConnection();
-                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO bookroom(bookroomid,bookdate,booktime,checkindate,checkintime,customerid,employeeid,roomid)"
-            + " VALUES(?,?,?,?,?,?,?,?)")) {
+                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO bookroom(bookroomid,bookdate,booktime,checkindate,checkintime,customerid,employeeid,roomid,status)"
+            + " VALUES(?,?,?,?,?,?,?,?,?)")) {
             Customer c=customerDAO.getCustomerByCCCD(bookRoom.getCustomer().getCCCD());
             Employee e=eDAO.findEmpID(bookRoom.getEmployee().getEmployeeID());
             
@@ -149,6 +149,7 @@ public class BookRoomDAO {
             pstmt.setString(6, c.getCustomerID());
             pstmt.setString(7, e.getEmployeeID());
             pstmt.setString(8, bookRoom.getRoom().getRoomID());
+            pstmt.setString(9, bookRoom.getStatus());
         return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             System.err.println("add(BookRoom bookRoom): connect db fail");
