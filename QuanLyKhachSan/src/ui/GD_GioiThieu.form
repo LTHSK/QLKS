@@ -90,7 +90,7 @@
                   <Font name="Segoe UI" size="24" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="2e" green="90" red="eb" type="rgb"/>
+                  <Color blue="53" green="59" red="24" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n m&#x1ec1;m qu&#x1ea3;n l&#xfd; &#x111;&#x1eb7;t ph&#xf2;ng kh&#xe1;ch s&#x1ea1;n H&amp;M"/>
@@ -174,9 +174,6 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="T:\QLKS\QuanLyKhachSan\src\icons\Anh_GT.jpg"/>
-                </Property>
               </Properties>
             </Component>
           </SubComponents>
