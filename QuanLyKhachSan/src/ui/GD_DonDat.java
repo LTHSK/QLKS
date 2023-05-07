@@ -636,11 +636,11 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(263, 263, 263)
+                .addGap(99, 99, 99)
                 .addComponent(btnMoPhong)
-                .addGap(247, 247, 247)
+                .addGap(94, 94, 94)
                 .addComponent(btnHuyDonDat)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(566, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1007,7 +1007,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
               
             {
                 if(check()){
-                    String ngaydat=txtNgay.getText().substring(7, 17);
+                    String ngaydat=txtNgay.getText();
+                    
                     if(cDAO.getCustomerByCCCD(txtCCCD.getText())==null){
                         String gt;
                         gt = "";
@@ -1184,14 +1185,8 @@ public class GD_DonDat extends javax.swing.JInternalFrame implements Runnable{
             SimpleDateFormat sdf_Ngay = new SimpleDateFormat("yyyy-MM-dd");
             while (true) {
                 thoiGianHienTai = new Date(); // lấy thời gian hiện tại
-                String ngayTrongTuan = "";
-                if (thoiGianHienTai.getDay() == 0) {
-                    ngayTrongTuan = "Chủ nhật, ";
-                } else {
-                    ngayTrongTuan = "Thứ " + (thoiGianHienTai.getDay() + 1) + ", ";// do getDay() tính từ 1.
-                }
                 txtGio.setText(sdf_Gio.format(thoiGianHienTai));
-                txtNgay.setText(ngayTrongTuan + sdf_Ngay.format(thoiGianHienTai));
+                txtNgay.setText(sdf_Ngay.format(thoiGianHienTai));
                 thread.sleep(1000); // cho phép ngủ trong khoảng 1000 mns =1s
             }
         } catch (InterruptedException e) {

@@ -135,7 +135,6 @@ public class BookRoomDAO {
             
             java.sql.Date bookDate= java.sql.Date.valueOf(bookRoom.getBookDate());
             java.sql.Date checkInDate =  java.sql.Date.valueOf(bookRoom.getCheckInDate());
-             
             
             java.sql.Time bookTime=Time.valueOf(bookRoom.getBookTime());
             java.sql.Time checkInTime=Time.valueOf(bookRoom.getCheckInTime());
